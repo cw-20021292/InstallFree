@@ -1,14 +1,55 @@
 #05
 ;FF     PUBLIC
-02FEFBA_?DATA
-02FEFBA_?DATAL
-02FEFBA_?DATS
-02FEFBA_?INIS
-02FEFBA_?INIT
-02FEFBA_?INITL
+02FFED8@@CPR1
+02FFEDE@@FPRF1
+02FFEDF@@FPRF2
+02FFEDE@@FPRFP
+02FFED8@@FPRS
+02FFEDC@@FPRXD
+02FFEDC@@FPRXP
+02FFEDD@@FPRXS
+0100196@@cudiv
+01001CA@@curem
+010029F@@divuw
+010029F@@divuwe
+0100516@@fadd
+0100525@@fadde
+0100526@@faddx
+01004AA@@finfws
+01004CD@@fmthrr
+01002D3@@fmul
+01003FE@@fnor
+0100474@@fret
+0100492@@fret0
+0100495@@fret0s
+010049E@@fret0x
+0100436@@fstore
+0100650@@ftols
+0100662@@ftolse
+0100429@@funite
+01004A2@@fx0div
+010048E@@fxinex
+01004C2@@fxnan1
+01004BD@@fxnan2
+01004A6@@fxover
+0100200@@isdiv
+0100185@@ismul
+010024F@@isrem
+0100222@@iudiv
+0100185@@iumul
+0100270@@iurem
+01006C8@@lstof
+01006DE@@lutof
+01006E7@@lutofe
+02FF19C_?DATA
+02FF1E4_?DATAL
+02FF1E4_?DATS
+02FF1E4_?INIS
+02FF1E4_?INIT
+02FF1E4_?INITL
 0100002_?RLINIT
 0100002_?R_INIS
-0100002_?R_INIT
+0101BEC_?R_INIT
 02FEF98_@BRKADR
 02FEF86_@DIVR
 02FEF80_@FNCENT
@@ -17,32 +58,417 @@
 0000000_@MAA
 02FEFBA_@MEMBTM
 02FEF9A_@MEMTOP
+02FFED8_@RTARG0
+02FFED9_@RTARG1
+02FFEDA_@RTARG2
+02FFEDB_@RTARG3
+02FFEDC_@RTARG4
+02FFEDD_@RTARG5
+02FFEDE_@RTARG6
+02FFEDF_@RTARG7
 01FFE20_@SADBEG
 00000C0_@SADSIZ
 02FEF82_@SEED
-00FFEE0_@STBEG
-00FEFBA_@STEND
+02FFED4_@SEGAX
+02FFED5_@SEGBC
+02FFED6_@SEGDE
+02FFED7_@SEGHL
+00FFED4_@STBEG
+00FF1E4_@STEND
 02FEF92_@TOKPTR
 0100185_@cend
 01000D8_@cstart
 0100004_@vect04
 0100030_@vect30
-01001AC_R_CGC_Create
-01001C3_R_CGC_Get_ResetSource
-01001C8_R_PORT_Create
-0100189_R_Systeminit
-01002AC_R_TAU0_Channel2_Start
-01002BD_R_TAU0_Channel2_Stop
-01002CE_R_TAU0_Channel5_Start
-01002E3_R_TAU0_Channel5_Stop
-01001F2_R_TAU0_Create
-01002F8_R_WDT_Create
-0100308_R_WDT_Restart
+01035C9_ASCII2HEX
+0104A6A_AbnormalEffluentErrorCheck
+0104A73_AirTempErrorCheck
+0104A77_BLDC_CompErrorCheck
+0103391_Base_Initialize
+0103473_Base_Timer_100us
+0103455_Base_Timer_1ms
+0103503_Bit16HEX2DEC
+0104A63_BoostPumpErrorCheck
+01034A5_BootTimeCheck
+010349B_Boot_Initialize
+0103E4B_ChangeOperationMode
+0104A79_CirculatePumpErrorCheck
+0104721_ColdEffluentControl
+01047F1_ColdEffluentStop
+0104A6E_ColdLevelErrorCheck
+0104A71_ColdTempErrorCheck
+0104A78_CompActErrorCheck
+0103C20_ConfirmLevelSensorData
+0103930_ConfirmReedSWData
+01035E3_ConvInt2Temp
+0103643_ConvTemp2Char
+0104CA2_CoolFanControlTimer
+0103EF7_CounterTimeScheduler
+01036D5_DC_PumpControl
+01036CB_DC_PumpControlTimer
+0103552_DEC2Bit16HEX
+01034E5_DEC2HEX
+0104A83_DecontaminationErrorCheck
+0104D95_Delay
+0104DB1_Delay_ms
+010432D_Delete1msTimeScheduler
+0104113_DeleteTimeScheduler
+0104A68_DrainPumpErrorCheck
+01036A7_Drv_AC_Motor_IceMaking_Module_1ms_Control
+01036A8_Drv_AC_Motor_IceMaking_Module_Control
+01036A6_Drv_AC_Motor_IceMaking_Module_Initialize
+01036A5_Drv_AC_Motor_Module_Control
+01036A4_Drv_AC_Motor_Module_Initialize
+010385C_Drv_ADC_Module_Initialize
+0103740_Drv_All_DC_Pump_Off
+01036AA_Drv_BLDC_Comp_Module_1ms_Control
+01036AB_Drv_BLDC_Comp_Module_Control
+01036A9_Drv_BLDC_Comp_Module_Initialize
+01036AD_Drv_BoostPump_Module_1ms_Control
+01036AE_Drv_BoostPump_Module_Control
+01036AC_Drv_BoostPump_Module_Initialize
+01036B0_Drv_Buzzer_Module_1ms_Control
+01036AF_Drv_Buzzer_Module_Initialize
+010385E_Drv_ColdTH_Module_1ms_Control
+010385F_Drv_ColdTH_Module_Control
+010385D_Drv_ColdTH_Module_Initialize
+0103878_Drv_Comp_Module_1ms_Control
+0103879_Drv_Comp_Module_Control
+0103877_Drv_Comp_Module_Initialize
+01036B2_Drv_DC_Fan_Module_1ms_Control
+01036B3_Drv_DC_Fan_Module_Control
+01036B1_Drv_DC_Fan_Module_Initialize
+0103759_Drv_DC_PumpControl
+0103831_Drv_DC_Pump_1_Off
+010381B_Drv_DC_Pump_1_On
+01036B4_Drv_DC_Pump_Initialize
+010384B_Drv_DC_Pump_Module_1ms_Control
+010384F_Drv_DC_Pump_Module_Control
+0103847_Drv_DC_Pump_Module_Initialize
+0103858_Drv_EW_Module_1ms_Control
+0103859_Drv_EW_Module_Control
+0103857_Drv_EW_Module_Initialize
+010385B_Drv_Flowmeter_Module_1ms_Control
+010385A_Drv_Flowmeter_Module_Initialize
+010386F_Drv_GasSwitch_Module_1ms_Control
+0103870_Drv_GasSwitch_Module_Control
+010386E_Drv_GasSwitch_Module_Initialize
+0103861_Drv_Heater_Module_1ms_Control
+0103862_Drv_Heater_Module_Control
+0103860_Drv_Heater_Module_Initialize
+0103872_Drv_IceDoor_Module_1ms_Control
+0103873_Drv_IceDoor_Module_Control
+0103871_Drv_IceDoor_Module_Initialize
+0103875_Drv_IceTray_Module_1ms_Control
+0103876_Drv_IceTray_Module_Control
+0103874_Drv_IceTray_Module_Initialize
+0103867_Drv_Input_IceTray_Module_1ms_Control
+0103868_Drv_Input_IceTray_Module_Control
+0103866_Drv_Input_IceTray_Module_Initialize
+010386A_Drv_Inst_Heater_Module_1ms_Control
+010386B_Drv_Inst_Heater_Module_Control
+0103869_Drv_Inst_Heater_Module_Initialize
+010386D_Drv_LeakSensor_Module_Control
+010386C_Drv_LeakSensor_Module_Initialize
+0103B6A_Drv_LevelSensor_Initialize
+0103E35_Drv_LevelSensor_Module_1ms_Control
+0103E39_Drv_LevelSensor_Module_Control
+0103E31_Drv_LevelSensor_Module_Initialize
+0103B50_Drv_RTC_Module_1ms_Control
+0103B51_Drv_RTC_Module_Control
+0103B4F_Drv_RTC_Module_Initialize
+0103BAB_Drv_Read_LevelSensor
+01038BB_Drv_Read_ReedSW
+010387A_Drv_ReedSW_Initialize
+0103B43_Drv_ReedSW_Module_1ms_Control
+0103B47_Drv_ReedSW_Module_Control
+0103B3F_Drv_ReedSW_Module_Initialize
+0103B53_Drv_SmallValve_Module_1ms_Control
+0103B54_Drv_SmallValve_Module_Control
+0103B52_Drv_SmallValve_Module_Initialize
+0103B56_Drv_Stepmotor_Module_1ms_Control
+0103B55_Drv_Stepmotor_Module_Initialize
+0103B57_Drv_StirringMoter_Module_Initialize
+0103B58_Drv_StirringMotor_Module_1ms_Control
+0103B59_Drv_StirringMotor_Module_Control
+0103864_Drv_SwingBar_Module_1ms_Control
+0103865_Drv_SwingBar_Module_Control
+0103863_Drv_SwingBar_Module_Initialize
+0103B5C_Drv_TDS_Module_100us_Control
+0103B5B_Drv_TDS_Module_1ms_Control
+0103B5D_Drv_TDS_Module_Control
+0103B5A_Drv_TDS_Module_Initialize
+0103B5F_Drv_TEM_Module_1ms_Control
+0103B60_Drv_TEM_Module_Control
+0103B5E_Drv_TEM_Module_Initialize
+0103B62_Drv_UV_Module_1ms_Control
+0103B63_Drv_UV_Module_Control
+0103B61_Drv_UV_Module_Initialize
+0103B65_Drv_Valve_Module_1ms_Control
+0103B66_Drv_Valve_Module_Control
+0103B64_Drv_Valve_Module_Initialize
+0103B68_Drv_Voice_Module_1ms_Control
+0103B69_Drv_Voice_Module_Control
+0103B67_Drv_Voice_Module_Initialize
+0104A7C_EW_DrainPumpErrorCheck
+0104A7B_EW_ModuleErrorCheck
+0104A5B_EffluentCloggingErrorCheck
+010443E_EffluentControlTimer
+010444B_EffluentTimeCountdown
+0104A5A_FilterCloggingErrorCheck
+0104A57_FlowMeterErrorCheck_BuiltInUse
+0103487_FunctionProcess_In_WhileLoop
+0104B65_Get_AirTempError
+0104D67_Get_AllKeyLockStatus
+01034B7_Get_BootComplete
+01034B3_Get_BootTime
+0104BB5_Get_ColdError
+0104D46_Get_ColdOnOff
+0103730_Get_DC_PumpStatus
+01037A9_Get_DC_PumpStatus_HW
+010442C_Get_DefaultWaterAmount
+0104410_Get_DefaultWaterSelect
+0104568_Get_EffluentEndCheck
+01044F1_Get_EffluentHz
+0104503_Get_EffluentHzCountdownEnd
+01044FE_Get_EffluentRemainHz
+01044D2_Get_EffluentRemainTime
+0104520_Get_EffluentStatus
+0104941_Get_EffluentStep
+01044C5_Get_EffluentTime
+0104473_Get_EffluentTimeCountdownEnd
+0104C25_Get_ErrorAboutIceMaking
+0104B1F_Get_ErrorAboutWaterInput
+0104B0F_Get_ErrorDetect
+0104A84_Get_ErrorDisplayCode
+0104AA6_Get_ErrorOccuredCheck
+0104AE7_Get_ErrorStatus
+0104D85_Get_FactoryAutoTestMode
+0104D8D_Get_FactoryAutoTestModeStep
+0104D7D_Get_FactoryManualTestMode
+0104D21_Get_FirstHighLevelCheck
+0104D2A_Get_FirstLowLevelCheck
+0104A55_Get_FlowMeterErrorCheckDelayTime
+0104A4F_Get_FlowMeterErrorCheckStart
+0104A60_Get_HotCutOffCheckStart
+0104B75_Get_HotError
+0104D56_Get_HotKeyLockStatus
+010443A_Get_MyCupAmount
+0103EED_Get_OperatingStatus
+0103E53_Get_OperationMode
+0104D75_Get_PBATestMode
+0104E11_Get_PumpStatus
+01044A0_Get_QuantitativeEffluent
+0103A61_Get_ReedSW_Status
+010368A_Get_Temp
+010441E_Get_WaterAmount
+0104D15_Get_WaterLevel
+0103D51_Get_WaterLevel_Status
+0104402_Get_WaterSelect
+0104178_Go1msTimeInterrputScheduler
+0103F7E_GoTimeScheduler
+01035AF_HEX2ASCII
+01034D1_HEX2DEC
+0104A74_HeatsinkTempErrorCheck
+0104A62_HotCutOffErrorCheck
+0104811_HotEffluentControl
+01048EC_HotEffluentStop
+0104A6C_HotHighLevelErrorCheck
+0104A75_HotOverheatErrorCheck
+0104A76_HotPumpErrorCheck
+0104A70_HotTempErrorCheck
+0104A6D_IceColdWaterTankLevelErrorCheck
+0104A72_IceTrayInputTempErrorCheck
+0103E44_InitializeOperationMode
+0103F2C_InitializeTimeScheduler
+0104A82_InputContaminationErrorCheck
+01034C0_Interrupt_Start
+0104A4A_LeakageErrorCheck
+0103BB5_LevelSensorControl
+0103B95_LevelSensor_ControlTimer
+0103E42_Lib_ADC_Module_1ms_Control
+0103E43_Lib_ADC_Module_Control
+0103E41_Lib_ADC_Module_Initialize
+01043A2_Lib_BLDC_Comp_Module_1ms_Control
+01043A3_Lib_BLDC_Comp_Module_Control
+01043A1_Lib_BLDC_Comp_Module_Initialize
+010439F_Lib_BoostPump_Module_1ms_Control
+01043A0_Lib_BoostPump_Module_Control
+010439E_Lib_BoostPump_Module_Initialize
+0104CAC_Lib_CoolFan_Control
+0104CA1_Lib_CoolFan_Initialize
+0104CB7_Lib_CoolFan_Module_1ms_Control
+0104CB8_Lib_CoolFan_Module_Control
+0104CB6_Lib_CoolFan_Module_Initialize
+010459A_Lib_Effluent_Control
+01043AD_Lib_Effluent_Initialize
+010496C_Lib_Effluent_Module_1ms_Control
+0104970_Lib_Effluent_Module_Control
+0104968_Lib_Effluent_Module_Initialize
+0104605_Lib_Effluent_Stop
+0104CBA_Lib_Heater_Module_1ms_Control
+0104CBB_Lib_Heater_Module_Control
+0104CB9_Lib_Heater_Module_Initialize
+0104CC0_Lib_IceMaking_ModeDecision_Module_1ms_Control
+0104CC1_Lib_IceMaking_ModeDecision_Module_Control
+0104CBF_Lib_IceMaking_ModeDecision_Module_Initialize
+0104CBD_Lib_IceMaking_Module_1ms_Control
+0104CBE_Lib_IceMaking_Module_Control
+0104CBC_Lib_IceMaking_Module_Initialize
+0104CC3_Lib_InstHeater_Module_1ms_Control
+0104CC4_Lib_InstHeater_Module_Control
+0104CC2_Lib_InstHeater_Module_Initialize
+01043A5_Lib_NormalComp_Module_1ms_Control
+01043A6_Lib_NormalComp_Module_Control
+01043A4_Lib_NormalComp_Module_Initialize
+0103EF3_Lib_OperatingMode_Module_Initialize
+0104D40_Lib_PTA_Mode_Module_1ms_Control
+0104D41_Lib_PTA_Mode_Module_Control
+0104D3F_Lib_PTA_Mode_Module_Initialize
+01043A8_Lib_TEM_Module_1ms_Control
+01043A9_Lib_TEM_Module_Control
+01043A7_Lib_TEM_Module_Initialize
+0104396_Lib_TimeScheduler_Module_1ms_Control
+010439A_Lib_TimeScheduler_Module_Control
+0104392_Lib_TimeScheduler_Module_Initialize
+010499E_Lib_WaterErrorCheck
+0104981_Lib_WaterErrorCheck_Initialize
+0104C99_Lib_WaterError_Module_1ms_Control
+0104C9D_Lib_WaterError_Module_Control
+0104C95_Lib_WaterError_Module_Initialize
+0104D70_Lib_WaterInputControl
+0104D71_Lib_WaterInput_Module_Control
+0104CCF_Lib_WaterLevelCheck
+0104CC5_Lib_WaterLevel_Initialize
+0104D37_Lib_WaterLevel_Module_Control
+0104D33_Lib_WaterLevel_Module_Initialize
+01043AB_Lib_Water_Debug_Module_1ms_Control
+01043AC_Lib_Water_Debug_Module_Control
+01043AA_Lib_Water_Debug_Module_Initialize
+0104E60_Manager
+0104E5C_Mgr_DC_Pump_Module_Initialize
+0104A66_MicroSW_AllDetectErrorCheck
+0104A67_MicroSW_IceMakingErrorCheck
+0103E59_OperationModeSetup
+0104A64_PressureSensorErrorCheck
+010322D_R_CGC_Create
+0103244_R_CGC_Get_ResetSource
+0103249_R_PORT_Create
+010320A_R_Systeminit
+010332D_R_TAU0_Channel2_Start
+010333E_R_TAU0_Channel2_Stop
+010334F_R_TAU0_Channel5_Start
+0103364_R_TAU0_Channel5_Stop
+0103273_R_TAU0_Create
+0103379_R_WDT_Create
+0103389_R_WDT_Restart
+01038C5_ReedSWControl
+01038B1_ReedSWControlTimer
+0103B9F_Reset_LevelSensorChatteringTime
+01038A5_Reset_ReedSWChatteringTime
+0104635_RoomEffluentControl
+0104703_RoomEffluentStop
+0104A6B_RoomLevelErrorCheck
+0104A59_RoomOverHeatErrorCheck
+0104A6F_RoomTempErrorCheck
+02FEFBA_SDC_PumpControlData
+02FF0AE_SEffluentData
+02FF0CA_SError
+02FEFC6_SLevelSensorControlData
+02FEFC0_SReedSWControlData
+01034C4_Serial_Start
+0104D5F_Set_AllKeyLock
+0104530_Set_ClearEffluentData
+0104D42_Set_ColdOnOff
+0103701_Set_DC_PumpControl
+0104424_Set_DefaultWaterAmount
+0104408_Set_DefaultWaterSelect
+01044DF_Set_EffluentHz
+0104508_Set_EffluentStatus
+0104912_Set_EffluentStep
+01044B0_Set_EffluentTime
+0104AF7_Set_ErrorDetect
+0104AC7_Set_ErrorStatus
+0104A51_Set_FlowMeterErrorCheckDelayTime
+0104A4B_Set_FlowMeterErrorCheckStart
+0104A5C_Set_HotCutOffCheckStart
+0104D4E_Set_HotKeyLock
+0104432_Set_MyCupAmount
+0103EE5_Set_OperatingStatus
+01037FE_Set_PumpPWMControl
+0104488_Set_QuantitativeEffluent
+0104416_Set_WaterAmount
+01043FA_Set_WaterSelect
+01041F6_Setup1msTimeInterruptScheduler
+0103FDC_SetupTimeScheduler
+0104A69_SodaPumpErrorCheck
+0104252_Start1msTimeInterruptScheduler
+0104038_StartTimeScheduler
+0104A7A_StirringMoterErrorCheck
+01042D4_Stop1msTimeInterruptScheduler
+01040BA_StopTimeScheduler
+0104A80_TDS_InErrorCheck
+0104A7E_TDS_In_TempErrorCheck
+0104A81_TDS_OutErrorCheck
+0104A7F_TDS_Out_TempErrorCheck
+0102182_Temp_MakeTime
+0104A65_TrayMotorErrorCheck
+01034C7_UART0_Error_Interrupt
+01034C6_UART0_Recieve_Interrupt
+01034C5_UART0_Transmit_Interrupt
+01034CA_UART1_Error_Interrupt
+01034C9_UART1_Recieve_Interrupt
+01034C8_UART1_Transmit_Interrupt
+01034CD_UART2_Error_Interrupt
+01034CC_UART2_Recieve_Interrupt
+01034CB_UART2_Transmit_Interrupt
+01034D0_UART3_Error_Interrupt
+01034CF_UART3_Recieve_Interrupt
+01034CE_UART3_Transmit_Interrupt
+0104A7D_UVErrorCheck
+0104DE0_User_Main
+0104A58_WaterCutOffErrorCheck
+0104994_WaterErrorCheckTimer
+02FF0C4_au16EffluentTimeCount
+02FF1A6_au8ReedSWChatteringTimeSet
 02FEF96_errno
-0100353_exit
-01001A4_hdwinit
-010030C_main
-010030F_stkinit
+0101C30_exit
+02FF19C_gu16BootTime
+02FF1CC_gu16ColdEffluentStepDelay
+02FF1D0_gu16HotEffluentStepDelay
+02FF1B6_gu16LevelSensorChatteringTimeSet
+02FF1B4_gu16LevelSensorConfirmValue
+02FF1D4_gu16MyCupAmount
+02FF1A4_gu16ReedSWConfirmValue
+02FF1C8_gu16RoomEffluentStepDelay
+02FF1E1_gu8AllKeyLockStatus
+02FF19E_gu8BootComplete
+02FF1C3_gu8ChangeOperaionMode
+02FF1CA_gu8ColdEffluentStep
+02FF1DA_gu8CoolFanControlTimer
+02FF1A0_gu8DC_PumpControTimer
+02FF1D3_gu8DefaultCupSize
+02FF1D2_gu8DefaultWaterSelect
+02FF1C6_gu8EffluentPeriodTimer
+02FF1D8_gu8ErrorCheckTimer
+02FF1DC_gu8FirstHighSensorDetect
+02FF1DD_gu8FirstLowSensorDetect
+02FF1CE_gu8HotEffluentStep
+02FF1E0_gu8HotKeyLockStatus
+02FF1B2_gu8LevelSensorControlTimer
+02FF1C2_gu8OperaionMode
+02FF1C4_gu8ProductStatus
+02FF1A2_gu8ReedSWControlTimer
+02FF1C7_gu8RoomEffluentStep
+02FF1DE_gu8WaterLevel
+0103225_hdwinit
+010338D_main
+01004F7_matherr
+0101C4C_memset
+0101C4C_memset_n
+0101BEC_stkinit
+02FF080_t1msTimerInterruptHandler
+02FEFCC_tTimeSceduleHandler
 ;FF     @cstart
 ;FF     r_systeminit
 ;FF     r_cg_cgc
@@ -51,13 +477,192 @@
 ;FF     r_cg_port_user
 ;FF     r_cg_timer
 ;FF     r_cg_timer_user
-<0100185_r_tau0_channel2_interrupt
+<0100032_gu8ErrorDisplayCode
+010072B_r_tau0_channel2_interrupt
 ;FF     r_cg_wdt
 ;FF     r_cg_wdt_user
-<0100187_r_wdt_interrupt
+<0100769_r_wdt_interrupt
 ;FF     main
+<0100078_gu8ErrorDisplayCode
+;FF     Basic_Loop
+<010076C_gu8ErrorDisplayCode
+;FF     Func_ADC
+<01007B2_gu8ErrorDisplayCode
+;FF     Func_External_Interrput
+<01007F8_gu8ErrorDisplayCode
+;FF     Func_Uart
+<010083E_gu8ErrorDisplayCode
+;FF     Type_Convert
+<0100884_gu8ErrorDisplayCode
+;FF     Water_Temp_Table
+<01008CA_gu8ErrorDisplayCode
+;FF     Drv_AC_Motor
+<0100910_gu8ErrorDisplayCode
+;FF     Drv_AC_Motor_IceMaking
+<0100956_gu8ErrorDisplayCode
+;FF     Drv_BLDC_Comp
+<010099C_gu8ErrorDisplayCode
+;FF     Drv_BLDC_Motor
+<01009E2_gu8ErrorDisplayCode
+;FF     Drv_BoostPump
+<0100A28_gu8ErrorDisplayCode
+;FF     Drv_Buzzer
+<0100A6E_gu8ErrorDisplayCode
+;FF     Drv_DC_Fan
+<0100AB4_gu8ErrorDisplayCode
+;FF     Drv_DC_Pump
+<0102000L0044
+010201EL0064
+010203CL0082
+0100AFA_gu8ErrorDisplayCode
+;FF     Drv_Debug
+<0100B40_gu8ErrorDisplayCode
+;FF     Drv_EEPROM
+<0100B86_gu8ErrorDisplayCode
+;FF     Drv_EW_Module
+<0100BCC_gu8ErrorDisplayCode
+;FF     Drv_Flowmeter
+<0100C12_gu8ErrorDisplayCode
+;FF     Drv_GeneralADC
+<0100C58_gu8ErrorDisplayCode
+;FF     Drv_Heater
+<0100C9E_gu8ErrorDisplayCode
+;FF     Drv_HumidTempSensor
+<0100CE4_gu8ErrorDisplayCode
+;FF     Drv_IceSwingBar
+<0100D2A_gu8ErrorDisplayCode
+;FF     Drv_Input_IceTray
+<0100D70_gu8ErrorDisplayCode
+;FF     Drv_InstantaneousHeater
+<0100DB6_gu8ErrorDisplayCode
+;FF     Drv_LeakSensor
+<0100DFC_gu8ErrorDisplayCode
+;FF     Drv_Motor_GasSwitch
+<0100E42_gu8ErrorDisplayCode
+;FF     Drv_Motor_IceDoor
+<0100E88_gu8ErrorDisplayCode
+;FF     Drv_Motor_IceTray
+<0100ECE_gu8ErrorDisplayCode
+;FF     Drv_NormalComp
+<0100F14_gu8ErrorDisplayCode
+;FF     Drv_ReedSW
+<010205AL0042
+0102078L0078
+0100F5A_gu8ErrorDisplayCode
+;FF     Drv_RTC_EEPROM_ISL12026
+<0100FA0_gu8ErrorDisplayCode
+;FF     Drv_SmallValve
+<0100FE6_gu8ErrorDisplayCode
+;FF     Drv_Stepmotor
+<010102C_gu8ErrorDisplayCode
+;FF     Drv_StirringMotor
+<0101072_gu8ErrorDisplayCode
+;FF     Drv_TDS
+<01010B8_gu8ErrorDisplayCode
+;FF     Drv_TEM
+<01010FE_gu8ErrorDisplayCode
+;FF     Drv_UV
+<0101144_gu8ErrorDisplayCode
+;FF     Drv_Valve
+<010118A_gu8ErrorDisplayCode
+;FF     Drv_Voice_NXD1005
+<01011D0_gu8ErrorDisplayCode
+;FF     Drv_WaterLevelSensor
+<0102096L0042
+01020B4L0078
+0101216_gu8ErrorDisplayCode
+;FF     Lib_ADConvert
+<010125C_gu8ErrorDisplayCode
+;FF     Lib_Buzzer
+<01012A2_gu8ErrorDisplayCode
+;FF     Lib_EEPROM
+<01012E8_gu8ErrorDisplayCode
+;FF     Lib_Memento
+<010132E_gu8ErrorDisplayCode
+;FF     Lib_OperationMode
+<0101374_gu8ErrorDisplayCode
+;FF     Lib_RTC
+<01013BA_gu8ErrorDisplayCode
+;FF     Lib_TDS
+<0101400_gu8ErrorDisplayCode
+;FF     Lib_TimeScheduler
+<0101446_gu8ErrorDisplayCode
+;FF     Lib_Water_BoostPump
+<010148C_gu8ErrorDisplayCode
+;FF     Lib_Water_Cool_BLDCComp
+<01014D2_gu8ErrorDisplayCode
+;FF     Lib_Water_Cool_NormalComp
+<0101518_gu8ErrorDisplayCode
+;FF     Lib_Water_Cool_TEM
+<010155E_gu8ErrorDisplayCode
+;FF     Lib_Water_Debug
+<01015A4_gu8ErrorDisplayCode
+;FF     Lib_Water_Effluent
+<01020D2L0128
+01020F4L0149
+0102116L0170
+01015EA_gu8ErrorDisplayCode
+02FF1D6_mu8Timer
+;FF     Lib_Water_ErrorCheck
+<0101630_gu8ErrorDisplayCode
+;FF     Lib_Water_Fan
+<0101676_gu8ErrorDisplayCode
+;FF     Lib_Water_Heater
+<01016BC_gu8ErrorDisplayCode
+;FF     Lib_Water_IceMaking
+<010213C_gu8ErrorDisplayCode
+;FF     Lib_Water_IceMaking_ModeDecision
+<0101702_gu8ErrorDisplayCode
+;FF     Lib_Water_InstantaneousHeater
+<0101748_gu8ErrorDisplayCode
+;FF     Lib_Water_LevelSensor
+<010178E_gu8ErrorDisplayCode
+;FF     Lib_Water_PowerSave
+<01017D4_gu8ErrorDisplayCode
+;FF     Lib_Water_PTA_Mode
+<010181A_gu8ErrorDisplayCode
+;FF     Lib_Water_Setup
+<0101860_gu8ErrorDisplayCode
+;FF     Lib_Water_TankWaterInput
+<01018A6_gu8ErrorDisplayCode
+;FF     Lib_Water_TestMode
+<01018EC_gu8ErrorDisplayCode
+;FF     Lib_Water_UV_Sterilize
+<0101932_gu8ErrorDisplayCode
+;FF     Lib_Water_Voice
+<0101978_gu8ErrorDisplayCode
+;FF     User_EEPROM
+<01019BE_gu8ErrorDisplayCode
+;FF     User_Main
+<0101A04_gu8ErrorDisplayCode
+;FF     User_RTC
+<0101A4A_gu8ErrorDisplayCode
+;FF     User_Manager
+<0104E17_Operation
+0102138_PumpDecisionTable
+0101A90_gu8ErrorDisplayCode
+02FF1E2_gu8Mgr_PumpCurrentCmd
+;FF     @imul
+;FF     @cudiv
+;FF     @curem
+;FF     @isdiv
+;FF     @iudiv
+;FF     @isrem
+;FF     @iurem
+;FF     @divuw
+;FF     m_fmul
+;FF     @SEGREG
 ;FF     @stkinit
+;FF     @RTARG0
 ;FF     exit
+;FF     memset_n
+;FF     m_fcom1
+;FF     m_fcom5
+;FF     m_fcom6
+;FF     m_fadd
+;FF     m_ftols
+;FF     m_lstof
+;FF     m_lutof
 ;FF     @rom
 =
 

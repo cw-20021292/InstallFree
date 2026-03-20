@@ -1,10 +1,7 @@
+#include "Global_header.h"
 #include "main.h"
 
 void main(void)
 {
-    
-    while(1)
-    {
-        ;
-    }
+    User_Main();
 }
