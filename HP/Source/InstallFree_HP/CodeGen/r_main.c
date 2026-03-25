@@ -23,13 +23,14 @@
 * Device(s)    : R5F100MJ
 * Tool-Chain   : CA78K0R
 * Description  : This file implements main function.
-* Creation Date: 2026-03-23
+* Creation Date: 2026-03-25
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
 Pragma directive
 ***********************************************************************************************************************/
 /* Start user code for pragma. Do not edit comment generated here */
+
 /* End user code. Do not edit comment generated here */
 
 /***********************************************************************************************************************
@@ -43,6 +44,7 @@ Includes
 #include "r_cg_timer.h"
 #include "r_cg_wdt.h"
 /* Start user code for include. Do not edit comment generated here */
+#include "User_Main.h"
 /* End user code. Do not edit comment generated here */
 #include "r_cg_userdefine.h"
 
@@ -65,7 +67,7 @@ void main(void)
     /* Start user code. Do not edit comment generated here */
     while (1U)
     {
-        ;
+        User_Main();
     }
     /* End user code. Do not edit comment generated here */
 }

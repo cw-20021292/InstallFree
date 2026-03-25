@@ -27,6 +27,34 @@
 #if (BUZZER_PRODUCT == BUZZER_WATER)
 
 // 정수기 사용 Buzzer
+// 변경
+typedef enum
+{
+    BUZZER_OFF,
+    BUZZER_POWER_ON,
+    BUZZER_EFFLUENT,
+    BUZZER_EFFLUENT_END,
+    BUZZER_COOL_SETUP,
+    BUZZER_COOL_CANCEL,
+    BUZZER_SELECT,
+    BUZZER_ERROR,
+    BUZZER_SETUP,
+    BUZZER_CANCEL,
+    BUZZER_EFFLUENT_CONTINUE,
+    BUZZER_STERILIZE_START,
+    BUZZER_STERILIZE_END,
+    BUZZER_AP_CONNECT,
+    BUZZER_SERVER_CONNECT,
+    BUZZER_EXTRA_HEAT_END,
+    BUZZER_MEMENTO_1,
+    BUZZER_MEMENTO_2,
+    BUZZER_MEMENTO_3,
+    BUZZER_MEMENTO_4,
+    BUZZER_MEMENTO_5,
+    BUZZER_MAX,
+} Buzzer_Addr_T;
+
+// 기존
 #define BUZZER_OFF                          0
 #define BUZZER_POWER_ON                     1
 #define BUZZER_EFFLUENT                     2
@@ -75,7 +103,7 @@
 
 void BuzzerInitialize(void);
 void Set_BuzzerMode(U8 mu8Mode);
-void Set_BuzzerSelect(U8 mu8Type);
+void Set_BuzzerSelect(Buzzer_Addr_T mu8Type);
 void BuzzerTimeCounter(void);
 void BuzzerControl(void);
 

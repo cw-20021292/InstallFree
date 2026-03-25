@@ -1,0 +1,1313 @@
+
+
+
+78K0R Linker V1.80                            Date:26 Apr 2021 Page:   1
+
+Command:   -yC:\Program Files (x86)\Renesas Electronics\CS+\CACX\Device\
+           RL78\Devicefile -_msgoff -oDefaultBuild\Global_P_6320.lmf -gi
+           00000000000000000000h -go04h,0FE00h,0 -gb0FF3FE9H -mi0 -s -pD
+           efaultBuild\Global_P_6320.map C:\Program Files (x86)\Renesas 
+           Electronics\CS+\CACX\CA78K0R\V1.72\lib78k0r\s0rll.rel Default
+           Build\extract_control.rel DefaultBuild\M0_System_init.rel Def
+           aultBuild\M2_Mode_Control.rel DefaultBuild\M3_Heating_Control
+           .rel DefaultBuild\M4_Input.rel DefaultBuild\M5_Output.rel Def
+           aultBuild\M6_Display_Control.rel DefaultBuild\M7_Error_Contro
+           l.rel DefaultBuild\Main.rel DefaultBuild\Timer_Service.rel De
+           faultBuild\Util.rel DefaultBuild\valve_feed.rel DefaultBuild\
+           valve_nos.rel DefaultBuild\key_input.rel DefaultBuild\key_inp
+           ut_water_extract.rel DefaultBuild\led_output.rel DefaultBuild
+           \key_handling.rel DefaultBuild\logic_decision.rel DefaultBuil
+           d\water_level.rel DefaultBuild\error_leakage.rel DefaultBuild
+           \valve_extract.rel DefaultBuild\pump_r_type.rel DefaultBuild\
+           error_water_level.rel DefaultBuild\test_main.rel DefaultBuild
+           \test_pcb.rel DefaultBuild\test_display.rel DefaultBuild\test
+           _line.rel DefaultBuild\r_main.rel DefaultBuild\r_systeminit.r
+           el DefaultBuild\r_cg_cgc.rel DefaultBuild\r_cg_cgc_user.rel D
+           efaultBuild\r_cg_port.rel DefaultBuild\r_cg_port_user.rel Def
+           aultBuild\r_cg_timer.rel DefaultBuild\r_cg_timer_user.rel Def
+           aultBuild\r_cg_wdt.rel DefaultBuild\r_cg_wdt_user.rel Default
+           Build\buzzer_output.rel DefaultBuild\model_select.rel -bcl0ra
+           m.lib -bcl0rm.lib -bcl0rmf.lib -iC:\Program Files (x86)\Renes
+           as Electronics\CS+\CACX\CA78K0R\V1.72\lib78k0r
+Para-file:
+Out-file:  DefaultBuild\Global_P_6320.lmf
+Map-file:  DefaultBuild\Global_P_6320.map
+Direc-file:
+Directive:
+
+
+*** Link information ***
+
+    66 output segment(s)
+ 2ACEH byte(s) real data
+  5281 symbol(s) defined
+
+
+*** Memory map ***
+
+
+  SPACE=REGULAR
+
+  MEMORY=ROM
+  BASE ADDRESS=00000H   SIZE=10000H
+         OUTPUT   INPUT    INPUT      BASE      SIZE
+         SEGMENT  SEGMENT  MODULE     ADDRESS
+         @@VECT00                     00000H    00002H  CSEG AT
+                  @@VECT00 @cstart    00000H    00002H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  @cstart    00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  extract_control
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  M0_System_init
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  M2_Mode_Control
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  M3_Heating_Control
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  M4_Input   00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  M5_Output
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  M6_Display_Control
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  M7_Error_Control
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  Main       00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  Timer_Service
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  Util       00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  valve_feed
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  valve_nos
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  key_input
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  key_input_water_extract
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  led_output
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  key_handling
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  logic_decision
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  water_level
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  error_leakage
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  valve_extract
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  pump_r_type
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  error_water_level
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  test_main
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  test_pcb   00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  test_display
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  test_line
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_main     00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_systeminit
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_cg_cgc   00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_cg_cgc_user
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_cg_port
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_cg_port_user
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_cg_timer
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_cg_timer_user
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_cg_wdt   00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  r_cg_wdt_user
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  buzzer_output
+                                      00002H    00000H
+         @@CNSTL                      00002H    00000H  CSEG PAGE64KP
+                  @@CNSTL  model_select
+                                      00002H    00000H
+         @@R_INIT                     00002H    00000H  CSEG UNIT64KP
+                  @@R_INIT @cstart    00002H    00000H
+                  @@R_INIT extract_control
+                                      00002H    00000H
+                  @@R_INIT M0_System_init
+                                      00002H    00000H
+                  @@R_INIT M2_Mode_Control
+                                      00002H    00000H
+                  @@R_INIT M3_Heating_Control
+                                      00002H    00000H
+                  @@R_INIT M4_Input   00002H    00000H
+                  @@R_INIT M5_Output
+                                      00002H    00000H
+                  @@R_INIT M6_Display_Control
+                                      00002H    00000H
+                  @@R_INIT M7_Error_Control
+                                      00002H    00000H
+                  @@R_INIT Main       00002H    00000H
+                  @@R_INIT Timer_Service
+                                      00002H    00000H
+                  @@R_INIT Util       00002H    00000H
+                  @@R_INIT valve_feed
+                                      00002H    00000H
+                  @@R_INIT valve_nos
+                                      00002H    00000H
+                  @@R_INIT key_input
+                                      00002H    00000H
+                  @@R_INIT key_input_water_extract
+                                      00002H    00000H
+                  @@R_INIT led_output
+                                      00002H    00000H
+                  @@R_INIT key_handling
+                                      00002H    00000H
+                  @@R_INIT logic_decision
+                                      00002H    00000H
+                  @@R_INIT water_level
+                                      00002H    00000H
+                  @@R_INIT error_leakage
+                                      00002H    00000H
+                  @@R_INIT valve_extract
+                                      00002H    00000H
+                  @@R_INIT pump_r_type
+                                      00002H    00000H
+                  @@R_INIT error_water_level
+                                      00002H    00000H
+                  @@R_INIT test_main
+                                      00002H    00000H
+                  @@R_INIT test_pcb   00002H    00000H
+                  @@R_INIT test_display
+                                      00002H    00000H
+                  @@R_INIT test_line
+                                      00002H    00000H
+                  @@R_INIT r_main     00002H    00000H
+                  @@R_INIT r_systeminit
+                                      00002H    00000H
+                  @@R_INIT r_cg_cgc   00002H    00000H
+                  @@R_INIT r_cg_cgc_user
+                                      00002H    00000H
+                  @@R_INIT r_cg_port
+                                      00002H    00000H
+                  @@R_INIT r_cg_port_user
+                                      00002H    00000H
+                  @@R_INIT r_cg_timer
+                                      00002H    00000H
+                  @@R_INIT r_cg_timer_user
+                                      00002H    00000H
+                  @@R_INIT r_cg_wdt   00002H    00000H
+                  @@R_INIT r_cg_wdt_user
+                                      00002H    00000H
+                  @@R_INIT buzzer_output
+                                      00002H    00000H
+                  @@R_INIT model_select
+                                      00002H    00000H
+                  @@R_INIT @rom       00002H    00000H
+         @@RLINIT                     00002H    00000H  CSEG UNIT64KP
+                  @@RLINIT @cstart    00002H    00000H
+                  @@RLINIT extract_control
+                                      00002H    00000H
+                  @@RLINIT M0_System_init
+                                      00002H    00000H
+                  @@RLINIT M2_Mode_Control
+                                      00002H    00000H
+                  @@RLINIT M3_Heating_Control
+                                      00002H    00000H
+                  @@RLINIT M4_Input   00002H    00000H
+                  @@RLINIT M5_Output
+                                      00002H    00000H
+                  @@RLINIT M6_Display_Control
+                                      00002H    00000H
+                  @@RLINIT M7_Error_Control
+                                      00002H    00000H
+                  @@RLINIT Main       00002H    00000H
+                  @@RLINIT Timer_Service
+                                      00002H    00000H
+                  @@RLINIT Util       00002H    00000H
+                  @@RLINIT valve_feed
+                                      00002H    00000H
+                  @@RLINIT valve_nos
+                                      00002H    00000H
+                  @@RLINIT key_input
+                                      00002H    00000H
+                  @@RLINIT key_input_water_extract
+                                      00002H    00000H
+                  @@RLINIT led_output
+                                      00002H    00000H
+                  @@RLINIT key_handling
+                                      00002H    00000H
+                  @@RLINIT logic_decision
+                                      00002H    00000H
+                  @@RLINIT water_level
+                                      00002H    00000H
+                  @@RLINIT error_leakage
+                                      00002H    00000H
+                  @@RLINIT valve_extract
+                                      00002H    00000H
+                  @@RLINIT pump_r_type
+                                      00002H    00000H
+                  @@RLINIT error_water_level
+                                      00002H    00000H
+                  @@RLINIT test_main
+                                      00002H    00000H
+                  @@RLINIT test_pcb   00002H    00000H
+                  @@RLINIT test_display
+                                      00002H    00000H
+                  @@RLINIT test_line
+                                      00002H    00000H
+                  @@RLINIT r_main     00002H    00000H
+                  @@RLINIT r_systeminit
+                                      00002H    00000H
+                  @@RLINIT r_cg_cgc   00002H    00000H
+                  @@RLINIT r_cg_cgc_user
+                                      00002H    00000H
+                  @@RLINIT r_cg_port
+                                      00002H    00000H
+                  @@RLINIT r_cg_port_user
+                                      00002H    00000H
+                  @@RLINIT r_cg_timer
+                                      00002H    00000H
+                  @@RLINIT r_cg_timer_user
+                                      00002H    00000H
+                  @@RLINIT r_cg_wdt   00002H    00000H
+                  @@RLINIT r_cg_wdt_user
+                                      00002H    00000H
+                  @@RLINIT buzzer_output
+                                      00002H    00000H
+                  @@RLINIT model_select
+                                      00002H    00000H
+                  @@RLINIT @rom       00002H    00000H
+         @@R_INIS                     00002H    00000H  CSEG UNIT64KP
+                  @@R_INIS @cstart    00002H    00000H
+                  @@R_INIS extract_control
+                                      00002H    00000H
+                  @@R_INIS M0_System_init
+                                      00002H    00000H
+                  @@R_INIS M2_Mode_Control
+                                      00002H    00000H
+                  @@R_INIS M3_Heating_Control
+                                      00002H    00000H
+                  @@R_INIS M4_Input   00002H    00000H
+                  @@R_INIS M5_Output
+                                      00002H    00000H
+                  @@R_INIS M6_Display_Control
+                                      00002H    00000H
+                  @@R_INIS M7_Error_Control
+                                      00002H    00000H
+                  @@R_INIS Main       00002H    00000H
+                  @@R_INIS Timer_Service
+                                      00002H    00000H
+                  @@R_INIS Util       00002H    00000H
+                  @@R_INIS valve_feed
+                                      00002H    00000H
+                  @@R_INIS valve_nos
+                                      00002H    00000H
+                  @@R_INIS key_input
+                                      00002H    00000H
+                  @@R_INIS key_input_water_extract
+                                      00002H    00000H
+                  @@R_INIS led_output
+                                      00002H    00000H
+                  @@R_INIS key_handling
+                                      00002H    00000H
+                  @@R_INIS logic_decision
+                                      00002H    00000H
+                  @@R_INIS water_level
+                                      00002H    00000H
+                  @@R_INIS error_leakage
+                                      00002H    00000H
+                  @@R_INIS valve_extract
+                                      00002H    00000H
+                  @@R_INIS pump_r_type
+                                      00002H    00000H
+                  @@R_INIS error_water_level
+                                      00002H    00000H
+                  @@R_INIS test_main
+                                      00002H    00000H
+                  @@R_INIS test_pcb   00002H    00000H
+                  @@R_INIS test_display
+                                      00002H    00000H
+                  @@R_INIS test_line
+                                      00002H    00000H
+                  @@R_INIS r_main     00002H    00000H
+                  @@R_INIS r_systeminit
+                                      00002H    00000H
+                  @@R_INIS r_cg_cgc   00002H    00000H
+                  @@R_INIS r_cg_cgc_user
+                                      00002H    00000H
+                  @@R_INIS r_cg_port
+                                      00002H    00000H
+                  @@R_INIS r_cg_port_user
+                                      00002H    00000H
+                  @@R_INIS r_cg_timer
+                                      00002H    00000H
+                  @@R_INIS r_cg_timer_user
+                                      00002H    00000H
+                  @@R_INIS r_cg_wdt   00002H    00000H
+                  @@R_INIS r_cg_wdt_user
+                                      00002H    00000H
+                  @@R_INIS buzzer_output
+                                      00002H    00000H
+                  @@R_INIS model_select
+                                      00002H    00000H
+                  @@R_INIS @rom       00002H    00000H
+         @@CALT                       00002H    00000H  CSEG
+                  @@CALT   @cstart    00002H    00000H
+                  @@CALT   extract_control
+                                      00002H    00000H
+                  @@CALT   M0_System_init
+                                      00002H    00000H
+                  @@CALT   M2_Mode_Control
+                                      00002H    00000H
+                  @@CALT   M3_Heating_Control
+                                      00002H    00000H
+                  @@CALT   M4_Input   00002H    00000H
+                  @@CALT   M5_Output
+                                      00002H    00000H
+                  @@CALT   M6_Display_Control
+                                      00002H    00000H
+                  @@CALT   M7_Error_Control
+                                      00002H    00000H
+                  @@CALT   Main       00002H    00000H
+                  @@CALT   Timer_Service
+                                      00002H    00000H
+                  @@CALT   Util       00002H    00000H
+                  @@CALT   valve_feed
+                                      00002H    00000H
+                  @@CALT   valve_nos
+                                      00002H    00000H
+                  @@CALT   key_input
+                                      00002H    00000H
+                  @@CALT   key_input_water_extract
+                                      00002H    00000H
+                  @@CALT   led_output
+                                      00002H    00000H
+                  @@CALT   key_handling
+                                      00002H    00000H
+                  @@CALT   logic_decision
+                                      00002H    00000H
+                  @@CALT   water_level
+                                      00002H    00000H
+                  @@CALT   error_leakage
+                                      00002H    00000H
+                  @@CALT   valve_extract
+                                      00002H    00000H
+                  @@CALT   pump_r_type
+                                      00002H    00000H
+                  @@CALT   error_water_level
+                                      00002H    00000H
+                  @@CALT   test_main
+                                      00002H    00000H
+                  @@CALT   test_pcb   00002H    00000H
+                  @@CALT   test_display
+                                      00002H    00000H
+                  @@CALT   test_line
+                                      00002H    00000H
+                  @@CALT   r_main     00002H    00000H
+                  @@CALT   r_systeminit
+                                      00002H    00000H
+                  @@CALT   r_cg_cgc   00002H    00000H
+                  @@CALT   r_cg_cgc_user
+                                      00002H    00000H
+                  @@CALT   r_cg_port
+                                      00002H    00000H
+                  @@CALT   r_cg_port_user
+                                      00002H    00000H
+                  @@CALT   r_cg_timer
+                                      00002H    00000H
+                  @@CALT   r_cg_timer_user
+                                      00002H    00000H
+                  @@CALT   r_cg_wdt   00002H    00000H
+                  @@CALT   r_cg_wdt_user
+                                      00002H    00000H
+                  @@CALT   buzzer_output
+                                      00002H    00000H
+                  @@CALT   model_select
+                                      00002H    00000H
+         ??NMIROM                     00002H    00002H  CSEG
+         @@VECT04                     00004H    00002H  CSEG AT
+                  @@VECT04 r_cg_wdt_user
+                                      00004H    00002H
+* gap *                               00006H    0002AH
+         @@VECT30                     00030H    00002H  CSEG AT
+                  @@VECT30 r_cg_timer_user
+                                      00030H    00002H
+* gap *                               00032H    0008EH
+         ?CSEGOB0                     000C0H    00004H  CSEG OPT_BYTE
+         @@CODE                       000C4H    00000H  CSEG BASE
+                  @@CODE   extract_control
+                                      000C4H    00000H
+                  @@CODE   M0_System_init
+                                      000C4H    00000H
+                  @@CODE   M2_Mode_Control
+                                      000C4H    00000H
+                  @@CODE   M3_Heating_Control
+                                      000C4H    00000H
+                  @@CODE   M4_Input   000C4H    00000H
+                  @@CODE   M5_Output
+                                      000C4H    00000H
+                  @@CODE   M6_Display_Control
+                                      000C4H    00000H
+                  @@CODE   M7_Error_Control
+                                      000C4H    00000H
+                  @@CODE   Main       000C4H    00000H
+                  @@CODE   Timer_Service
+                                      000C4H    00000H
+                  @@CODE   Util       000C4H    00000H
+                  @@CODE   valve_feed
+                                      000C4H    00000H
+                  @@CODE   valve_nos
+                                      000C4H    00000H
+                  @@CODE   key_input
+                                      000C4H    00000H
+                  @@CODE   key_input_water_extract
+                                      000C4H    00000H
+                  @@CODE   led_output
+                                      000C4H    00000H
+                  @@CODE   key_handling
+                                      000C4H    00000H
+                  @@CODE   logic_decision
+                                      000C4H    00000H
+                  @@CODE   water_level
+                                      000C4H    00000H
+                  @@CODE   error_leakage
+                                      000C4H    00000H
+                  @@CODE   valve_extract
+                                      000C4H    00000H
+                  @@CODE   pump_r_type
+                                      000C4H    00000H
+                  @@CODE   error_water_level
+                                      000C4H    00000H
+                  @@CODE   test_main
+                                      000C4H    00000H
+                  @@CODE   test_pcb   000C4H    00000H
+                  @@CODE   test_display
+                                      000C4H    00000H
+                  @@CODE   test_line
+                                      000C4H    00000H
+                  @@CODE   r_main     000C4H    00000H
+                  @@CODE   r_systeminit
+                                      000C4H    00000H
+                  @@CODE   r_cg_cgc   000C4H    00000H
+                  @@CODE   r_cg_cgc_user
+                                      000C4H    00000H
+                  @@CODE   r_cg_port
+                                      000C4H    00000H
+                  @@CODE   r_cg_port_user
+                                      000C4H    00000H
+                  @@CODE   r_cg_timer
+                                      000C4H    00000H
+                  @@CODE   r_cg_timer_user
+                                      000C4H    00000H
+                  @@CODE   r_cg_wdt   000C4H    00000H
+                  @@CODE   r_cg_wdt_user
+                                      000C4H    00000H
+                  @@CODE   buzzer_output
+                                      000C4H    00000H
+                  @@CODE   model_select
+                                      000C4H    00000H
+         ?CSEGSI                      000C4H    0000AH  CSEG
+         ?OCDSTAD                     000CEH    0000AH  CSEG
+         @@LCODE                      000D8H    001C3H  CSEG BASE
+                  @@LCODE  @cstart    000D8H    000ADH
+                  @@LCODE  @lmul      00185H    0002BH
+                  @@LCODE  @cudiv     001B0H    00034H
+                  @@LCODE  @curem     001E4H    00036H
+                  @@LCODE  @ludiv     0021AH    0003FH
+                  @@LCODE  @ladd      00259H    0000FH
+                  @@LCODE  @lursh     00268H    0001FH
+                  @@LCODE  @lband     00287H    00014H
+         @@BASE                       0029BH    00032H  CSEG BASE
+                  @@BASE   extract_control
+                                      0029BH    00000H
+                  @@BASE   M0_System_init
+                                      0029BH    00000H
+                  @@BASE   M2_Mode_Control
+                                      0029BH    00000H
+                  @@BASE   M3_Heating_Control
+                                      0029BH    00000H
+                  @@BASE   M4_Input   0029BH    00000H
+                  @@BASE   M5_Output
+                                      0029BH    00000H
+                  @@BASE   M6_Display_Control
+                                      0029BH    00000H
+                  @@BASE   M7_Error_Control
+                                      0029BH    00000H
+                  @@BASE   Main       0029BH    00000H
+                  @@BASE   Timer_Service
+                                      0029BH    00000H
+                  @@BASE   Util       0029BH    00000H
+                  @@BASE   valve_feed
+                                      0029BH    00000H
+                  @@BASE   valve_nos
+                                      0029BH    00000H
+                  @@BASE   key_input
+                                      0029BH    00000H
+                  @@BASE   key_input_water_extract
+                                      0029BH    00000H
+                  @@BASE   led_output
+                                      0029BH    00000H
+                  @@BASE   key_handling
+                                      0029BH    00000H
+                  @@BASE   logic_decision
+                                      0029BH    00000H
+                  @@BASE   water_level
+                                      0029BH    00000H
+                  @@BASE   error_leakage
+                                      0029BH    00000H
+                  @@BASE   valve_extract
+                                      0029BH    00000H
+                  @@BASE   pump_r_type
+                                      0029BH    00000H
+                  @@BASE   error_water_level
+                                      0029BH    00000H
+                  @@BASE   test_main
+                                      0029BH    00000H
+                  @@BASE   test_pcb   0029BH    00000H
+                  @@BASE   test_display
+                                      0029BH    00000H
+                  @@BASE   test_line
+                                      0029BH    00000H
+                  @@BASE   r_main     0029BH    00000H
+                  @@BASE   r_systeminit
+                                      0029BH    00000H
+                  @@BASE   r_cg_cgc   0029BH    00000H
+                  @@BASE   r_cg_cgc_user
+                                      0029BH    00000H
+                  @@BASE   r_cg_port
+                                      0029BH    00000H
+                  @@BASE   r_cg_port_user
+                                      0029BH    00000H
+                  @@BASE   r_cg_timer
+                                      0029BH    00000H
+                  @@BASE   r_cg_timer_user
+                                      0029BH    00030H
+                  @@BASE   r_cg_wdt   002CBH    00000H
+                  @@BASE   r_cg_wdt_user
+                                      002CBH    00002H
+                  @@BASE   buzzer_output
+                                      002CDH    00000H
+                  @@BASE   model_select
+                                      002CDH    00000H
+         @@LCODEL                     002CDH    00060H  CSEG
+                  @@LCODEL @stkinit   002CDH    00044H
+                  @@LCODEL exit       00311H    0001CH
+* gap *                               0032DH    01CD3H
+         @@CNST                       02000H    00004H  CSEG MIRRORP
+                  @@CNST   @cstart    02000H    00000H
+                  @@CNST   extract_control
+                                      02000H    00000H
+                  @@CNST   M0_System_init
+                                      02000H    00000H
+                  @@CNST   M2_Mode_Control
+                                      02000H    00000H
+                  @@CNST   M3_Heating_Control
+                                      02000H    00000H
+                  @@CNST   M4_Input   02000H    00000H
+                  @@CNST   M5_Output
+                                      02000H    00000H
+                  @@CNST   M6_Display_Control
+                                      02000H    00000H
+                  @@CNST   M7_Error_Control
+                                      02000H    00004H
+                  @@CNST   Main       02004H    00000H
+                  @@CNST   Timer_Service
+                                      02004H    00000H
+                  @@CNST   Util       02004H    00000H
+                  @@CNST   valve_feed
+                                      02004H    00000H
+                  @@CNST   valve_nos
+                                      02004H    00000H
+                  @@CNST   key_input
+                                      02004H    00000H
+                  @@CNST   key_input_water_extract
+                                      02004H    00000H
+                  @@CNST   led_output
+                                      02004H    00000H
+                  @@CNST   key_handling
+                                      02004H    00000H
+                  @@CNST   logic_decision
+                                      02004H    00000H
+                  @@CNST   water_level
+                                      02004H    00000H
+                  @@CNST   error_leakage
+                                      02004H    00000H
+                  @@CNST   valve_extract
+                                      02004H    00000H
+                  @@CNST   pump_r_type
+                                      02004H    00000H
+                  @@CNST   error_water_level
+                                      02004H    00000H
+                  @@CNST   test_main
+                                      02004H    00000H
+                  @@CNST   test_pcb   02004H    00000H
+                  @@CNST   test_display
+                                      02004H    00000H
+                  @@CNST   test_line
+                                      02004H    00000H
+                  @@CNST   r_main     02004H    00000H
+                  @@CNST   r_systeminit
+                                      02004H    00000H
+                  @@CNST   r_cg_cgc   02004H    00000H
+                  @@CNST   r_cg_cgc_user
+                                      02004H    00000H
+                  @@CNST   r_cg_port
+                                      02004H    00000H
+                  @@CNST   r_cg_port_user
+                                      02004H    00000H
+                  @@CNST   r_cg_timer
+                                      02004H    00000H
+                  @@CNST   r_cg_timer_user
+                                      02004H    00000H
+                  @@CNST   r_cg_wdt   02004H    00000H
+                  @@CNST   r_cg_wdt_user
+                                      02004H    00000H
+                  @@CNST   buzzer_output
+                                      02004H    00000H
+                  @@CNST   model_select
+                                      02004H    00000H
+         @@CODEL                      02004H    02855H  CSEG
+                  @@CODEL  extract_control
+                                      02004H    00211H
+                  @@CODEL  M0_System_init
+                                      02215H    00070H
+                  @@CODEL  M2_Mode_Control
+                                      02285H    0000CH
+                  @@CODEL  M3_Heating_Control
+                                      02291H    00001H
+                  @@CODEL  M4_Input   02292H    00004H
+                  @@CODEL  M5_Output
+                                      02296H    00025H
+                  @@CODEL  M6_Display_Control
+                                      022BBH    00265H
+                  @@CODEL  M7_Error_Control
+                                      02520H    00086H
+                  @@CODEL  Main       025A6H    0003FH
+                  @@CODEL  Timer_Service
+                                      025E5H    000BDH
+                  @@CODEL  Util       026A2H    001F4H
+                  @@CODEL  valve_feed
+                                      02896H    000A4H
+                  @@CODEL  valve_nos
+                                      0293AH    00038H
+                  @@CODEL  key_input
+                                      02972H    00264H
+                  @@CODEL  key_input_water_extract
+                                      02BD6H    00162H
+                  @@CODEL  led_output
+                                      02D38H    0001AH
+                  @@CODEL  key_handling
+                                      02D52H    0008DH
+                  @@CODEL  logic_decision
+                                      02DDFH    00057H
+                  @@CODEL  water_level
+                                      02E36H    00060H
+                  @@CODEL  error_leakage
+                                      02E96H    00048H
+                  @@CODEL  valve_extract
+                                      02EDEH    0000FH
+                  @@CODEL  pump_r_type
+                                      02EEDH    000E0H
+                  @@CODEL  error_water_level
+                                      02FCDH    0004BH
+                  @@CODEL  test_main
+                                      03018H    000FDH
+                  @@CODEL  test_pcb   03115H    000CCH
+                  @@CODEL  test_display
+                                      031E1H    00070H
+                  @@CODEL  test_line
+                                      03251H    00156H
+                  @@CODEL  r_main     033A7H    0000FH
+                  @@CODEL  r_systeminit
+                                      033B6H    00023H
+                  @@CODEL  r_cg_cgc   033D9H    00017H
+                  @@CODEL  r_cg_cgc_user
+                                      033F0H    00005H
+                  @@CODEL  r_cg_port
+                                      033F5H    0002AH
+                  @@CODEL  r_cg_port_user
+                                      0341FH    00000H
+                  @@CODEL  r_cg_timer
+                                      0341FH    00106H
+                  @@CODEL  r_cg_timer_user
+                                      03525H    00000H
+                  @@CODEL  r_cg_wdt   03525H    00014H
+                  @@CODEL  r_cg_wdt_user
+                                      03539H    00000H
+                  @@CODEL  buzzer_output
+                                      03539H    012E9H
+                  @@CODEL  model_select
+                                      04822H    00037H
+* gap *                               04859H    0B7A7H
+
+  MEMORY=RAM
+  BASE ADDRESS=FEF00H   SIZE=01100H
+         OUTPUT   INPUT    INPUT      BASE      SIZE
+         SEGMENT  SEGMENT  MODULE     ADDRESS
+         @@DATA                       FEF00H    00180H  DSEG BASEP
+                  @@DATA   @cstart    FEF00H    000BAH
+                  @@DATA   extract_control
+                                      FEFBAH    00012H
+                  @@DATA   M0_System_init
+                                      FEFCCH    00000H
+                  @@DATA   M2_Mode_Control
+                                      FEFCCH    00000H
+                  @@DATA   M3_Heating_Control
+                                      FEFCCH    00000H
+                  @@DATA   M4_Input   FEFCCH    00000H
+                  @@DATA   M5_Output
+                                      FEFCCH    00002H
+                  @@DATA   M6_Display_Control
+                                      FEFCEH    00012H
+                  @@DATA   M7_Error_Control
+                                      FEFE0H    0000AH
+                  @@DATA   Main       FEFEAH    00000H
+                  @@DATA   Timer_Service
+                                      FEFEAH    0000CH
+                  @@DATA   Util       FEFF6H    00000H
+                  @@DATA   valve_feed
+                                      FEFF6H    00008H
+                  @@DATA   valve_nos
+                                      FEFFEH    00004H
+                  @@DATA   key_input
+                                      FF002H    0000EH
+                  @@DATA   key_input_water_extract
+                                      FF010H    00010H
+                  @@DATA   led_output
+                                      FF020H    00000H
+                  @@DATA   key_handling
+                                      FF020H    00000H
+                  @@DATA   logic_decision
+                                      FF020H    00006H
+                  @@DATA   water_level
+                                      FF026H    00006H
+                  @@DATA   error_leakage
+                                      FF02CH    00008H
+                  @@DATA   valve_extract
+                                      FF034H    00000H
+                  @@DATA   pump_r_type
+                                      FF034H    0000CH
+                  @@DATA   error_water_level
+                                      FF040H    0000AH
+                  @@DATA   test_main
+                                      FF04AH    00008H
+                  @@DATA   test_pcb   FF052H    00002H
+                  @@DATA   test_display
+                                      FF054H    00000H
+                  @@DATA   test_line
+                                      FF054H    0000CH
+                  @@DATA   r_main     FF060H    00000H
+                  @@DATA   r_systeminit
+                                      FF060H    00000H
+                  @@DATA   r_cg_cgc   FF060H    00000H
+                  @@DATA   r_cg_cgc_user
+                                      FF060H    00000H
+                  @@DATA   r_cg_port
+                                      FF060H    00000H
+                  @@DATA   r_cg_port_user
+                                      FF060H    00000H
+                  @@DATA   r_cg_timer
+                                      FF060H    00000H
+                  @@DATA   r_cg_timer_user
+                                      FF060H    00000H
+                  @@DATA   r_cg_wdt   FF060H    00000H
+                  @@DATA   r_cg_wdt_user
+                                      FF060H    00000H
+                  @@DATA   buzzer_output
+                                      FF060H    00008H
+                  @@DATA   model_select
+                                      FF068H    00018H
+                  @@DATA   @rom       FF080H    00000H
+         @@INIT                       FF080H    00000H  DSEG BASEP
+                  @@INIT   @cstart    FF080H    00000H
+                  @@INIT   extract_control
+                                      FF080H    00000H
+                  @@INIT   M0_System_init
+                                      FF080H    00000H
+                  @@INIT   M2_Mode_Control
+                                      FF080H    00000H
+                  @@INIT   M3_Heating_Control
+                                      FF080H    00000H
+                  @@INIT   M4_Input   FF080H    00000H
+                  @@INIT   M5_Output
+                                      FF080H    00000H
+                  @@INIT   M6_Display_Control
+                                      FF080H    00000H
+                  @@INIT   M7_Error_Control
+                                      FF080H    00000H
+                  @@INIT   Main       FF080H    00000H
+                  @@INIT   Timer_Service
+                                      FF080H    00000H
+                  @@INIT   Util       FF080H    00000H
+                  @@INIT   valve_feed
+                                      FF080H    00000H
+                  @@INIT   valve_nos
+                                      FF080H    00000H
+                  @@INIT   key_input
+                                      FF080H    00000H
+                  @@INIT   key_input_water_extract
+                                      FF080H    00000H
+                  @@INIT   led_output
+                                      FF080H    00000H
+                  @@INIT   key_handling
+                                      FF080H    00000H
+                  @@INIT   logic_decision
+                                      FF080H    00000H
+                  @@INIT   water_level
+                                      FF080H    00000H
+                  @@INIT   error_leakage
+                                      FF080H    00000H
+                  @@INIT   valve_extract
+                                      FF080H    00000H
+                  @@INIT   pump_r_type
+                                      FF080H    00000H
+                  @@INIT   error_water_level
+                                      FF080H    00000H
+                  @@INIT   test_main
+                                      FF080H    00000H
+                  @@INIT   test_pcb   FF080H    00000H
+                  @@INIT   test_display
+                                      FF080H    00000H
+                  @@INIT   test_line
+                                      FF080H    00000H
+                  @@INIT   r_main     FF080H    00000H
+                  @@INIT   r_systeminit
+                                      FF080H    00000H
+                  @@INIT   r_cg_cgc   FF080H    00000H
+                  @@INIT   r_cg_cgc_user
+                                      FF080H    00000H
+                  @@INIT   r_cg_port
+                                      FF080H    00000H
+                  @@INIT   r_cg_port_user
+                                      FF080H    00000H
+                  @@INIT   r_cg_timer
+                                      FF080H    00000H
+                  @@INIT   r_cg_timer_user
+                                      FF080H    00000H
+                  @@INIT   r_cg_wdt   FF080H    00000H
+                  @@INIT   r_cg_wdt_user
+                                      FF080H    00000H
+                  @@INIT   buzzer_output
+                                      FF080H    00000H
+                  @@INIT   model_select
+                                      FF080H    00000H
+                  @@INIT   @rom       FF080H    00000H
+         @@INIS                       FF080H    00000H  DSEG UNITP
+                  @@INIS   @cstart    FF080H    00000H
+                  @@INIS   extract_control
+                                      FF080H    00000H
+                  @@INIS   M0_System_init
+                                      FF080H    00000H
+                  @@INIS   M2_Mode_Control
+                                      FF080H    00000H
+                  @@INIS   M3_Heating_Control
+                                      FF080H    00000H
+                  @@INIS   M4_Input   FF080H    00000H
+                  @@INIS   M5_Output
+                                      FF080H    00000H
+                  @@INIS   M6_Display_Control
+                                      FF080H    00000H
+                  @@INIS   M7_Error_Control
+                                      FF080H    00000H
+                  @@INIS   Main       FF080H    00000H
+                  @@INIS   Timer_Service
+                                      FF080H    00000H
+                  @@INIS   Util       FF080H    00000H
+                  @@INIS   valve_feed
+                                      FF080H    00000H
+                  @@INIS   valve_nos
+                                      FF080H    00000H
+                  @@INIS   key_input
+                                      FF080H    00000H
+                  @@INIS   key_input_water_extract
+                                      FF080H    00000H
+                  @@INIS   led_output
+                                      FF080H    00000H
+                  @@INIS   key_handling
+                                      FF080H    00000H
+                  @@INIS   logic_decision
+                                      FF080H    00000H
+                  @@INIS   water_level
+                                      FF080H    00000H
+                  @@INIS   error_leakage
+                                      FF080H    00000H
+                  @@INIS   valve_extract
+                                      FF080H    00000H
+                  @@INIS   pump_r_type
+                                      FF080H    00000H
+                  @@INIS   error_water_level
+                                      FF080H    00000H
+                  @@INIS   test_main
+                                      FF080H    00000H
+                  @@INIS   test_pcb   FF080H    00000H
+                  @@INIS   test_display
+                                      FF080H    00000H
+                  @@INIS   test_line
+                                      FF080H    00000H
+                  @@INIS   r_main     FF080H    00000H
+                  @@INIS   r_systeminit
+                                      FF080H    00000H
+                  @@INIS   r_cg_cgc   FF080H    00000H
+                  @@INIS   r_cg_cgc_user
+                                      FF080H    00000H
+                  @@INIS   r_cg_port
+                                      FF080H    00000H
+                  @@INIS   r_cg_port_user
+                                      FF080H    00000H
+                  @@INIS   r_cg_timer
+                                      FF080H    00000H
+                  @@INIS   r_cg_timer_user
+                                      FF080H    00000H
+                  @@INIS   r_cg_wdt   FF080H    00000H
+                  @@INIS   r_cg_wdt_user
+                                      FF080H    00000H
+                  @@INIS   buzzer_output
+                                      FF080H    00000H
+                  @@INIS   model_select
+                                      FF080H    00000H
+                  @@INIS   @rom       FF080H    00000H
+         @@DATS                       FF080H    00000H  DSEG UNITP
+                  @@DATS   @cstart    FF080H    00000H
+                  @@DATS   extract_control
+                                      FF080H    00000H
+                  @@DATS   M0_System_init
+                                      FF080H    00000H
+                  @@DATS   M2_Mode_Control
+                                      FF080H    00000H
+                  @@DATS   M3_Heating_Control
+                                      FF080H    00000H
+                  @@DATS   M4_Input   FF080H    00000H
+                  @@DATS   M5_Output
+                                      FF080H    00000H
+                  @@DATS   M6_Display_Control
+                                      FF080H    00000H
+                  @@DATS   M7_Error_Control
+                                      FF080H    00000H
+                  @@DATS   Main       FF080H    00000H
+                  @@DATS   Timer_Service
+                                      FF080H    00000H
+                  @@DATS   Util       FF080H    00000H
+                  @@DATS   valve_feed
+                                      FF080H    00000H
+                  @@DATS   valve_nos
+                                      FF080H    00000H
+                  @@DATS   key_input
+                                      FF080H    00000H
+                  @@DATS   key_input_water_extract
+                                      FF080H    00000H
+                  @@DATS   led_output
+                                      FF080H    00000H
+                  @@DATS   key_handling
+                                      FF080H    00000H
+                  @@DATS   logic_decision
+                                      FF080H    00000H
+                  @@DATS   water_level
+                                      FF080H    00000H
+                  @@DATS   error_leakage
+                                      FF080H    00000H
+                  @@DATS   valve_extract
+                                      FF080H    00000H
+                  @@DATS   pump_r_type
+                                      FF080H    00000H
+                  @@DATS   error_water_level
+                                      FF080H    00000H
+                  @@DATS   test_main
+                                      FF080H    00000H
+                  @@DATS   test_pcb   FF080H    00000H
+                  @@DATS   test_display
+                                      FF080H    00000H
+                  @@DATS   test_line
+                                      FF080H    00000H
+                  @@DATS   r_main     FF080H    00000H
+                  @@DATS   r_systeminit
+                                      FF080H    00000H
+                  @@DATS   r_cg_cgc   FF080H    00000H
+                  @@DATS   r_cg_cgc_user
+                                      FF080H    00000H
+                  @@DATS   r_cg_port
+                                      FF080H    00000H
+                  @@DATS   r_cg_port_user
+                                      FF080H    00000H
+                  @@DATS   r_cg_timer
+                                      FF080H    00000H
+                  @@DATS   r_cg_timer_user
+                                      FF080H    00000H
+                  @@DATS   r_cg_wdt   FF080H    00000H
+                  @@DATS   r_cg_wdt_user
+                                      FF080H    00000H
+                  @@DATS   buzzer_output
+                                      FF080H    00000H
+                  @@DATS   model_select
+                                      FF080H    00000H
+                  @@DATS   @rom       FF080H    00000H
+         @@INITL                      FF080H    00000H  DSEG UNIT64KP
+                  @@INITL  @cstart    FF080H    00000H
+                  @@INITL  extract_control
+                                      FF080H    00000H
+                  @@INITL  M0_System_init
+                                      FF080H    00000H
+                  @@INITL  M2_Mode_Control
+                                      FF080H    00000H
+                  @@INITL  M3_Heating_Control
+                                      FF080H    00000H
+                  @@INITL  M4_Input   FF080H    00000H
+                  @@INITL  M5_Output
+                                      FF080H    00000H
+                  @@INITL  M6_Display_Control
+                                      FF080H    00000H
+                  @@INITL  M7_Error_Control
+                                      FF080H    00000H
+                  @@INITL  Main       FF080H    00000H
+                  @@INITL  Timer_Service
+                                      FF080H    00000H
+                  @@INITL  Util       FF080H    00000H
+                  @@INITL  valve_feed
+                                      FF080H    00000H
+                  @@INITL  valve_nos
+                                      FF080H    00000H
+                  @@INITL  key_input
+                                      FF080H    00000H
+                  @@INITL  key_input_water_extract
+                                      FF080H    00000H
+                  @@INITL  led_output
+                                      FF080H    00000H
+                  @@INITL  key_handling
+                                      FF080H    00000H
+                  @@INITL  logic_decision
+                                      FF080H    00000H
+                  @@INITL  water_level
+                                      FF080H    00000H
+                  @@INITL  error_leakage
+                                      FF080H    00000H
+                  @@INITL  valve_extract
+                                      FF080H    00000H
+                  @@INITL  pump_r_type
+                                      FF080H    00000H
+                  @@INITL  error_water_level
+                                      FF080H    00000H
+                  @@INITL  test_main
+                                      FF080H    00000H
+                  @@INITL  test_pcb   FF080H    00000H
+                  @@INITL  test_display
+                                      FF080H    00000H
+                  @@INITL  test_line
+                                      FF080H    00000H
+                  @@INITL  r_main     FF080H    00000H
+                  @@INITL  r_systeminit
+                                      FF080H    00000H
+                  @@INITL  r_cg_cgc   FF080H    00000H
+                  @@INITL  r_cg_cgc_user
+                                      FF080H    00000H
+                  @@INITL  r_cg_port
+                                      FF080H    00000H
+                  @@INITL  r_cg_port_user
+                                      FF080H    00000H
+                  @@INITL  r_cg_timer
+                                      FF080H    00000H
+                  @@INITL  r_cg_timer_user
+                                      FF080H    00000H
+                  @@INITL  r_cg_wdt   FF080H    00000H
+                  @@INITL  r_cg_wdt_user
+                                      FF080H    00000H
+                  @@INITL  buzzer_output
+                                      FF080H    00000H
+                  @@INITL  model_select
+                                      FF080H    00000H
+                  @@INITL  @rom       FF080H    00000H
+         @@DATAL                      FF080H    00000H  DSEG UNIT64KP
+                  @@DATAL  @cstart    FF080H    00000H
+                  @@DATAL  extract_control
+                                      FF080H    00000H
+                  @@DATAL  M0_System_init
+                                      FF080H    00000H
+                  @@DATAL  M2_Mode_Control
+                                      FF080H    00000H
+                  @@DATAL  M3_Heating_Control
+                                      FF080H    00000H
+                  @@DATAL  M4_Input   FF080H    00000H
+                  @@DATAL  M5_Output
+                                      FF080H    00000H
+                  @@DATAL  M6_Display_Control
+                                      FF080H    00000H
+                  @@DATAL  M7_Error_Control
+                                      FF080H    00000H
+                  @@DATAL  Main       FF080H    00000H
+                  @@DATAL  Timer_Service
+                                      FF080H    00000H
+                  @@DATAL  Util       FF080H    00000H
+                  @@DATAL  valve_feed
+                                      FF080H    00000H
+                  @@DATAL  valve_nos
+                                      FF080H    00000H
+                  @@DATAL  key_input
+                                      FF080H    00000H
+                  @@DATAL  key_input_water_extract
+                                      FF080H    00000H
+                  @@DATAL  led_output
+                                      FF080H    00000H
+                  @@DATAL  key_handling
+                                      FF080H    00000H
+                  @@DATAL  logic_decision
+                                      FF080H    00000H
+                  @@DATAL  water_level
+                                      FF080H    00000H
+                  @@DATAL  error_leakage
+                                      FF080H    00000H
+                  @@DATAL  valve_extract
+                                      FF080H    00000H
+                  @@DATAL  pump_r_type
+                                      FF080H    00000H
+                  @@DATAL  error_water_level
+                                      FF080H    00000H
+                  @@DATAL  test_main
+                                      FF080H    00000H
+                  @@DATAL  test_pcb   FF080H    00000H
+                  @@DATAL  test_display
+                                      FF080H    00000H
+                  @@DATAL  test_line
+                                      FF080H    00000H
+                  @@DATAL  r_main     FF080H    00000H
+                  @@DATAL  r_systeminit
+                                      FF080H    00000H
+                  @@DATAL  r_cg_cgc   FF080H    00000H
+                  @@DATAL  r_cg_cgc_user
+                                      FF080H    00000H
+                  @@DATAL  r_cg_port
+                                      FF080H    00000H
+                  @@DATAL  r_cg_port_user
+                                      FF080H    00000H
+                  @@DATAL  r_cg_timer
+                                      FF080H    00000H
+                  @@DATAL  r_cg_timer_user
+                                      FF080H    00000H
+                  @@DATAL  r_cg_wdt   FF080H    00000H
+                  @@DATAL  r_cg_wdt_user
+                                      FF080H    00000H
+                  @@DATAL  buzzer_output
+                                      FF080H    00000H
+                  @@DATAL  model_select
+                                      FF080H    00000H
+                  @@DATAL  @rom       FF080H    00000H
+* gap *                               FF080H    00DA0H
+         @@BITS                       FFE20H    00007H  BSEG
+                  @@BITS   @cstart    FFE20H.0  00000H.0
+                  @@BITS   extract_control
+                                      FFE20H.0  00000H.0
+                  @@BITS   M0_System_init
+                                      FFE20H.0  00000H.2
+                  @@BITS   M2_Mode_Control
+                                      FFE20H.2  00000H.0
+                  @@BITS   M3_Heating_Control
+                                      FFE20H.2  00000H.0
+                  @@BITS   M4_Input   FFE20H.2  00000H.0
+                  @@BITS   M5_Output
+                                      FFE20H.2  00000H.0
+                  @@BITS   M6_Display_Control
+                                      FFE20H.2  00001H.2
+                  @@BITS   M7_Error_Control
+                                      FFE21H.4  00000H.0
+                  @@BITS   Main       FFE21H.4  00000H.0
+                  @@BITS   Timer_Service
+                                      FFE21H.4  00001H.2
+                  @@BITS   Util       FFE22H.6  00000H.0
+                  @@BITS   valve_feed
+                                      FFE22H.6  00000H.2
+                  @@BITS   valve_nos
+                                      FFE23H.0  00000H.0
+                  @@BITS   key_input
+                                      FFE23H.0  00000H.5
+                  @@BITS   key_input_water_extract
+                                      FFE23H.5  00000H.5
+                  @@BITS   led_output
+                                      FFE24H.2  00000H.0
+                  @@BITS   key_handling
+                                      FFE24H.2  00000H.0
+                  @@BITS   logic_decision
+                                      FFE24H.2  00000H.1
+                  @@BITS   water_level
+                                      FFE24H.3  00000H.1
+                  @@BITS   error_leakage
+                                      FFE24H.4  00000H.1
+                  @@BITS   valve_extract
+                                      FFE24H.5  00000H.0
+                  @@BITS   pump_r_type
+                                      FFE24H.5  00000H.1
+                  @@BITS   error_water_level
+                                      FFE24H.6  00000H.2
+                  @@BITS   test_main
+                                      FFE25H.0  00000H.0
+                  @@BITS   test_pcb   FFE25H.0  00000H.1
+                  @@BITS   test_display
+                                      FFE25H.1  00000H.0
+                  @@BITS   test_line
+                                      FFE25H.1  00000H.1
+                  @@BITS   r_main     FFE25H.2  00000H.0
+                  @@BITS   r_systeminit
+                                      FFE25H.2  00000H.0
+                  @@BITS   r_cg_cgc   FFE25H.2  00000H.0
+                  @@BITS   r_cg_cgc_user
+                                      FFE25H.2  00000H.0
+                  @@BITS   r_cg_port
+                                      FFE25H.2  00000H.0
+                  @@BITS   r_cg_port_user
+                                      FFE25H.2  00000H.0
+                  @@BITS   r_cg_timer
+                                      FFE25H.2  00000H.0
+                  @@BITS   r_cg_timer_user
+                                      FFE25H.2  00000H.0
+                  @@BITS   r_cg_wdt   FFE25H.2  00000H.0
+                  @@BITS   r_cg_wdt_user
+                                      FFE25H.2  00000H.0
+                  @@BITS   buzzer_output
+                                      FFE25H.2  00001H.2
+                  @@BITS   model_select
+                                      FFE26H.4  00000H.1
+* gap *                               FFE27H    000ADH
+         @@SEGREG                     FFED4H    00004H  DSEG AT
+                  @@SEGREG @SEGREG    FFED4H    00004H
+         @@RTARG0                     FFED8H    00008H  DSEG AT
+                  @@RTARG0 @RTARG0    FFED8H    00008H
+* gap *                               FFEE0H    00020H
+* gap (Not Free Area) *               FFF00H    00100H
+
+
+ Target chip : R5F100LE
+ Device file : V1.14
+

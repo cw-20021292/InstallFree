@@ -43,7 +43,9 @@
 typedef enum
 {
     VALVE_ID_NONE = 0,                                  // 0 :
-    VALVE_ID_WATER_IN,                                  // 1 :
+    VALVE_ID_AMBIENT_OUT,                               // 1 : 정수 추수
+    VALVE_ID_HOT_OUT,                                   // 2 : 온수 출수
+    VALVE_ID_HOT_TANK_IN,                               // 3 : 온수탱크 입수
     VALVE_ID_MAX                                        // 21 Max, 21이 넘으면 안됨
 } EValveID_T;
 
@@ -51,21 +53,21 @@ typedef enum
 typedef enum
 {
     VALVE_NOS_ID_NONE = 0,                              // 0 :
-    VALVE_NOS_ID_WATER_IN,                              // 1 :
+    VALVE_NOS_ID_HOT_TANK_OVERFLOW,                     // 1 : 온수탱크 오버히팅
     VALVE_NOS_ID_MAX                                    // 11 Max, 11이 넘으면 안됨
 } ENosValveID_T;
 
-#define VALVE_COUNT                                     0       // Feed 밸브 개수 - MAX 20
-#define VALVE_NOS_COUNT                                 0       // Nos 밸브 개수 - MAX 10
+#define VALVE_COUNT                                     3       // Feed 밸브 개수 - MAX 20
+#define VALVE_NOS_COUNT                                 1       // Nos 밸브 개수 - MAX 10
 
 #if (VALVE_COUNT > 0)
 // Valve port 설정
 // 순서상 skip없이 배치하여 사용하며, 미사용 port는 0으로 처리
 // 순서는 ID와 동일하게 배치
 // Feed Valve
-#define PORT_DEFINE_VALVE_1                             0
-#define PORT_DEFINE_VALVE_2                             0
-#define PORT_DEFINE_VALVE_3                             0
+#define PORT_DEFINE_VALVE_1                             VALVE_AMBIENT_OUT
+#define PORT_DEFINE_VALVE_2                             VALVE_HOT_OUT
+#define PORT_DEFINE_VALVE_3                             VALVE_FEED_IN
 #define PORT_DEFINE_VALVE_4                             0
 #define PORT_DEFINE_VALVE_5                             0
 #define PORT_DEFINE_VALVE_6                             0
@@ -87,7 +89,7 @@ typedef enum
 
 // Nos Valve
 #if (VALVE_NOS_COUNT > 0)
-#define PORT_DEFINE_NOS_VALVE_1                         P6_bit.no5
+#define PORT_DEFINE_NOS_VALVE_1                         VALVE_NOS
 #define PORT_DEFINE_NOS_VALVE_2                         0
 #define PORT_DEFINE_NOS_VALVE_3                         0
 #define PORT_DEFINE_NOS_VALVE_4                         0

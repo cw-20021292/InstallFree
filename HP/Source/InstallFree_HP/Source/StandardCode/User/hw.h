@@ -27,13 +27,13 @@
 
 #define COMP_ON                     P7.0
 
-#define VALVE_NOS                   P7.1
-#define VALVE_FEED_IN               P7.2
-#define VALVE_AMBIENT_OUT           P7.3
+#define VALVE_NOS                   P7.1        // O
+#define VALVE_FEED_IN               P7.2        // O
+#define VALVE_AMBIENT_OUT           P7.3        // O
 #define VALVE_COLD_OUT              P7.4
 #define VALVE_COLD_N_HOT            P7.5
 #define VALVE_WARM_OUT              P7.6
-#define VALVE_HOT_OUT               P7.7
+#define VALVE_HOT_OUT               P7.7        // O
 
 #define EEP_SDA                     P6.1
 #define EEP_SDA_DIR                 PM6.1
@@ -44,7 +44,6 @@
 
 /* LEDs */
 #define LED_LOCK                    P1.2
-#define LED_TOUCH_LOCK              P1.1
 #define LED_AMOUNT_1                P1.3
 #define LED_AMOUNT_2                P1.4
 #define LED_AMOUNT_3                P6.3
@@ -57,6 +56,7 @@
 #define KEY_AMBIENT                 P13.7
 #define KEY_EXTRACT                 P1.0
 #define KEY_AMOUNT                  P0.0
+#define KEY_LOCK                    P1.1
 
 /* WATER LEVEL */
 #define HOT_TANK_LV                 P11.0

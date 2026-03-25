@@ -303,7 +303,7 @@ __far const static U8 gu8ErrorDisplayCode[ERROR_ID_MAX] = {
 #define ROOM_TEMP_2_ERROR_DETECT_TIME               30          // 정수 온도 센서1 에러 감지 기준 시간 3sec@100ms
 
 // 온수 탱크 온도 센서 에러 감지
-#define TANK_HOT_TEMP_ERROR_CHECK_USE               NO_USE         // 온수 탱크 온도 센서 에러 감지 사용 여부 - 0(NO_USE), 1(USE)
+#define TANK_HOT_TEMP_ERROR_CHECK_USE               USE         // 온수 탱크 온도 센서 에러 감지 사용 여부 - 0(NO_USE), 1(USE)
 #define TANK_HOT_TEMP_ERROR_OVER_STANDARD_AD        1000        // 온수 탱크 온도 온도 센서 에러 감지 기준 최대 AD값
 #define TANK_HOT_TEMP_ERROR_UNDER_STANDARD_AD       20          // 온수 탱크 온도 온도 센서 에러 감지 기준 최소 AD값
 #define TANK_HOT_TEMP_ERROR_DETECT_TIME             30          // 온수 탱크 온도 온도 센서 에러 감지 기준 시간 3sec@100ms

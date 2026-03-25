@@ -23,7 +23,7 @@
 
 
 #define SMART_NO_USE_POWER_SAVE_USE                 NO_USE     // 스마트 미사용 절전 기능 사용 여부
-#define POWER_SAVE_USE                              NO_USE     // 절전 기능 사용 여부
+#define POWER_SAVE_USE                              USE     // 절전 기능 사용 여부
 
 #define PHOTO_SENSOR_USE                            NO_USE     // 조도 센서 사용 여부 : 0(NO_USE), 1(USE)
 

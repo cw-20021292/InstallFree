@@ -26,14 +26,14 @@ void Base_Initialize(void)
     Drv_RTC_Module_Initialize();            // RTC 관련 초기화
     Drv_LevelSensor_Module_Initialize();    // 수위 센서 관련 초기화
     Drv_Buzzer_Module_Initialize();         // 부저음 제어 관련 초기화
-    Drv_DC_Fan_Module_Initialize();         // DC FAN 제어 관련 초기화
+    // Drv_DC_Fan_Module_Initialize();         // DC FAN 제어 관련 초기화
     Drv_DC_Pump_Module_Initialize();        // DC Pump 제어 관련 초기화
     Drv_ColdTH_Module_Initialize();         // 냉수 온도 센서 전원 제어 관련 초기화
     Drv_UV_Module_Initialize();             // UV 제어 관련 초기화
     Drv_Valve_Module_Initialize();          // 일반 밸브 제어 관련 초기화
     Drv_Heater_Module_Initialize();         // 일반 히터 관련 초기화
-    Drv_BLDC_Comp_Module_Initialize();      // BLDC Comp 제어 관련 초기화
-    Drv_Comp_Module_Initialize();           // 정속형 Comp 제어 관련 초기화
+    // Drv_BLDC_Comp_Module_Initialize();      // BLDC Comp 제어 관련 초기화
+    // Drv_Comp_Module_Initialize();           // 정속형 Comp 제어 관련 초기화
    
 // * Lib (Function) ***************************************************************************
     Lib_ADC_Module_Initialize();            // AD Convert 동작 관련 초기화
@@ -43,11 +43,14 @@ void Base_Initialize(void)
     Lib_WaterLevel_Module_Initialize();     // 수위 감지 제어 관련 초기화
     Lib_Effluent_Module_Initialize();       // 추출 제어 관련 초기화
     Lib_Heater_Module_Initialize();         // 히터 동작 관련 초기화
-    Lib_NormalComp_Module_Initialize();     // 정속형 Comp 제어 관련 초기화
-    Lib_BLDC_Comp_Module_Initialize();      // BLDC Comp 제어 관련 초기화
+    // Lib_NormalComp_Module_Initialize();     // 정속형 Comp 제어 관련 초기화
+    // Lib_BLDC_Comp_Module_Initialize();      // BLDC Comp 제어 관련 초기화
 
 // * 기타 **************************************************************************************
     Boot_Initialize();
+
+    /* User */
+    InitFlushing();
 }
 
 
@@ -64,20 +67,18 @@ void Base_Timer_1ms(void)
     switch (mu8OperationMode)
     {
         case OPERATION_MODE_ID_NORMAL:          // 일반 동작 모드
+        case OPERATION_MODE_ID_PCB_TEST:        // PCB 테스트 모드
+        case OPERATION_MODE_ID_FRONT_TEST:      // Front 테스트 모드
+        case OPERATION_MODE_ID_PTA_TEST:      // PTA 테스트 모드1
             // 여기 안쓰고 그냥 Scheduler 사용
             // 사유 : 각 모드별 구분할 의미도 없고 부하 많아지면 가독성 떨어짐
             // Ex) 부하 1개 당 Initialize, 1ms_control, while문 control 3개 정의하는데 너무 길어짐
             Lib_TimeScheduler_Module_1ms_Control();
+            Lib_ADC_Module_1ms_Control();
+            Lib_WaterError_Module_1ms_Control();
+            Drv_Valve_Module_1ms_Control();
+            Drv_DC_Pump_Module_1ms_Control();
             BootTimeCheck();
-            break;
-
-        case OPERATION_MODE_ID_PCB_TEST:        // PCB 테스트 모드
-            break;
-
-        case OPERATION_MODE_ID_FRONT_TEST:      // Front 테스트 모드
-            break;
-
-        case OPERATION_MODE_ID_PTA_TEST:      // PTA 테스트 모드1
             break;
 
         default:
@@ -135,22 +136,19 @@ void FunctionProcess_In_WhileLoop(void)
     {
         default:
         case OPERATION_MODE_ID_NORMAL:          // 일반 동작 모드
-            // 여기 안쓰고 그냥 Scheduler 사용
-            // 사유 : 각 모드별 구분할 의미도 없고 부하 많아지면 가독성 떨어짐
-            // Ex) 부하 1개 당 Initialize, 1ms_control, while문 control 3개 정의하는데 너무 길어짐
-            break;
-
         case OPERATION_MODE_ID_PCB_TEST:        // PCB 테스트 모드
-            break;
-
         case OPERATION_MODE_ID_FRONT_TEST:      // Front 테스트 모드
-            break;
-
         case OPERATION_MODE_ID_PTA_TEST:      // PTA 테스트 모드1
-            break;
+        // 여기 안쓰고 그냥 Scheduler 사용
+        // 사유 : 각 모드별 구분할 의미도 없고 부하 많아지면 가독성 떨어짐
+        // Ex) 부하 1개 당 Initialize, 1ms_control, while문 control 3개 정의하는데 너무 길어짐
 
-            break;
-
+        Lib_ADC_Module_Control();               // ADC 동작 제어
+        Lib_TimeScheduler_Module_Control();     // Time Scheduler 동작 제어
+        Lib_WaterError_Module_Control();
+        Drv_Valve_Module_Control();
+        Drv_DC_Pump_Module_Control();
+        break;
     }
 }
 

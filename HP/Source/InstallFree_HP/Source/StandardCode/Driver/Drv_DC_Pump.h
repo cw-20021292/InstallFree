@@ -27,7 +27,7 @@
 typedef enum
 {
     DC_PUMP_ID_NONE = 0,                                // 0 :
-    DC_PUMP_ID_1,                                       // 1 :
+    DC_PUMP_ID_WATER_IN,                                       // 1 :
     DC_PUMP_ID_MAX                                      // 11 Max, 11이 넘으면 안됨
 } EDC_PumpID_T;
 
@@ -73,7 +73,7 @@ typedef enum
 #define TIME_DEFINE_PUMP_2_TRIG_OFF_DELAY               0           // @100ms
 #else
 #endif
-#define PORT_DEFINE_DC_PUMP_2                           0
+#define PORT_DEFINE_DC_PUMP_2                           PUMP_POWER
 
 // Pump 3
 #define PUMP_3_PWM_USE                                  PUMP_PWM_NO_USE     // PUMP 3 PWM 제어 여부 - 0(No Use), 1(Use PWM REGISTER), 2(Use TRIG Port)
@@ -224,8 +224,8 @@ typedef enum
 #else
 #endif
 #define P_PUMP_1                        PORT_DEFINE_DC_PUMP_1
-#define TURN_ON_PUMP_1()                { P_PUMP_1 = 1; }
-#define TURN_OFF_PUMP_1()               { P_PUMP_1 = 0; }
+#define TURN_ON_PUMP_1()                { P_PUMP_1 = 1; PUMP_POWER = 1; }
+#define TURN_OFF_PUMP_1()               { P_PUMP_1 = 0; PUMP_POWER = 0; }
 #define GET_STATUS_PUMP_1()             ( P_PUMP_1 )
 
 

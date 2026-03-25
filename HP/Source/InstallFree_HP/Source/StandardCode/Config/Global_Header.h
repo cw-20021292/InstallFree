@@ -121,6 +121,11 @@
 #include "User_RTC.h"
 #include "User_Main.h"
 
+// User
+#include "flushing.h"
+#include "water_out.h"
+#include "key.h"
+
 // library header files
 #include <stdio.h>
 #include <stdlib.h>

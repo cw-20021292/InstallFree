@@ -2528,12 +2528,13 @@ void HotTempErrorCheck(void)
 #if (TANK_HOT_TEMP_ERROR_CHECK_USE == USE)    // 온수 탱크 온도 센서 에러 사용시
 
     U16 mu16HotTankTemp_AD = 0;
-    U8 mu8HotOnOff = 0;
+    U8 mu8HotOnOff = 1;
 
     static U8 mu8HotTankTempErrorDetectTime = 0;
 
-//    mu16HotTankTemp_AD = Get_ADC_Data(ADC_ID_TH_HOT);   // 온수 탱크 온도 센서 온도 AD값 확인
-    mu8HotOnOff = Get_HotOnOff();
+    mu16HotTankTemp_AD = Get_ADC_Data(ADC_ID_TH_HOT_TANK_TEMP);   // 온수 탱크 온도 센서 온도 AD값 확인
+    // mu8HotOnOff = Get_HotOnOff();    // 못씀
+
 
     if (mu8HotOnOff == TRUE)
     {   // 온수 기능이 켜진 경우

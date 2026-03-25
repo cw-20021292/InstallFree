@@ -57,7 +57,7 @@ void Set_BuzzerMode(U8 mu8Mode)
 /// @details    Buzzer 발생음 종류를 설정한다
 /// @param      mu8Type : Buzzer 출력음 종류
 /// @return     void
-void Set_BuzzerSelect(U8 mu8Type)
+void Set_BuzzerSelect(Buzzer_Addr_T mu8Type)
 {
     gu8BuzzerTime = 0;
     gu8BuzzerOrder = 1;

@@ -22,7 +22,7 @@
 #define CONFIG_TEMP_TABLE_ROOM_JAMESTECH        NO_USE     // 정수온도센서 / 제임스텍
 
 // 온수 탱크
-#define CONFIG_TEMP_TABLE_HOT_TANK_JAMESTECH    NO_USE     // 온수온도센서 / 제임스텍 / 탱크식
+#define CONFIG_TEMP_TABLE_HOT_TANK_JAMESTECH    USE     // 온수온도센서 / 제임스텍 / 탱크식
 
 // 순간온수
 #define CONFIG_TEMP_TABLE_HOT_IN_SK             NO_USE     // 온수온도센서 / SK / 순간온수 입수(T1)
@@ -50,14 +50,14 @@
 
 
 // 사용하는 온도 센서들의 ADC ID들을 배정
-#define COOL_THERMISTOR_1_ID                    ADC_ID_TH_COOL
+#define COOL_THERMISTOR_1_ID                    0
 #define ROOM_THERMISTOR_ID                      0
-#define HOT_THERMISTOR_ID                       0
-#define HOT_IN_THERMISTOR_ID                    ADC_ID_TH_HOT_IN
-#define HOT_BODY_THERMISTOR_ID                  ADC_ID_TH_HOT_BODY
-#define HOT_OUT_THERMISTOR_ID                   ADC_ID_TH_HOT_OUT
-#define TEM_HEATSINK_THERMISTOR_ID              ADC_ID_TH_HEATSINK
-#define AIR_THERMISTOR_ID                       ADC_ID_TH_AIR
+#define HOT_THERMISTOR_ID                       ADC_ID_TH_HOT_TANK_TEMP
+#define HOT_IN_THERMISTOR_ID                    0
+#define HOT_BODY_THERMISTOR_ID                  0
+#define HOT_OUT_THERMISTOR_ID                   0
+#define TEM_HEATSINK_THERMISTOR_ID              0
+#define AIR_THERMISTOR_ID                       0
 #define FAUCET_OUT_THERMISTOR_ID                0
 #define TDS_IN_THERMISTOR_ID                    0
 #define TDS_OUT_THERMISTOR_ID                   0

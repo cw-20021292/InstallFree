@@ -24,7 +24,7 @@
 // 수위
 #define COLD_LOW_SENSOR_USE             NO_USE           // 냉수 저수위 센서 사용
 #define MIDDLE_SENSOR_USE               NO_USE           // 정수 중수위 센서 사용
-#define HOT_HIGH_SENSOR_USE             NO_USE           // 온수 만수위 센서 사용
+#define HOT_HIGH_SENSOR_USE             NO_USE              // 온수 만수위 센서 사용
 
 #define COLD_WATER_LEVEL_LOW            0x00
 #define COLD_WATER_LEVEL_MIDDLE         0x01

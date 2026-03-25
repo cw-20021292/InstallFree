@@ -23,7 +23,7 @@ void Lib_WaterInputControl(void)
 //     // 정수 물탱크 입수
 //     if (mu8Error == FALSE)
 //     {     // 입수 불가 조건 에러 미발생시
-//         Set_ValveControl(VALVE_NOS_ID_WATER_IN, NOS, OFF, 0);
+//         Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, OFF, 0);
 
 //         // 항상 정수 물 탱크 수위 최고수위 유지
 //         if (mu8WaterLevel < WATER_LEVEL_HIGH)
@@ -37,7 +37,7 @@ void Lib_WaterInputControl(void)
 //   }
 //   else
 //   {  // 입수 불가 조건 에러 발생시
-//     Set_ValveControl(VALVE_NOS_ID_WATER_IN, NOS, ON, 0);
+//     Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, ON, 0);
 //     Set_ValveControl(VALVE_ID_WATER_IN, FEED, OFF, 0);
 //   }
 }

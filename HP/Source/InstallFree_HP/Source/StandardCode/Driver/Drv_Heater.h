@@ -43,7 +43,7 @@ typedef enum
 
 // 순서상 skip없이 배치하여 사용하며, 미사용 port는 0으로 처리
 // 순서는 ID와 동일하게 배치
-#define PORT_DEFINE_HEATER_1                            0      // 온수 탱크 히터
+#define PORT_DEFINE_HEATER_1                            HEATER_ON      // 온수 탱크 히터
 #define PORT_DEFINE_HEATER_2                            0
 #define PORT_DEFINE_HEATER_3                            0
 #define PORT_DEFINE_HEATER_4                            0

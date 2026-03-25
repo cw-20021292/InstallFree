@@ -19,6 +19,37 @@ U16 gu16BootCoolTempCheckTimer = 0;             /// @brief  냉수 온도 센서
 U8 gu8CoolTH_PowerControlMode = 0;              /// @brief  냉수 온도 센서 전원 제어 모드
 #endif
 
+
+/// @brief      온도 센서 전원 제어 특수 조건 체크 함수 포인터 타입
+/// @return     U8 - SET(특수 조건 만족, 전원 ON), CLEAR(특수 조건 미만족)
+typedef U8 (*TH_SpecialConditionFunc)(void);
+
+/// @brief      포트 제어 함수 포인터 타입
+typedef void (*TH_PortSetFunc)(U8 mu8Value);
+typedef U8 (*TH_PortGetFunc)(void);
+
+/// @brief      온도 센서 전원 제어 설정 구조체
+typedef struct {
+    U8      u8ID;                           // 센서 ID (0: COOL_TH, 1: AMBIENT_TH)
+    U16     u16BootOnTime;                  // 부팅 후 켜지는 시간 @100ms (예: 6000 = 10분)
+    U16     u16OffTime;                     // 주기적 OFF 시간 @100ms (예: 400 = 40초)
+    U16     u16OnTime;                      // 주기적 ON 시간 @100ms (예: 100 = 10초)
+    TH_PortSetFunc  pSetPort;               // 포트 SET 함수 포인터
+    TH_PortGetFunc  pGetPort;               // 포트 GET 함수 포인터
+    U8      u8AdcID;                        // ADC 채널 ID
+    U8      u8ErrorID;                      // 에러 발생 시 참조할 에러 ID (0xFF = 미사용)
+    TH_SpecialConditionFunc pSpecialCondition;  // 특수 조건 체크 함수 포인터 (NULL = 미사용)
+} STH_PowerControl_T;
+
+/// @brief      온도 센서 전원 제어 런타임 데이터 구조체
+typedef struct {
+    U16     u16PowerControlTimer;           // 전원 제어 타이머 @100ms
+    U16     u16BootTimer;                   // 부팅 타이머 @100ms
+} STH_Runtime_T;
+
+// 전역 변수
+static STH_Runtime_T gSTH_Runtime[ID_TH_MAX];
+
 /// @brief      ADC 평균 산출 산정 데이터 수 테이블
 /// @details    ADC의 평균을 계산하기 위한 AD값의 개수를 정하여 놓는다
 U8 au8ADCAverageCountSet[27] = { ADC_AVERAGE_COUNT_0,
@@ -64,6 +95,33 @@ typedef struct {
 
 SADC_Data_T   SADC_Data;
 
+static void SetHotTankTempPort(U8 mu8Value);
+static U8   GetHotTankTempPort(void);
+static U8   HotTankTemp_SpecialFunc(void);
+
+// 온도 센서 전원 제어 설정 테이블
+static const STH_PowerControl_T gSTH_ControlTable[ID_TH_MAX] = {
+    // ID,              BOOT_TIME,  OFF_TIME,   ON_TIME,    PORT Set,           Port Get,               ADC_ID,                ERROR_ID,                  Special_Func
+    { ID_TH_HOT_TANK,   600,        400,        100,        SetHotTankTempPort, GetHotTankTempPort,     ADC_ID_TH_COOL,        ERROR_ID_COLD_TEMP_1_E44,  HotTankTemp_SpecialFunc },
+};
+
+// 온수탱크 온도센서 포트 제어
+static void SetHotTankTempPort(U8 mu8Value)
+{
+    
+}
+
+// 온수탱크 온도센서 포트 상태
+static U8 GetHotTankTempPort(void)
+{
+    return 0;
+}
+
+// 온수탱크 온도센서 ON 유지 특수 조건
+static U8 HotTankTemp_SpecialFunc(void)
+{
+    return 0;
+}
 
 /// @brief      ADC Data Initialize
 /// @details    ADC와 관련된 모든 변수들을 초기화 시킨다

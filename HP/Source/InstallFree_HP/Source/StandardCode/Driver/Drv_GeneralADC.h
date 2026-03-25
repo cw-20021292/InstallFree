@@ -7,6 +7,10 @@
 #ifndef _DRV_GENERAL_ADC_H_
 #define _DRV_GENERAL_ADC_H_
 
+typedef enum {
+    ID_TH_HOT_TANK,     // 온수탱크 온도센서
+    ID_TH_MAX
+} EID_TH_T;
 
 /*  Hal AD 제어 Function 사용법
     => Set_CoolThermistor_PowerControl(mu8Mode);           // 냉수 온도 센서 전원 제어 모드 설정 : mu8Mode - 0(OFF), 1(일반 동작시), 2(Test 동작시), 3(Error 발생시)
@@ -30,7 +34,7 @@
 // ADC 최대 25개 사용 가능
 
 // ADC 종류 Count 설정
-#define ADC_USE                                         NO_USE
+#define ADC_USE                                         USE
 
 #if (ADC_USE == USE)
 

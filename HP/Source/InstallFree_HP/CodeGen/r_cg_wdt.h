@@ -23,7 +23,7 @@
 * Device(s)    : R5F100MJ
 * Tool-Chain   : CA78K0R
 * Description  : This file implements device driver for WDT module.
-* Creation Date: 2026-03-23
+* Creation Date: 2026-03-25
 ***********************************************************************************************************************/
 
 #ifndef WDT_H

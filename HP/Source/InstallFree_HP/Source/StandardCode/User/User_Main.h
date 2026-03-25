@@ -2,6 +2,8 @@
 #ifndef _USER_MAIN_H_
 #define _USER_MAIN_H_
 
+#include "Type_Define.h"
+
 #define MODEL_CHP                           0
 #define MODEL_CP                            1
 #define MODEL_HP                            2

@@ -23,7 +23,7 @@
 * Device(s)    : R5F100MJ
 * Tool-Chain   : CA78K0R
 * Description  : This file implements device driver for TAU module.
-* Creation Date: 2026-03-23
+* Creation Date: 2026-03-25
 ***********************************************************************************************************************/
 
 /***********************************************************************************************************************
@@ -98,9 +98,6 @@ void R_TAU0_Create(void)
     /* Set INTTM01 low priority */
     TMPR101 = 1U;
     TMPR001 = 1U;
-    /* Set INTTM06 low priority */
-    TMPR106 = 1U;
-    TMPR006 = 1U;
     /* Set INTTM07 low priority */
     TMPR107 = 1U;
     TMPR007 = 1U;
@@ -118,19 +115,11 @@ void R_TAU0_Create(void)
     TOL0 &= ~_0002_TAU_CH1_OUTPUT_LEVEL_L;
     TO0 &= ~_0002_TAU_CH1_OUTPUT_VALUE_1;
     TOE0 &= ~_0002_TAU_CH1_OUTPUT_ENABLE;
-    /* Channel 6 is used as master channel for PWM output function */
-    TMR06 = _0000_TAU_CLOCK_SELECT_CKM0 | _0000_TAU_CLOCK_MODE_CKS | _0800_TAU_COMBINATION_MASTER |
-            _0000_TAU_TRIGGER_SOFTWARE | _0001_TAU_MODE_PWM_MASTER;
-    TDR06 = _0C7F_TAU_TDR06_VALUE;
-    TOM0 &= ~_0040_TAU_CH6_OUTPUT_COMBIN;
-    TOL0 &= ~_0040_TAU_CH6_OUTPUT_LEVEL_L;
-    TO0 &= ~_0040_TAU_CH6_OUTPUT_VALUE_1;
-    TOE0 &= ~_0040_TAU_CH6_OUTPUT_ENABLE;
-    /* Channel 7 is used as slave channel for PWM output function */
+    /* Channel 7 used as square output function */
     TMR07 = _0000_TAU_CLOCK_SELECT_CKM0 | _0000_TAU_CLOCK_MODE_CKS | _0000_TAU_COMBINATION_SLAVE |
-            _0400_TAU_TRIGGER_MASTER_INT | _0009_TAU_MODE_PWM_SLAVE;
-    TDR07 = _0640_TAU_TDR07_VALUE;
-    TOM0 |= _0080_TAU_CH7_OUTPUT_COMBIN;
+            _0000_TAU_TRIGGER_SOFTWARE | _0000_TAU_MODE_INTERVAL_TIMER | _0000_TAU_START_INT_UNUSED;
+    TDR07 = _7CFF_TAU_TDR07_VALUE;
+    TOM0 &= ~_0080_TAU_CH7_OUTPUT_COMBIN;
     TOL0 &= ~_0080_TAU_CH7_OUTPUT_LEVEL_L;
     TO0 &= ~_0080_TAU_CH7_OUTPUT_VALUE_1;
     TOE0 |= _0080_TAU_CH7_OUTPUT_ENABLE;
@@ -194,34 +183,29 @@ void R_TAU0_Channel1_Stop(void)
 }
 
 /***********************************************************************************************************************
-* Function Name: R_TAU0_Channel6_Start
-* Description  : This function starts TAU0 channel 6 counter.
+* Function Name: R_TAU0_Channel7_Start
+* Description  : This function starts TAU0 channel 7 counter.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_TAU0_Channel6_Start(void)
+void R_TAU0_Channel7_Start(void)
 {
-    TMIF06 = 0U;    /* clear INTTM06 interrupt flag */
-    TMMK06 = 0U;    /* enable INTTM06 interrupt */
     TMIF07 = 0U;    /* clear INTTM07 interrupt flag */
     TMMK07 = 0U;    /* enable INTTM07 interrupt */
     TOE0 |= _0080_TAU_CH7_OUTPUT_ENABLE;
-    TS0 |= _0040_TAU_CH6_START_TRG_ON | _0080_TAU_CH7_START_TRG_ON;
+    TS0 |= _0080_TAU_CH7_START_TRG_ON;
 }
 
 /***********************************************************************************************************************
-* Function Name: R_TAU0_Channel6_Stop
-* Description  : This function stops TAU0 channel 6 counter.
+* Function Name: R_TAU0_Channel7_Stop
+* Description  : This function stops TAU0 channel 7 counter.
 * Arguments    : None
 * Return Value : None
 ***********************************************************************************************************************/
-void R_TAU0_Channel6_Stop(void)
+void R_TAU0_Channel7_Stop(void)
 {
-    TT0 |= _0040_TAU_CH6_STOP_TRG_ON | _0080_TAU_CH7_STOP_TRG_ON;
+    TT0 |= _0080_TAU_CH7_STOP_TRG_ON;
     TOE0 &= ~_0080_TAU_CH7_OUTPUT_ENABLE;
-    /* Mask channel 6 interrupt */
-    TMMK06 = 1U;    /* disable INTTM06 interrupt */
-    TMIF06 = 0U;    /* clear INTTM06 interrupt flag */
     /* Mask channel 7 interrupt */
     TMMK07 = 1U;    /* disable INTTM07 interrupt */
     TMIF07 = 0U;    /* clear INTTM07 interrupt flag */

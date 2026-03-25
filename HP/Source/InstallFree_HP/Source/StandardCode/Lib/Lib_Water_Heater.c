@@ -252,6 +252,11 @@ void Lib_HeatTank_Control(void)
                             SHotData.gf32TargetHighTemp = SHeatTempData[SHotData.gu8HeightMode].gf32TempHeatOff;
                             SHotData.gf32TargetLowTemp = SHeatTempData[SHotData.gu8HeightMode].gf32TempHeatOn;
                         }
+
+                        // // 일반 동작 모드
+                        // SHotData.gf32TargetHighTemp = SHeatTempData[SHotData.gu8HeightMode].gf32TempHeatOff;
+                        // SHotData.gf32TargetLowTemp = SHeatTempData[SHotData.gu8HeightMode].gf32TempHeatOn;
+                            
                         // 히터 제어
                         if (mf32HotTemp > SHotData.gf32TargetHighTemp)
                         {   // 목표 온도보다 높은 경우 Heater OFF

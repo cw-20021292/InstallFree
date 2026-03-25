@@ -1,0 +1,3 @@
+---- PUMP_ON_150MIN Matches (2 in 2 files) ----
+pump_retry_proc in pump_r_type.c :             if( gu32_pump_retry_timer >= PUMP_ON_150MIN )
+pump_r_type.h line 33 : /*#define PUMP_ON_150MIN          90000*/

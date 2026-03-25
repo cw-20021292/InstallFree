@@ -2255,11 +2255,9 @@ void Drv_DC_Pump_Module_1ms_Control(void)
 /// @details    Basic Loop 안 While 문 안에서 DC Pump를 제어한다
 /// @param      void
 /// @return     void
-/// CH.PARK 변경 - 스탠다드코드 : DRV 두 코드 통합 (괜히 코드만 길어지고 여기서 추가) 
 void Drv_DC_Pump_Module_Control(void)
 {
 #if (DC_PUMP_COUNT > 0)
-    DC_PumpControlTimer();
     DC_PumpControl();                       // DC Pump Control 함수
 #endif
 }

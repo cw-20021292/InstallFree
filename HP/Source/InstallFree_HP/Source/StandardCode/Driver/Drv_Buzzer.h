@@ -15,15 +15,15 @@
     Set_Buzzer_Out(0);                       // 음 출력 정지(stop)
 */
 
-#define BUZZER_USE                          NO_USE             // Buzzer 사용 여부 - 0(No USE), 1(USE)
+#define BUZZER_USE                          USE             // Buzzer 사용 여부 - 0(No USE), 1(USE)
 
 #if (BUZZER_USE == USE)
 // Buzzer Port 할당
 // 미사용 port는 0으로 처리
-#define REGISTER_DEFINE_BUZZER_PWM          TDR14
-#define BUZZER_PWM_START()                  R_Config_TAU1_4_Start();    // Code Generate된 PWM 제어 Start함수 배치
-#define BUZZER_PWM_STOP()                   R_Config_TAU1_4_Stop();     // Code Generate된 PWM 제어 Stop함수 배치
-#define PORT_DEFINE_BUZZER_ON               P4_bit.no5      // Buzzer On Port
+#define REGISTER_DEFINE_BUZZER_PWM          TDR07
+#define BUZZER_PWM_START()                  R_TAU0_Channel7_Start();    // Code Generate된 PWM 제어 Start함수 배치
+#define BUZZER_PWM_STOP()                   R_TAU0_Channel7_Stop();     // Code Generate된 PWM 제어 Stop함수 배치
+#define PORT_DEFINE_BUZZER_ON               BUZZER_ON                   // Buzzer On Port
 
 
 // 16MHz OSE - TDRxx = 0x063F = 1599 => 200us High / 200us Low => 400us period

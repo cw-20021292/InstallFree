@@ -14,8 +14,8 @@
 #define AD_CH_1_USE                                 NO_USE
 #define AD_CH_2_USE                                 NO_USE
 #define AD_CH_3_USE                                 NO_USE
-#define AD_CH_4_USE                                 NO_USE
-#define AD_CH_5_USE                                 NO_USE
+#define AD_CH_4_USE                                 USE     // 온수탱크 온도센서
+#define AD_CH_5_USE                                 USE     // 온수탱크 수위센서
 #define AD_CH_6_USE                                 NO_USE
 #define AD_CH_7_USE                                 NO_USE
 #define AD_CH_8_USE                                 NO_USE
@@ -46,8 +46,8 @@ typedef enum
     ADC_ID_TEM_C_FB,                                // 1 :
     ADC_ID_TH_AIR,                                  // 2 :
     ADC_ID_TH_HOT_IN,                               // 3 :
-    ADC_ID_TH_HOT_OUT,                              // 4 :
-    ADC_ID_TH_HEATSINK,                             // 5 :
+    ADC_ID_TH_HOT_TANK_TEMP,                        // 4 : 온수탱크 온도센서
+    ADC_ID_TH_HOT_TANK_WATER_LEVEL,                 // 5 : 온수탱크 수위센서
     ADC_ID_TH_COOL,                                 // 6 :
     ADC_ID_TH_HOT_BODY,                             // 7 :
     ADC_ID_FAN,                                     // 8 :
@@ -57,7 +57,7 @@ typedef enum
     ADC_ID_DUMMY_3,                                 // 12 :
     ADC_ID_DUMMY_4,                                 // 13 :
     ADC_ID_DUMMY_5,                                 // 14 :
-    ADC_ID_DUMMY_6,                                 // 15 :     // HW상 CH 15 없음
+    ADC_ID_DUMMY_6,                                 // 15 : 
     ADC_ID_DUMMY_7,                                 // 16 :
     ADC_ID_DUMMY_8,                                 // 17 :
     ADC_ID_DUMMY_9,                                 // 18 :
@@ -78,8 +78,13 @@ typedef enum
 // #define AD_CH_0_AVERAGE_FUCTION                  exFunction
 #define AD_AVERAGE_FUNCTION                         Average_ADC
 
-#define ADC_Start()                                 R_Config_ADC_Start();
-#define ADC_Stop()                                  R_Config_ADC_Stop();
+// G13
+#define ADC_Start()                                 R_ADC_Start();
+#define ADC_Stop()                                  R_ADC_Stop();
+
+// G23
+// #define ADC_Start()                                 R_Config_ADC_Start();
+// #define ADC_Stop()                                  R_Config_ADC_Stop();
 
 #define AD_CONV_8BIT                                0
 #define AD_CONV_10BIT                               1
