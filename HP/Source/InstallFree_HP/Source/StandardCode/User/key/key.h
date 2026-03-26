@@ -6,17 +6,19 @@
 void InitKey(void);
 
 /* SINGLE KEY */
-#define  K_NONE           HAL_KEY_NONE
-#define  K_HOT            HAL_KEY_1
-#define  K_COLD           HAL_KEY_NONE
-#define  K_ROOM           HAL_KEY_2
-#define  K_AMOUNT         HAL_KEY_3
-#define  K_HOT_LOCK       HAL_KEY_4
+#define  K_NONE                 HAL_KEY_NONE
+#define  K_COLD                 HAL_KEY_NONE
+
+#define  K_HOT                  HAL_KEY_1
+#define  K_ROOM                 HAL_KEY_2
+#define  K_AMOUNT               HAL_KEY_3
+#define  K_HOT_LOCK             HAL_KEY_4
 //#define  K_HOT_LOCK       HAL_KEY_6  -> Lever(Right)�� ����� #define HAL_KEY_WATER_OUT       HAL_KEY_6
 //#define  K_SAVE           HAL_KEY_7  -> Lever(Left)����� #define HAL_KEY_HOT_WATER_OUT   HAL_KEY_7
 
 //#define  K_ALL          HAL_KEY_ALL
 
+#define K_EXTRACT               HAL_KEY_5
 /************************************ MULTI KEY ************************************/
 //#define K_VERSION       ( K_COLD | K_HOT )
 #define K_SMART_UNUSED_SAVE  ( K_ROOM | K_AMOUNT | K_HOT_LOCK  )
@@ -82,7 +84,7 @@ void InitKey(void);
 #define  KEY_EVENT_PUSHED_LONG_2S   0x08
 #define  KEY_EVENT_PUSHED_LONG_1S   0x10
 #define  KEY_EVENT_POP              0x20
-#define  KEY_EVENT_ALL              0x3F
+#define  KEY_EVENT_ALL              0x1F
 
 
 /* Event Timeout condition @10ms */

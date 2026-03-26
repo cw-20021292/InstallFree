@@ -2,6 +2,7 @@
 #include "water_out_type.h"
 #include "water_out.h"
 #include "flushing.h"
+#include "amount.h"
 
 typedef struct _water_out_
 {
@@ -92,7 +93,7 @@ void  InitWaterOut(void)
     Out.HotTestRepeatStatus = FALSE;
     Out.AllTestRepeatStatus = FALSE;
 	
-    // InitAmount();
+    InitAmount();
 }
 
 void  SetWaterOutSelect(U8 mu8Id )
@@ -269,12 +270,12 @@ U8 IsWaterAmountSelected(void)
     return FALSE;
 }
 
-// void SetWaterOutFixedAmountDefaultType( EAmountId_T xEid )
-// {
-//     SetWaterOutFixedAmountType(xEid);
-//     SetHotWaterOutFixedAmountType(xEid);
-//     SetAmountDefault(xEid);
-// }
+void SetWaterOutFixedAmountDefaultType( EAmountId_T xEid )
+{
+    SetWaterOutFixedAmountType(xEid);
+    SetHotWaterOutFixedAmountType(xEid);
+    SetAmountDefault(xEid);
+}
 
 /*
 void  SetWaterOutFixedAmountType(U8 mu8Type )
@@ -315,12 +316,12 @@ void  SetWaterOutFixedAmountType(U8 mu8Type )
         return ;
     }
 
-   // SetWaterOutPressContinue(FALSE);
-    // if( mu8Type == AMOUNT_ID_INFINITY )
-    // {
-    //     Out.InfinityAmount = TRUE;
-    //     Out.FixedAmountType  = AMOUNT_ID_INFINITY;   
-    // }
+//    SetWaterOutPressContinue(FALSE);
+    if( mu8Type == AMOUNT_ID_INFINITY )
+    {
+        Out.InfinityAmount = TRUE;
+        Out.FixedAmountType  = AMOUNT_ID_INFINITY;   
+    }
  //   else if( mu8Type == AMOUNT_ID_LEVER )
  //   {
  //       Out.InfinityAmount  = FALSE;
@@ -593,7 +594,7 @@ void SetWaterOutInfinityLongKey(void)
     Out.LongKeyOut = TRUE;
 
     Out.LongKeyBackUp = GetWaterOutFixedAmountType();
-    // SetWaterOutFixedAmountType( AMOUNT_ID_INFINITY );
+    SetWaterOutFixedAmountType( AMOUNT_ID_INFINITY );
 }
 
 /* After Infinity water out, it immediately returns to the before amount state. */
@@ -624,45 +625,52 @@ static void RightLeverOutValve(void)
 
     // 플러싱 진행중이거나 플러싱 필요하면 추출 처리 x
     if((GetFlushingConfig() == TRUE)
-    || GetFlushingRun() == TRUE)
+    || (GetFlushingRun() == TRUE)
+    )
     {
         return;
+    }
+
+    // 필터리드 열려있으면 추출 취소
+    if(Get_ReedSW_Status(REED_SW_ID_FILTER_REED) == FALSE)
+    {
+        StopWaterOut();
     }
 
     /* TURN OFF WATER OUT */
     if( Out.WaterOut == FALSE )
     {
+#if 0
         /* ROOM */
-        //SetValveQueue(VALVE_CMD_TANK_ROOM_OUT_CLOSE); //이거로 제어하면 queue때문에 딜레이 생길 수있음
-        // ValveClose( VALVE_ROOM_OUT );
-        Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, CLOSE, 0);
+        SetValveQueue(VALVE_CMD_TANK_ROOM_OUT_CLOSE); //이거로 제어하면 queue때문에 딜레이 생길 수있음
+        ValveClose( VALVE_ROOM_OUT );
         
         /* COLD */
-        // TurnOffCirculatePumpWaterOut();
+        TurnOffCirculatePumpWaterOut();
+#endif
         Set_DC_PumpControl(DC_PUMP_ID_WATER_IN, OFF, 0);
-        
-        return ;
+
+        Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, CLOSE, 0);
+        Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, CLOSE, 1);
+        Set_ValveControl(VALVE_ID_HOT_OUT, FEED, CLOSE, 1);
+        return;
     }
 
     if( Out.WaterOut == TRUE ) 
     {
-        /* TURN ON WATER OUT - COLD */
-        // if( mu8Select == SEL_WATER_COLD )
-        // {
-            // ValveClose( VALVE_ROOM_OUT );
-            // TurnOnCirculatePumpWaterOut();
-        // }
-        /* TURN ON WATER OUT - ROOM */
-        // else
-        // {
-            // FUTURE STANDARD CODE...
-            // TurnOffCirculatePumpWaterOut(); 
-            // ValveOpen( VALVE_ROOM_OUT );
+        Set_DC_PumpControl(DC_PUMP_ID_WATER_IN, ON, 1);
 
-            // CURRENT STANDARD CODE....
-            Set_DC_PumpControl(DC_PUMP_ID_WATER_IN, ON, 0);
+        /* TURN ON WATER OUT - COLD */
+        if( mu8Select == SEL_WATER_HOT )
+        {
+            Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, OPEN, 1);
+            Set_ValveControl(VALVE_ID_HOT_OUT, FEED, OPEN, 0);
+        }
+        /* TURN ON WATER OUT - ROOM */
+        else
+        {
             Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, OPEN, 0);
-        // }
+        }
     }
 }
 
@@ -676,27 +684,27 @@ static void  RightLeverOutSelect(void)
      * 타이머를 reset 한다.
      */
 
-    // if( Out.WaterOut == TRUE )
-    // {	
-    //     /* Make Cold Off, Select Cold */
-    //     if( (Out.Select == SEL_WATER_COLD) 
-    //     // && GetColdWaterConfigMake() == FALSE )
-    //     )
-    //     {
-    //         Out.ReturnTime = RETURN_TIME_AFTER_WATER_OUT;
-    //     }
-    // }
+    if( Out.WaterOut == TRUE )
+    {	
+        /* Make Cold Off, Select Cold */
+        if( (Out.Select == SEL_WATER_ROOM) 
+        // && GetColdWaterConfigMake() == FALSE )
+        )
+        {
+            Out.ReturnTime = RETURN_TIME_AFTER_WATER_OUT;
+        }
+    }
 	
-    // if( Out.ReturnTime != 0 )
-    // {
-    //     Out.ReturnTime--;
-    // }
+    if( Out.ReturnTime != 0 )
+    {
+        Out.ReturnTime--;
+    }
 
-    // if( Out.PressContinueReturnTime != 0 )
-    // {
-    //     Out.PressContinueReturnTime--;
-    //     Out.TriggerDefaultAmount = TRUE;
-    // }
+    if( Out.PressContinueReturnTime != 0 )
+    {
+        Out.PressContinueReturnTime--;
+        Out.TriggerDefaultAmount = TRUE;
+    }
 }
 
 static void RightWaterOut(void)
@@ -705,78 +713,79 @@ static void RightWaterOut(void)
     U8 mu8DefaultCursor;
     
     /* 플러싱, 구연산 세척 모드 진입시 추출 즉시 중지 */
-    // if(GetFlushingConfig() == TRUE
-    // || GetCitricFlushConfig() == TRUE)
-    // {
-    //     StopWaterOut();  // 추출 중에 필터교체해서 플러싱 진입하게되면 즉시 추출종료가 안되는 문제 발생해서 추가함 
-    // }
+    if((GetFlushingConfig() == TRUE)
+    || (GetFlushingRun() == TRUE)
+    )
+    {
+        StopWaterOut();  // 추출 중에 필터교체해서 플러싱 진입하게되면 즉시 추출종료가 안되는 문제 발생해서 추가함 
+    }
 
-    // if( Out.WaterOut == TRUE )
-    // {
-    //     Out.ReturnTimeAmount = DEFAULT_RETURN_AMOUNT_TIME;    
-    // }
+    if( Out.WaterOut == TRUE )
+    {
+        Out.ReturnTimeAmount = DEFAULT_RETURN_AMOUNT_TIME;    
+    }
     	
-    // // 추출 중에는 레버로 돌아가는 시간 reload
-    // if( Out.WaterOut == TRUE
-    // && Out.PressContinue == FALSE )
-    // {
-    //     ResetReturnTimePressContinue();
-    //     // ResetHotReturnTimePressContinue();
-    // }
+    // 추출 중에는 레버로 돌아가는 시간 reload
+    if( Out.WaterOut == TRUE
+    && Out.PressContinue == FALSE )
+    {
+        ResetReturnTimePressContinue();
+        // ResetHotReturnTimePressContinue();
+    }
 
-    // // 연속 추출 기능 해제 
-    // if( Out.PressContinue == FALSE && Out.PressContinueReturnTime == 0 )
-    // {
-    //     SetWaterOutPressContinue( TRUE );
-    //     ClearWaterOutInfinityAmount();
-    // }
+    // 연속 추출 기능 해제 
+    if( Out.PressContinue == FALSE && Out.PressContinueReturnTime == 0 )
+    {
+        SetWaterOutPressContinue( TRUE );
+        ClearWaterOutInfinityAmount();
+    }
 
-    // if(GetWaterOutPressContinue() == TRUE)
-    // {     
-    //     mu8DefaultCursor = GetAmountDefaultCursor(); 
-    //     SetAmountBackupCursor(mu8DefaultCursor);  //물양 선택 후 레버로 전환 될 때 디폴트 커서 값으로 set(디폴트 물양 설정 시 용량bar,seg 일치시켜주기위해)
-    // }
+    if(GetWaterOutPressContinue() == TRUE)
+    {     
+        mu8DefaultCursor = GetAmountDefaultCursor(); 
+        SetAmountBackupCursor(mu8DefaultCursor);  //물양 선택 후 레버로 전환 될 때 디폴트 커서 값으로 set(디폴트 물양 설정 시 용량bar,seg 일치시켜주기위해)
+    }
 
-    // /* 설정기본 용량 세팅 */
-    // if(Out.PressContinueReturnTime == 0 && Out.TriggerDefaultAmount == TRUE)
-    // {
-    //     Out.TriggerDefaultAmount = FALSE; // 1번만 수행 하기 위해
+    /* 설정기본 용량 세팅 */
+    if(Out.PressContinueReturnTime == 0 && Out.TriggerDefaultAmount == TRUE)
+    {
+        Out.TriggerDefaultAmount = FALSE; // 1번만 수행 하기 위해
 
-    //     Out.FixedAmountType = GetAmountDefault();
-    //     SetAmountCursor(GetAmountDefaultCursor());
-    //     SetSkipCursorIncrease(TRUE);
-    // }
+        Out.FixedAmountType = GetAmountDefault();
+        SetAmountCursor(GetAmountDefaultCursor());
+        SetSkipCursorIncrease(TRUE);
+    }
 
-    // // 연속 추출 목표 시간 및 현재 시간 계산...
-    // mu8AmoutType = GetWaterOutAmountType();
-    // if( Out.WaterOut == FALSE || Out.PressContinue == TRUE )
-    // {
-    //     if( Out.Select == SEL_WATER_ROOM)
-    //     {
-    //         Out.FixedAmountTargetTime = GetAmountRoomTime(mu8AmoutType);
-    //     }    
-    //     else if( Out.Select == SEL_WATER_COLD)
-    //     {
-    //         Out.FixedAmountTargetTime = GetAmountColdTime(mu8AmoutType);
-    //     }     
+    // 연속 추출 목표 시간 및 현재 시간 계산...
+    mu8AmoutType = GetWaterOutAmountType();
+    if( Out.WaterOut == FALSE || Out.PressContinue == TRUE )
+    {
+        if( Out.Select == SEL_WATER_ROOM)
+        {
+            Out.FixedAmountTargetTime = GetAmountRoomTime(mu8AmoutType);
+        }    
+        else if( Out.Select == SEL_WATER_HOT)
+        {
+            Out.FixedAmountTargetTime = GetAmountHotTime(mu8AmoutType);
+        }     
 
-    //     AddWaterOutTime();   // Add water out time based on water level
+        AddWaterOutTime();   // Add water out time based on water level
 
-    //     Out.FixedAmountCurrentTime = 0;
+        Out.FixedAmountCurrentTime = 0;
 		
-    //     return ;
-    // }
+        return ;
+    }
 
-    // if( Out.FixedAmountCurrentTime < Out.FixedAmountTargetTime )
-    // {
-    //     Out.FixedAmountCurrentTime++;
-    // }
-    // else
-    // {
-    //     StopWaterOut();
-    //     // 연속 추출 시간 만료되면 추출 중지...
-    //     Sound( SOUND_ID_EFFLUENT_END );
-    // }
+    if( Out.FixedAmountCurrentTime < Out.FixedAmountTargetTime )
+    {
+        Out.FixedAmountCurrentTime++;
+    }
+    else
+    {
+        StopWaterOut();
+        // 연속 추출 시간 만료되면 추출 중지...
+        Sound( BUZZER_EFFLUENT_END );
+    }
 }
 
 static void SyncWaterOutAmount(void)
@@ -822,7 +831,7 @@ static void SyncWaterOutAmount(void)
 
 void  ControlWaterOut(void)
 {  
-    SyncWaterOutAmount();           // 좌,우 추출부 정량 동기화
+    // SyncWaterOutAmount();           // 좌,우 추출부 정량 동기화
     RightLeverOutSelect();          // Control 냉/정 선택 
     RightLeverOutValve();           // Control Valve
     RightWaterOut();                // 정량 추출 기능 standard

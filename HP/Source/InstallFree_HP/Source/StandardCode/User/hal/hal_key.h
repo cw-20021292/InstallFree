@@ -27,7 +27,7 @@
 #define  HAL_KEY_20     0x00080000UL
 #define  HAL_KEY_ALL    0x000FFFFFUL
 
-#define HAL_KEY_WATER_OUT       HAL_KEY_6
+
 
 void HAL_InitKey(void);
 void HAL_SetKeyVal(U32 mu32Val);

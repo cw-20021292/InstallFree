@@ -19,7 +19,7 @@
 typedef enum
 {
     REED_SW_ID_NONE = 0,                                // 0 :
-    REED_SW_ID_USER_SW,                                 // 1 :
+    REED_SW_ID_FILTER_REED,                             // 1 :
     REED_SW_ID_MAX                                      // 11 Max, 11이 넘으면 안됨
 } EReedSWID_T;
 
@@ -41,7 +41,7 @@ typedef enum
 #define PORT_DEFINE_REED_SW_9                           0
 #define PORT_DEFINE_REED_SW_10                          0
 
-#define TIME_DEFINE_REED_SW_1_CHATTERING                20          // 2sec@100ms
+#define TIME_DEFINE_REED_SW_1_CHATTERING                10          // 1sec@100ms
 #define TIME_DEFINE_REED_SW_2_CHATTERING                20          // 2sec@100ms
 #define TIME_DEFINE_REED_SW_3_CHATTERING                20          // 2sec@100ms
 #define TIME_DEFINE_REED_SW_4_CHATTERING                20          // 2sec@100ms

@@ -306,11 +306,11 @@ U8 Get_ReedSW_Status(U8 mu8ReedSWID)
         case 1:
             if (gu16ReedSWConfirmValue & REED_SW_1_DETECT)
             {
-                mu8Return = 1;
+                mu8Return = 0;
             }
             else
             {
-                mu8Return = 0;
+                mu8Return = 1;
             }
             break;
 
@@ -456,7 +456,7 @@ void Drv_ReedSW_Module_1ms_Control(void)
 void Drv_ReedSW_Module_Control(void)
 {
 #if (REED_SW_COUNT > 0)
-    Drv_ReedSW_Module_1ms_Control();
+    // Drv_ReedSW_Module_1ms_Control();
     ReedSWControl();                        // Reed SW 체크 함수
 #endif
 }

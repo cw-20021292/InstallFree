@@ -55,7 +55,7 @@ typedef enum
     AMOUNT_ID_1_CUP,                        // 1 :
     AMOUNT_ID_2_CUP,                        // 2 :
     AMOUNT_ID_CONTINUE,                     // 3 :
-    AMOUNT_ID_MAX                           // Max
+    AMOUNT_ID_MAX_2                           // Max
 } EAmountSelect_T;
 
 

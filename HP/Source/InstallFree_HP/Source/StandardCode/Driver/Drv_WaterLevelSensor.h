@@ -22,7 +22,7 @@
 typedef enum
 {
     LEVEL_ID_NONE = 0,                                  // 0 :
-    LEVEL_ID_LOW,                                       // 2 : 저수위
+    LEVEL_ID_HOT_TANK_HIGH,                                       // 2 : 온수탱크 만수위
     LEVEL_ID_MAX                                        // 11 Max, 11이 넘으면 안됨
 } ELevelSensorID_T;
 

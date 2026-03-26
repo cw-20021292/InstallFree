@@ -27,7 +27,7 @@
 */
 
 
-#define NORMAL_HEATER_USE                               NO_USE     // 일반 히터 사용 여부 - 0(No Use), 1(Use)
+#define NORMAL_HEATER_USE                               USE     // 일반 히터 사용 여부 - 0(No Use), 1(Use)
 
 #if (NORMAL_HEATER_USE == USE)
 

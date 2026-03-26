@@ -57,14 +57,15 @@ void OperationModeSetup(void)
                 gu8OperaionMode = OPERATION_MODE_ID_NORMAL;
                 InitializeTimeScheduler();                  // 스케쥴러 초기화
 
-                SetupTimeScheduler(Drv_ReedSW_Module_Control, 1, ACT_COUNT_INFINITE);
-                SetupTimeScheduler(Lib_WaterLevel_Module_Control, 1, ACT_COUNT_INFINITE);
-                SetupTimeScheduler(Drv_Buzzer_Module_1ms_Control, 1, ACT_COUNT_INFINITE);
-
                 SetupTimeScheduler(ControlWaterOut, 10, ACT_COUNT_INFINITE);
                 SetupTimeScheduler(ProcessScanKey, 10, ACT_COUNT_INFINITE);
+                SetupTimeScheduler(ControlHotWaterOut, 10, ACT_COUNT_INFINITE);
+                SetupTimeScheduler(ControlAmountConfig, 10, ACT_COUNT_INFINITE);
+
                 SetupTimeScheduler(ProcessWaterFlushing, 100, ACT_COUNT_INFINITE);
-                               
+                
+                SetupTimeScheduler(MakeHotWater, 1000, ACT_COUNT_INFINITE);
+                // SetupTimeScheduler(ProcessMakeHotWater, 1000, ACT_COUNT_INFINITE);
             }
             break;
 

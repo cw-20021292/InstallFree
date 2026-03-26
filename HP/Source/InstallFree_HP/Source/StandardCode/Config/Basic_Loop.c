@@ -32,10 +32,10 @@ void Base_Initialize(void)
     Drv_UV_Module_Initialize();             // UV 제어 관련 초기화
     Drv_Valve_Module_Initialize();          // 일반 밸브 제어 관련 초기화
     Drv_Heater_Module_Initialize();         // 일반 히터 관련 초기화
-    // Drv_BLDC_Comp_Module_Initialize();      // BLDC Comp 제어 관련 초기화
-    // Drv_Comp_Module_Initialize();           // 정속형 Comp 제어 관련 초기화
-   
-// * Lib (Function) ***************************************************************************
+
+    Drv_Heater_Initialize();
+
+    // * Lib (Function) ***************************************************************************
     Lib_ADC_Module_Initialize();            // AD Convert 동작 관련 초기화
     Lib_OperatingMode_Module_Initialize();  // 동작 모드 제어 관련 초기화
     Lib_TimeScheduler_Module_Initialize();  // Time Scheduler 관련 초기화
@@ -51,6 +51,11 @@ void Base_Initialize(void)
 
     /* User */
     InitFlushing();
+    InitWaterOut();
+    InitHotWater();
+    InitHotWaterOut();
+    
+    InitLever();
 }
 
 
@@ -73,11 +78,16 @@ void Base_Timer_1ms(void)
             // 여기 안쓰고 그냥 Scheduler 사용
             // 사유 : 각 모드별 구분할 의미도 없고 부하 많아지면 가독성 떨어짐
             // Ex) 부하 1개 당 Initialize, 1ms_control, while문 control 3개 정의하는데 너무 길어짐
+            Drv_Valve_Module_1ms_Control();
+            Drv_DC_Pump_Module_1ms_Control();
+            Drv_ReedSW_Module_1ms_Control();
+            Drv_Buzzer_Module_1ms_Control();
+            Drv_LevelSensor_Module_1ms_Control();
+            Drv_Heater_Module_1ms_Control();
+
             Lib_TimeScheduler_Module_1ms_Control();
             Lib_ADC_Module_1ms_Control();
             Lib_WaterError_Module_1ms_Control();
-            Drv_Valve_Module_1ms_Control();
-            Drv_DC_Pump_Module_1ms_Control();
             BootTimeCheck();
             break;
 
@@ -142,12 +152,16 @@ void FunctionProcess_In_WhileLoop(void)
         // 여기 안쓰고 그냥 Scheduler 사용
         // 사유 : 각 모드별 구분할 의미도 없고 부하 많아지면 가독성 떨어짐
         // Ex) 부하 1개 당 Initialize, 1ms_control, while문 control 3개 정의하는데 너무 길어짐
+        Drv_Valve_Module_Control();
+        Drv_DC_Pump_Module_Control();
+        Drv_ReedSW_Module_Control();
+        Drv_LevelSensor_Module_Control();
+        Drv_Heater_Module_Control();
 
         Lib_ADC_Module_Control();               // ADC 동작 제어
         Lib_TimeScheduler_Module_Control();     // Time Scheduler 동작 제어
         Lib_WaterError_Module_Control();
-        Drv_Valve_Module_Control();
-        Drv_DC_Pump_Module_Control();
+        Lib_WaterLevel_Module_Control();
         break;
     }
 }

@@ -119,9 +119,9 @@ static void ParseKeyVal(void)
 
     if( KEY_HOT     == LOW ) { mu32KeyVal |= K_HOT;             }
     if( KEY_AMBIENT == LOW ) { mu32KeyVal |= K_ROOM;            }
-    if( KEY_EXTRACT == LOW ) { mu32KeyVal |= HAL_KEY_WATER_OUT; }
     if( KEY_AMOUNT  == LOW ) { mu32KeyVal |= K_AMOUNT;          }
     if( KEY_LOCK    == LOW ) { mu32KeyVal |= K_HOT_LOCK;        }
+    if( KEY_EXTRACT == LOW ) { mu32KeyVal |= K_EXTRACT;         }
 
     HAL_SetKeyVal( mu32KeyVal );
 }

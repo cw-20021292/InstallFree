@@ -348,11 +348,11 @@ U8 Get_WaterLevel_Status(U8 mu8SensorID)
         case 1:
             if (gu16LevelSensorConfirmValue & LEVEL_SENSOR_1_DETECT)
             {
-                mu8Return = 1;
+                mu8Return = 0;
             }
             else
             {
-                mu8Return = 0;
+                mu8Return = 1;
             }
             break;
 
@@ -604,9 +604,6 @@ void Drv_LevelSensor_Module_1ms_Control(void)
 void Drv_LevelSensor_Module_Control(void)
 {
 #if (LEVEL_SENSOR_COUNT > 0)
-    
-    // CH.PARK 두 개로 나눠봤자 가독성만 떨어지고 그냥 하나로 통합
-    Drv_LevelSensor_Module_1ms_Control();
     LevelSensorControl();                   // 수위 센서 체크 함수
 #endif
 

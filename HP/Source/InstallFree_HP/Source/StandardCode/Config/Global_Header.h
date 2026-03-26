@@ -125,6 +125,11 @@
 #include "flushing.h"
 #include "water_out.h"
 #include "key.h"
+#include "amount.h"
+#include "hot_water.h"
+#include "hot_water_out.h"
+#include "heater.h"
+#include "lever.h"
 
 // library header files
 #include <stdio.h>
@@ -132,5 +137,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <math.h>
+
+#define Sound(mu8Data)   {Set_BuzzerSelect(mu8Data);}
 
 #endif

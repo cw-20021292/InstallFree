@@ -86,7 +86,7 @@ void Lib_WaterLevelCheck(void)
 #if (MIDDLE_SENSOR_USE == USE)          // 중수위 센서 사용시
         mu8LowSensor = Get_WaterLevel_Status(LEVEL_ID_LOW);
         mu8MiddleSensor = Get_WaterLevel_Status(LEVEL_ID_MODDLE);
-        mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HIGH);
+        mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
         mu8OverFlowSensor = Get_WaterLevel_Status(LEVEL_ID_OVERFLOW);
 
         if (mu8OverFlowSensor || mu8HightSensor)
@@ -144,11 +144,11 @@ void Lib_WaterLevelCheck(void)
             gu8WaterLevel = WATER_LEVEL_LOW;
         }
 #else
-        mu8LowSensor = !Get_WaterLevel_Status(LEVEL_ID_LOW);
-        // mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HIGH);
+        mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
+        // mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
         // mu8OverFlowSensor = Get_WaterLevel_Status(LEVEL_ID_OVERFLOW);
 
-        if (mu8LowSensor)
+        if (mu8HightSensor)
         {   // 저수위 센서 감지시
 #if (BOOST_PUMP_USE == USE)
             if (gu8WaterLevel == WATER_LEVEL_LOW)
@@ -156,7 +156,7 @@ void Lib_WaterLevelCheck(void)
                 Set_BoostPumpControlChangeStep(BOOST_CONTROL_STEP1);
             }
 #endif
-            gu8WaterLevel = WATER_LEVEL_MIDDLE;
+            // gu8WaterLevel = WATER_LEVEL_MIDDLE;
 
             // CH.PARK 변경 - 스탠다드코드
 #if (COLD_LOW_SENSOR_USE == USE)        // 해당 센서 사용 시에만 그 전역변수를 써야됨
@@ -173,12 +173,15 @@ void Lib_WaterLevelCheck(void)
         }
         else
         {   // 모든 수위 센서 미감지시
-            gu8WaterLevel = WATER_LEVEL_LOW;
+            // gu8WaterLevel = WATER_LEVEL_LOW;
+            // 만수위 미감지 시 그냥 LOW로 처리
+            gu8HotWaterLevel = HOT_WATER_LEVEL_LOW;
         }
 
 #endif
 
 #if (HOT_HIGH_SENSOR_USE == USE)
+    #if 0
         // 온수 수위 체크(온수 탱크 수위는 전극봉 타입 사용)
         mu8HotHighSensor = Get_ElecLevel_Status();
 
@@ -190,7 +193,8 @@ void Lib_WaterLevelCheck(void)
         {
             gu8HotWaterLevel = HOT_WATER_LEVEL_LOW;
         }
-        #endif
+    #endif
+#endif
     }
     else
     {
@@ -304,7 +308,6 @@ void Lib_WaterLevel_Module_Initialize(void)
 void Lib_WaterLevel_Module_Control(void)
 {
 #if (LEVEL_SENSOR_COUNT > 0)
-    Drv_LevelSensor_Module_Control();
     Lib_WaterLevelCheck();
 #endif
 }

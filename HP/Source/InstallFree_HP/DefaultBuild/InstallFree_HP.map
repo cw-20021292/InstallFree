@@ -1,7 +1,7 @@
 
 
 
-78K0R Linker V1.80                            Date:25 Mar 2026 Page:   1
+78K0R Linker V1.80                            Date:26 Mar 2026 Page:   1
 
 Command:   -yC:\Program Files (x86)\Renesas Electronics\CS+\CACX\Device\
            RL78\Devicefile -_msgoff -oDefaultBuild\InstallFree_HP.lmf -g
@@ -34,9 +34,12 @@ Command:   -yC:\Program Files (x86)\Renesas Electronics\CS+\CACX\Device\
            ild\r_cg_serial.rel DefaultBuild\r_cg_serial_user.rel Default
            Build\flushing.rel DefaultBuild\water_out.rel DefaultBuild\ha
            l_key.rel DefaultBuild\key.rel DefaultBuild\key_handler.rel D
-           efaultBuild\process_key.rel -bcl0ram.lib -bcl0rm.lib -bcl0rmf
-           .lib -iC:\Program Files (x86)\Renesas Electronics\CS+\CACX\CA
-           78K0R\V1.72\lib78k0r
+           efaultBuild\process_key.rel DefaultBuild\lever.rel DefaultBui
+           ld\lever_handler.rel DefaultBuild\process_lever.rel DefaultBu
+           ild\amount.rel DefaultBuild\hot_water.rel DefaultBuild\hot_wa
+           ter_out.rel DefaultBuild\heater.rel -bcl0ram.lib -bcl0rm.lib 
+           -bcl0rmf.lib -iC:\Program Files (x86)\Renesas Electronics\CS+
+           \CACX\CA78K0R\V1.72\lib78k0r
 Para-file:
 Out-file:  DefaultBuild\InstallFree_HP.lmf
 Map-file:  DefaultBuild\InstallFree_HP.map
@@ -46,9 +49,9 @@ Directive:
 
 *** Link information ***
 
-    83 output segment(s)
- 6E92H byte(s) real data
-  8383 symbol(s) defined
+    90 output segment(s)
+ 8F1AH byte(s) real data
+ 10790 symbol(s) defined
 
 
 *** Memory map ***
@@ -197,6 +200,17 @@ Directive:
                                       00002H    00000H
                   @@RLINIT process_key
                                       00002H    00000H
+                  @@RLINIT lever      00002H    00000H
+                  @@RLINIT lever_handler
+                                      00002H    00000H
+                  @@RLINIT process_lever
+                                      00002H    00000H
+                  @@RLINIT amount     00002H    00000H
+                  @@RLINIT hot_water
+                                      00002H    00000H
+                  @@RLINIT hot_water_out
+                                      00002H    00000H
+                  @@RLINIT heater     00002H    00000H
                   @@RLINIT @rom       00002H    00000H
          @@R_INIS                     00002H    00000H  CSEG UNIT64KP
                   @@R_INIS @cstart    00002H    00000H
@@ -296,6 +310,17 @@ Directive:
                                       00002H    00000H
                   @@R_INIS process_key
                                       00002H    00000H
+                  @@R_INIS lever      00002H    00000H
+                  @@R_INIS lever_handler
+                                      00002H    00000H
+                  @@R_INIS process_lever
+                                      00002H    00000H
+                  @@R_INIS amount     00002H    00000H
+                  @@R_INIS hot_water
+                                      00002H    00000H
+                  @@R_INIS hot_water_out
+                                      00002H    00000H
+                  @@R_INIS heater     00002H    00000H
                   @@R_INIS @rom       00002H    00000H
          @@CALT                       00002H    00000H  CSEG
                   @@CALT   @cstart    00002H    00000H
@@ -395,6 +420,17 @@ Directive:
                                       00002H    00000H
                   @@CALT   process_key
                                       00002H    00000H
+                  @@CALT   lever      00002H    00000H
+                  @@CALT   lever_handler
+                                      00002H    00000H
+                  @@CALT   process_lever
+                                      00002H    00000H
+                  @@CALT   amount     00002H    00000H
+                  @@CALT   hot_water
+                                      00002H    00000H
+                  @@CALT   hot_water_out
+                                      00002H    00000H
+                  @@CALT   heater     00002H    00000H
          ??NMIROM                     00002H    00002H  CSEG
          @@VECT04                     00004H    00002H  CSEG AT
                   @@VECT04 r_cg_wdt_user
@@ -512,9 +548,20 @@ Directive:
                                       000C4H    00000H
                   @@CODE   process_key
                                       000C4H    00000H
+                  @@CODE   lever      000C4H    00000H
+                  @@CODE   lever_handler
+                                      000C4H    00000H
+                  @@CODE   process_lever
+                                      000C4H    00000H
+                  @@CODE   amount     000C4H    00000H
+                  @@CODE   hot_water
+                                      000C4H    00000H
+                  @@CODE   hot_water_out
+                                      000C4H    00000H
+                  @@CODE   heater     000C4H    00000H
          ?CSEGSI                      000C4H    0000AH  CSEG
          ?OCDSTAD                     000CEH    0000AH  CSEG
-         @@LCODE                      000D8H    006F5H  CSEG BASE
+         @@LCODE                      000D8H    00957H  CSEG BASE
                   @@LCODE  @cstart    000D8H    000ADH
                   @@LCODE  @imul      00185H    00011H
                   @@LCODE  @cudiv     00196H    00034H
@@ -526,334 +573,380 @@ Directive:
                   @@LCODE  @ludiv     0029FH    0003FH
                   @@LCODE  @divuw     002DEH    00034H
                   @@LCODE  m_fmul     00312H    0012BH
-                  @@LCODE  @lcom      0043DH    0000DH
-                  @@LCODE  @ladd      0044AH    0000FH
-                  @@LCODE  @lursh     00459H    0001FH
-                  @@LCODE  @lband     00478H    00014H
-                  @@LCODE  @lbor      0048CH    00014H
-                  @@LCODE  m_fcom1    004A0H    000CFH
-                  @@LCODE  m_fcom5    0056FH    0002AH
-                  @@LCODE  m_fcom6    00599H    0001FH
-                  @@LCODE  m_fadd     005B8H    0013AH
-                  @@LCODE  m_ftols    006F2H    00078H
-                  @@LCODE  m_lstof    0076AH    00016H
-                  @@LCODE  m_lutof    00780H    0004DH
-         @@BASE                       007CDH    0009CH  CSEG BASE
+                  @@LCODE  m_fdiv     0043DH    001B8H
+                  @@LCODE  @lcom      005F5H    0000DH
+                  @@LCODE  @ladd      00602H    0000FH
+                  @@LCODE  @lursh     00611H    0001FH
+                  @@LCODE  @iscmp     00630H    0000CH
+                  @@LCODE  @lband     0063CH    00014H
+                  @@LCODE  @lbor      00650H    00014H
+                  @@LCODE  m_fcom1    00664H    000CFH
+                  @@LCODE  m_fcom5    00733H    0002AH
+                  @@LCODE  m_fcom6    0075DH    0001FH
+                  @@LCODE  m_fadd     0077CH    0013AH
+                  @@LCODE  m_fcmp     008B6H    00073H
+                  @@LCODE  m_ftols    00929H    00078H
+                  @@LCODE  m_ftolu    009A1H    0002BH
+                  @@LCODE  m_lstof    009CCH    00016H
+                  @@LCODE  m_lutof    009E2H    0004DH
+         @@BASE                       00A2FH    0009CH  CSEG BASE
                   @@BASE   Basic_Loop
-                                      007CDH    00000H
-                  @@BASE   Func_ADC   007CDH    00000H
+                                      00A2FH    00000H
+                  @@BASE   Func_ADC   00A2FH    00000H
                   @@BASE   Func_External_Interrput
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Func_Uart
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Type_Convert
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Water_Temp_Table
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Drv_Buzzer
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Drv_DC_Pump
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Drv_EEPROM
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Drv_GeneralADC
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Drv_Heater
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Drv_ReedSW
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Drv_RTC_EEPROM_ISL12026
-                                      007CDH    00000H
-                  @@BASE   Drv_UV     007CDH    00000H
+                                      00A2FH    00000H
+                  @@BASE   Drv_UV     00A2FH    00000H
                   @@BASE   Drv_Valve
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Drv_WaterLevelSensor
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_ADConvert
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Buzzer
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_EEPROM
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_OperationMode
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_TimeScheduler
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_Effluent
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_ErrorCheck
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_Fan
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_Heater
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_LevelSensor
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_PowerSave
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_Setup
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_TankWaterInput
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   Lib_Water_TestMode
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   User_EEPROM
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   User_Main
-                                      007CDH    00000H
-                  @@BASE   User_RTC   007CDH    00000H
-                  @@BASE   r_main     007CDH    00000H
+                                      00A2FH    00000H
+                  @@BASE   User_RTC   00A2FH    00000H
+                  @@BASE   r_main     00A2FH    00000H
                   @@BASE   r_systeminit
-                                      007CDH    00000H
-                  @@BASE   r_cg_cgc   007CDH    00000H
+                                      00A2FH    00000H
+                  @@BASE   r_cg_cgc   00A2FH    00000H
                   @@BASE   r_cg_cgc_user
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   r_cg_port
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   r_cg_port_user
-                                      007CDH    00000H
-                  @@BASE   r_cg_adc   007CDH    00000H
+                                      00A2FH    00000H
+                  @@BASE   r_cg_adc   00A2FH    00000H
                   @@BASE   r_cg_adc_user
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   r_cg_timer
-                                      007CDH    00000H
+                                      00A2FH    00000H
                   @@BASE   r_cg_timer_user
-                                      007CDH    00062H
-                  @@BASE   r_cg_wdt   0082FH    00000H
+                                      00A2FH    00062H
+                  @@BASE   r_cg_wdt   00A91H    00000H
                   @@BASE   r_cg_wdt_user
-                                      0082FH    00002H
+                                      00A91H    00002H
                   @@BASE   r_cg_serial
-                                      00831H    00000H
+                                      00A93H    00000H
                   @@BASE   r_cg_serial_user
-                                      00831H    00038H
-                  @@BASE   flushing   00869H    00000H
+                                      00A93H    00038H
+                  @@BASE   flushing   00ACBH    00000H
                   @@BASE   water_out
-                                      00869H    00000H
-                  @@BASE   hal_key    00869H    00000H
-                  @@BASE   key        00869H    00000H
+                                      00ACBH    00000H
+                  @@BASE   hal_key    00ACBH    00000H
+                  @@BASE   key        00ACBH    00000H
                   @@BASE   key_handler
-                                      00869H    00000H
+                                      00ACBH    00000H
                   @@BASE   process_key
-                                      00869H    00000H
-* gap *                               00869H    00001H
-         @@CNSTL                      0086AH    00046H  CSEG PAGE64KP
-                  @@CNSTL  Func_ADC   0086AH    00046H
-         @@CNSTL                      008B0H    00046H  CSEG PAGE64KP
+                                      00ACBH    00000H
+                  @@BASE   lever      00ACBH    00000H
+                  @@BASE   lever_handler
+                                      00ACBH    00000H
+                  @@BASE   process_lever
+                                      00ACBH    00000H
+                  @@BASE   amount     00ACBH    00000H
+                  @@BASE   hot_water
+                                      00ACBH    00000H
+                  @@BASE   hot_water_out
+                                      00ACBH    00000H
+                  @@BASE   heater     00ACBH    00000H
+* gap *                               00ACBH    00001H
+         @@CNSTL                      00ACCH    00046H  CSEG PAGE64KP
+                  @@CNSTL  Func_ADC   00ACCH    00046H
+         @@CNSTL                      00B12H    00046H  CSEG PAGE64KP
                   @@CNSTL  Func_External_Interrput
-                                      008B0H    00046H
-         @@CNSTL                      008F6H    00046H  CSEG PAGE64KP
+                                      00B12H    00046H
+         @@CNSTL                      00B58H    00046H  CSEG PAGE64KP
                   @@CNSTL  Func_Uart
-                                      008F6H    00046H
-         @@CNSTL                      0093CH    00046H  CSEG PAGE64KP
+                                      00B58H    00046H
+         @@CNSTL                      00B9EH    00046H  CSEG PAGE64KP
                   @@CNSTL  Type_Convert
-                                      0093CH    00046H
-         @@CNSTL                      00982H    0077CH  CSEG PAGE64KP
+                                      00B9EH    00046H
+         @@CNSTL                      00BE4H    0077CH  CSEG PAGE64KP
                   @@CNSTL  Water_Temp_Table
-                                      00982H    0077CH
-         @@CNSTL                      010FEH    00046H  CSEG PAGE64KP
+                                      00BE4H    0077CH
+         @@CNSTL                      01360H    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_Buzzer
-                                      010FEH    00046H
-         @@CNSTL                      01144H    00046H  CSEG PAGE64KP
+                                      01360H    00046H
+         @@CNSTL                      013A6H    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_DC_Pump
-                                      01144H    00046H
-         @@CNSTL                      0118AH    00046H  CSEG PAGE64KP
+                                      013A6H    00046H
+         @@CNSTL                      013ECH    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_EEPROM
-                                      0118AH    00046H
-         @@CNSTL                      011D0H    00046H  CSEG PAGE64KP
+                                      013ECH    00046H
+         @@CNSTL                      01432H    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_GeneralADC
-                                      011D0H    00046H
-         @@CNSTL                      01216H    00046H  CSEG PAGE64KP
+                                      01432H    00046H
+         @@CNSTL                      01478H    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_Heater
-                                      01216H    00046H
-         @@CNSTL                      0125CH    00046H  CSEG PAGE64KP
+                                      01478H    00046H
+         @@CNSTL                      014BEH    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_ReedSW
-                                      0125CH    00046H
-         @@CNSTL                      012A2H    00046H  CSEG PAGE64KP
+                                      014BEH    00046H
+         @@CNSTL                      01504H    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_RTC_EEPROM_ISL12026
-                                      012A2H    00046H
-         @@CNSTL                      012E8H    00046H  CSEG PAGE64KP
-                  @@CNSTL  Drv_UV     012E8H    00046H
-         @@CNSTL                      0132EH    00046H  CSEG PAGE64KP
+                                      01504H    00046H
+         @@CNSTL                      0154AH    00046H  CSEG PAGE64KP
+                  @@CNSTL  Drv_UV     0154AH    00046H
+         @@CNSTL                      01590H    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_Valve
-                                      0132EH    00046H
-         @@CNSTL                      01374H    00046H  CSEG PAGE64KP
+                                      01590H    00046H
+         @@CNSTL                      015D6H    00046H  CSEG PAGE64KP
                   @@CNSTL  Drv_WaterLevelSensor
-                                      01374H    00046H
-         @@CNSTL                      013BAH    00046H  CSEG PAGE64KP
+                                      015D6H    00046H
+         @@CNSTL                      0161CH    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_ADConvert
-                                      013BAH    00046H
-         @@CNSTL                      01400H    00046H  CSEG PAGE64KP
+                                      0161CH    00046H
+         @@CNSTL                      01662H    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Buzzer
-                                      01400H    00046H
-         @@CNSTL                      01446H    00046H  CSEG PAGE64KP
+                                      01662H    00046H
+         @@CNSTL                      016A8H    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_EEPROM
-                                      01446H    00046H
-         @@CNSTL                      0148CH    00046H  CSEG PAGE64KP
+                                      016A8H    00046H
+         @@CNSTL                      016EEH    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_OperationMode
-                                      0148CH    00046H
-         @@CNSTL                      014D2H    00046H  CSEG PAGE64KP
+                                      016EEH    00046H
+         @@CNSTL                      01734H    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_TimeScheduler
-                                      014D2H    00046H
-         @@CNSTL                      01518H    00046H  CSEG PAGE64KP
+                                      01734H    00046H
+         @@CNSTL                      0177AH    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_Effluent
-                                      01518H    00046H
-         @@CNSTL                      0155EH    00046H  CSEG PAGE64KP
+                                      0177AH    00046H
+         @@CNSTL                      017C0H    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_ErrorCheck
-                                      0155EH    00046H
-         @@CNSTL                      015A4H    00046H  CSEG PAGE64KP
+                                      017C0H    00046H
+         @@CNSTL                      01806H    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_Fan
-                                      015A4H    00046H
-         @@CNSTL                      015EAH    00046H  CSEG PAGE64KP
+                                      01806H    00046H
+         @@CNSTL                      0184CH    000A6H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_Heater
-                                      015EAH    00046H
-         @@CNSTL                      01630H    00046H  CSEG PAGE64KP
+                                      0184CH    000A6H
+         @@CNSTL                      018F2H    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_LevelSensor
-                                      01630H    00046H
-         @@CNSTL                      01676H    00046H  CSEG PAGE64KP
+                                      018F2H    00046H
+         @@CNSTL                      01938H    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_PowerSave
-                                      01676H    00046H
-         @@CNSTL                      016BCH    00046H  CSEG PAGE64KP
+                                      01938H    00046H
+         @@CNSTL                      0197EH    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_Setup
-                                      016BCH    00046H
-         @@CNSTL                      01702H    00046H  CSEG PAGE64KP
+                                      0197EH    00046H
+         @@CNSTL                      019C4H    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_TankWaterInput
-                                      01702H    00046H
-         @@CNSTL                      01748H    00046H  CSEG PAGE64KP
+                                      019C4H    00046H
+         @@CNSTL                      01A0AH    00046H  CSEG PAGE64KP
                   @@CNSTL  Lib_Water_TestMode
-                                      01748H    00046H
-         @@CNSTL                      0178EH    00046H  CSEG PAGE64KP
+                                      01A0AH    00046H
+         @@CNSTL                      01A50H    00046H  CSEG PAGE64KP
                   @@CNSTL  User_EEPROM
-                                      0178EH    00046H
-         @@CNSTL                      017D4H    00046H  CSEG PAGE64KP
+                                      01A50H    00046H
+         @@CNSTL                      01A96H    00046H  CSEG PAGE64KP
                   @@CNSTL  User_Main
-                                      017D4H    00046H
-         @@CNSTL                      0181AH    00046H  CSEG PAGE64KP
-                  @@CNSTL  User_RTC   0181AH    00046H
-         @@CNSTL                      01860H    00046H  CSEG PAGE64KP
+                                      01A96H    00046H
+         @@CNSTL                      01ADCH    00046H  CSEG PAGE64KP
+                  @@CNSTL  User_RTC   01ADCH    00046H
+         @@CNSTL                      01B22H    00046H  CSEG PAGE64KP
                   @@CNSTL  r_cg_timer_user
-                                      01860H    00046H
-         @@CNSTL                      018A6H    00046H  CSEG PAGE64KP
-                  @@CNSTL  flushing   018A6H    00046H
-         @@CNSTL                      018ECH    00046H  CSEG PAGE64KP
+                                      01B22H    00046H
+         @@CNSTL                      01B68H    00046H  CSEG PAGE64KP
+                  @@CNSTL  flushing   01B68H    00046H
+         @@CNSTL                      01BAEH    00046H  CSEG PAGE64KP
                   @@CNSTL  water_out
-                                      018ECH    00046H
-         @@CNSTL                      01932H    00046H  CSEG PAGE64KP
-                  @@CNSTL  hal_key    01932H    00046H
-         @@CNSTL                      01978H    00046H  CSEG PAGE64KP
-                  @@CNSTL  key        01978H    00046H
-         @@CNSTL                      019BEH    00046H  CSEG PAGE64KP
+                                      01BAEH    00046H
+         @@CNSTL                      01BF4H    00046H  CSEG PAGE64KP
+                  @@CNSTL  hal_key    01BF4H    00046H
+         @@CNSTL                      01C3AH    00046H  CSEG PAGE64KP
+                  @@CNSTL  key        01C3AH    00046H
+         @@CNSTL                      01C80H    00046H  CSEG PAGE64KP
                   @@CNSTL  key_handler
-                                      019BEH    00046H
-         @@CNSTL                      01A04H    00046H  CSEG PAGE64KP
+                                      01C80H    00046H
+         @@CNSTL                      01CC6H    00046H  CSEG PAGE64KP
                   @@CNSTL  process_key
-                                      01A04H    00046H
-         @@CNSTL                      01A4AH    000CEH  CSEG PAGE64KP
-                  @@CNSTL  m_fcom5    01A4AH    000CEH
-         @@R_INIT                     01B18H    0013EH  CSEG UNIT64KP
-                  @@R_INIT @cstart    01B18H    00000H
+                                      01CC6H    00046H
+         @@CNSTL                      01D0CH    00046H  CSEG PAGE64KP
+                  @@CNSTL  lever      01D0CH    00046H
+         @@CNSTL                      01D52H    00046H  CSEG PAGE64KP
+                  @@CNSTL  lever_handler
+                                      01D52H    00046H
+         @@CNSTL                      01D98H    00046H  CSEG PAGE64KP
+                  @@CNSTL  process_lever
+                                      01D98H    00046H
+         @@CNSTL                      01DDEH    00046H  CSEG PAGE64KP
+                  @@CNSTL  amount     01DDEH    00046H
+         @@CNSTL                      01E24H    00046H  CSEG PAGE64KP
+                  @@CNSTL  hot_water
+                                      01E24H    00046H
+         @@CNSTL                      01E6AH    00046H  CSEG PAGE64KP
+                  @@CNSTL  hot_water_out
+                                      01E6AH    00046H
+         @@CNSTL                      01EB0H    00046H  CSEG PAGE64KP
+                  @@CNSTL  heater     01EB0H    00046H
+         @@CNSTL                      01EF6H    000CEH  CSEG PAGE64KP
+                  @@CNSTL  m_fcom5    01EF6H    000CEH
+         @@R_INIT                     01FC4H    00158H  CSEG UNIT64KP
+                  @@R_INIT @cstart    01FC4H    00000H
                   @@R_INIT Basic_Loop
-                                      01B18H    00004H
-                  @@R_INIT Func_ADC   01B1CH    00000H
+                                      01FC4H    00004H
+                  @@R_INIT Func_ADC   01FC8H    00000H
                   @@R_INIT Func_External_Interrput
-                                      01B1CH    00000H
+                                      01FC8H    00000H
                   @@R_INIT Func_Uart
-                                      01B1CH    00000H
+                                      01FC8H    00000H
                   @@R_INIT Type_Convert
-                                      01B1CH    00000H
+                                      01FC8H    00000H
                   @@R_INIT Water_Temp_Table
-                                      01B1CH    00000H
+                                      01FC8H    00000H
                   @@R_INIT Drv_Buzzer
-                                      01B1CH    00000H
+                                      01FC8H    00000H
                   @@R_INIT Drv_DC_Pump
-                                      01B1CH    00002H
+                                      01FC8H    00002H
                   @@R_INIT Drv_EEPROM
-                                      01B1EH    00000H
+                                      01FCAH    00000H
                   @@R_INIT Drv_GeneralADC
-                                      01B1EH    0001CH
+                                      01FCAH    0001CH
                   @@R_INIT Drv_Heater
-                                      01B3AH    00000H
+                                      01FE6H    00002H
                   @@R_INIT Drv_ReedSW
-                                      01B3AH    00010H
+                                      01FE8H    00010H
                   @@R_INIT Drv_RTC_EEPROM_ISL12026
-                                      01B4AH    00014H
-                  @@R_INIT Drv_UV     01B5EH    00000H
+                                      01FF8H    00014H
+                  @@R_INIT Drv_UV     0200CH    00000H
                   @@R_INIT Drv_Valve
-                                      01B5EH    00002H
+                                      0200CH    00002H
                   @@R_INIT Drv_WaterLevelSensor
-                                      01B60H    00010H
+                                      0200EH    00010H
                   @@R_INIT Lib_ADConvert
-                                      01B70H    00004H
+                                      0201EH    00004H
                   @@R_INIT Lib_Buzzer
-                                      01B74H    00006H
+                                      02022H    00006H
                   @@R_INIT Lib_EEPROM
-                                      01B7AH    00000H
+                                      02028H    00000H
                   @@R_INIT Lib_OperationMode
-                                      01B7AH    00004H
+                                      02028H    00004H
                   @@R_INIT Lib_TimeScheduler
-                                      01B7EH    00000H
+                                      0202CH    00000H
                   @@R_INIT Lib_Water_Effluent
-                                      01B7EH    00012H
+                                      0202CH    00012H
                   @@R_INIT Lib_Water_ErrorCheck
-                                      01B90H    00002H
+                                      0203EH    00002H
                   @@R_INIT Lib_Water_Fan
-                                      01B92H    00002H
+                                      02040H    00002H
                   @@R_INIT Lib_Water_Heater
-                                      01B94H    00000H
+                                      02042H    00002H
                   @@R_INIT Lib_Water_LevelSensor
-                                      01B94H    00004H
+                                      02044H    00004H
                   @@R_INIT Lib_Water_PowerSave
-                                      01B98H    00002H
+                                      02048H    00002H
                   @@R_INIT Lib_Water_Setup
-                                      01B9AH    00002H
+                                      0204AH    00002H
                   @@R_INIT Lib_Water_TankWaterInput
-                                      01B9CH    00000H
+                                      0204CH    00000H
                   @@R_INIT Lib_Water_TestMode
-                                      01B9CH    00000H
+                                      0204CH    00000H
                   @@R_INIT User_EEPROM
-                                      01B9CH    00000H
+                                      0204CH    00000H
                   @@R_INIT User_Main
-                                      01B9CH    00000H
-                  @@R_INIT User_RTC   01B9CH    00012H
-                  @@R_INIT r_main     01BAEH    00000H
+                                      0204CH    00000H
+                  @@R_INIT User_RTC   0204CH    00012H
+                  @@R_INIT r_main     0205EH    00000H
                   @@R_INIT r_systeminit
-                                      01BAEH    00000H
-                  @@R_INIT r_cg_cgc   01BAEH    00000H
+                                      0205EH    00000H
+                  @@R_INIT r_cg_cgc   0205EH    00000H
                   @@R_INIT r_cg_cgc_user
-                                      01BAEH    00000H
+                                      0205EH    00000H
                   @@R_INIT r_cg_port
-                                      01BAEH    00000H
+                                      0205EH    00000H
                   @@R_INIT r_cg_port_user
-                                      01BAEH    00000H
-                  @@R_INIT r_cg_adc   01BAEH    00000H
+                                      0205EH    00000H
+                  @@R_INIT r_cg_adc   0205EH    00000H
                   @@R_INIT r_cg_adc_user
-                                      01BAEH    00000H
+                                      0205EH    00000H
                   @@R_INIT r_cg_timer
-                                      01BAEH    00000H
+                                      0205EH    00000H
                   @@R_INIT r_cg_timer_user
-                                      01BAEH    00000H
-                  @@R_INIT r_cg_wdt   01BAEH    00000H
+                                      0205EH    00000H
+                  @@R_INIT r_cg_wdt   0205EH    00000H
                   @@R_INIT r_cg_wdt_user
-                                      01BAEH    00000H
+                                      0205EH    00000H
                   @@R_INIT r_cg_serial
-                                      01BAEH    00000H
+                                      0205EH    00000H
                   @@R_INIT r_cg_serial_user
-                                      01BAEH    00000H
-                  @@R_INIT flushing   01BAEH    0001EH
+                                      0205EH    00000H
+                  @@R_INIT flushing   0205EH    0001EH
                   @@R_INIT water_out
-                                      01BCCH    00002H
-                  @@R_INIT hal_key    01BCEH    00000H
-                  @@R_INIT key        01BCEH    00000H
+                                      0207CH    00002H
+                  @@R_INIT hal_key    0207EH    00000H
+                  @@R_INIT key        0207EH    00000H
                   @@R_INIT key_handler
-                                      01BCEH    00082H
+                                      0207EH    00068H
                   @@R_INIT process_key
-                                      01C50H    00006H
-                  @@R_INIT @rom       01C56H    00000H
-         @@LCODEL                     01C56H    00079H  CSEG
-                  @@LCODEL @stkinit   01C56H    00044H
-                  @@LCODEL exit       01C9AH    0001CH
-                  @@LCODEL memset_n   01CB6H    00019H
-* gap *                               01CCFH    01331H
-         @@CNST                       03000H    000B0H  CSEG MIRRORP
+                                      020E6H    00006H
+                  @@R_INIT lever      020ECH    00004H
+                  @@R_INIT lever_handler
+                                      020F0H    00002H
+                  @@R_INIT process_lever
+                                      020F2H    00002H
+                  @@R_INIT amount     020F4H    00026H
+                  @@R_INIT hot_water
+                                      0211AH    00002H
+                  @@R_INIT hot_water_out
+                                      0211CH    00000H
+                  @@R_INIT heater     0211CH    00000H
+                  @@R_INIT @rom       0211CH    00000H
+         @@LCODEL                     0211CH    0022FH  CSEG
+                  @@LCODEL qsort_n    0211CH    0019CH
+                  @@LCODEL @stkinit   022B8H    00044H
+                  @@LCODEL exit       022FCH    0001CH
+                  @@LCODEL memcpy_n   02318H    0001AH
+                  @@LCODEL memset_n   02332H    00019H
+* gap *                               0234BH    00CB5H
+         @@CNST                       03000H    0054AH  CSEG MIRRORP
                   @@CNST   @cstart    03000H    00000H
                   @@CNST   Basic_Loop
                                       03000H    00000H
@@ -948,113 +1041,135 @@ Directive:
                   @@CNST   hal_key    0301AH    00000H
                   @@CNST   key        0301AH    00014H
                   @@CNST   key_handler
-                                      0302EH    00082H
+                                      0302EH    00068H
                   @@CNST   process_key
-                                      030B0H    00000H
-         @@CODEL                      030B0H    05180H  CSEG
+                                      03096H    00000H
+                  @@CNST   lever      03096H    00000H
+                  @@CNST   lever_handler
+                                      03096H    00020H
+                  @@CNST   process_lever
+                                      030B6H    00000H
+                  @@CNST   amount     030B6H    00434H
+                  @@CNST   hot_water
+                                      034EAH    00060H
+                  @@CNST   hot_water_out
+                                      0354AH    00000H
+                  @@CNST   heater     0354AH    00000H
+         @@CODEL                      0354AH    066F2H  CSEG
                   @@CODEL  Basic_Loop
-                                      030B0H    000D6H
-                  @@CODEL  Func_ADC   03186H    00009H
+                                      0354AH    0010AH
+                  @@CODEL  Func_ADC   03654H    00009H
                   @@CODEL  Func_External_Interrput
-                                      0318FH    00000H
+                                      0365DH    00000H
                   @@CODEL  Func_Uart
-                                      0318FH    00000H
+                                      0365DH    00000H
                   @@CODEL  Type_Convert
-                                      0318FH    00110H
+                                      0365DH    00110H
                   @@CODEL  Water_Temp_Table
-                                      0329FH    00128H
+                                      0376DH    00128H
                   @@CODEL  Drv_Buzzer
-                                      033C7H    00059H
+                                      03895H    00059H
                   @@CODEL  Drv_DC_Pump
-                                      03420H    001A7H
+                                      038EEH    001A7H
                   @@CODEL  Drv_EEPROM
-                                      035C7H    00000H
+                                      03A95H    00000H
                   @@CODEL  Drv_GeneralADC
-                                      035C7H    00163H
+                                      03A95H    00163H
                   @@CODEL  Drv_Heater
-                                      0372AH    00003H
+                                      03BF8H    0014EH
                   @@CODEL  Drv_ReedSW
-                                      0372DH    0030AH
+                                      03D46H    00306H
                   @@CODEL  Drv_RTC_EEPROM_ISL12026
-                                      03A37H    00AB9H
-                  @@CODEL  Drv_UV     044F0H    00003H
+                                      0404CH    00AB9H
+                  @@CODEL  Drv_UV     04B05H    00003H
                   @@CODEL  Drv_Valve
-                                      044F3H    003DEH
+                                      04B08H    003DEH
                   @@CODEL  Drv_WaterLevelSensor
-                                      048D1H    0030CH
+                                      04EE6H    00308H
                   @@CODEL  Lib_ADConvert
-                                      04BDDH    00250H
+                                      051EEH    00250H
                   @@CODEL  Lib_Buzzer
-                                      04E2DH    00FB8H
+                                      0543EH    00FB8H
                   @@CODEL  Lib_EEPROM
-                                      05DE5H    00000H
+                                      063F6H    00000H
                   @@CODEL  Lib_OperationMode
-                                      05DE5H    000DDH
+                                      063F6H    000E1H
                   @@CODEL  Lib_TimeScheduler
-                                      05EC2H    004A3H
+                                      064D7H    004A3H
                   @@CODEL  Lib_Water_Effluent
-                                      06365H    005F4H
+                                      0697AH    005F4H
                   @@CODEL  Lib_Water_ErrorCheck
-                                      06959H    00385H
+                                      06F6EH    00385H
                   @@CODEL  Lib_Water_Fan
-                                      06CDEH    00018H
+                                      072F3H    00018H
                   @@CODEL  Lib_Water_Heater
-                                      06CF6H    00003H
+                                      0730BH    002A6H
                   @@CODEL  Lib_Water_LevelSensor
-                                      06CF9H    0007AH
+                                      075B1H    00083H
                   @@CODEL  Lib_Water_PowerSave
-                                      06D73H    00203H
+                                      07634H    00203H
                   @@CODEL  Lib_Water_Setup
-                                      06F76H    0006AH
+                                      07837H    0009AH
                   @@CODEL  Lib_Water_TankWaterInput
-                                      06FE0H    00005H
+                                      078D1H    00005H
                   @@CODEL  Lib_Water_TestMode
-                                      06FE5H    00020H
+                                      078D6H    00020H
                   @@CODEL  User_EEPROM
-                                      07005H    00000H
+                                      078F6H    00000H
                   @@CODEL  User_Main
-                                      07005H    00078H
-                  @@CODEL  User_RTC   0707DH    00042H
-                  @@CODEL  r_main     070BFH    0000FH
+                                      078F6H    00078H
+                  @@CODEL  User_RTC   0796EH    00042H
+                  @@CODEL  r_main     079B0H    0000FH
                   @@CODEL  r_systeminit
-                                      070CEH    0002BH
-                  @@CODEL  r_cg_cgc   070F9H    00017H
+                                      079BFH    0002BH
+                  @@CODEL  r_cg_cgc   079EAH    00017H
                   @@CODEL  r_cg_cgc_user
-                                      07110H    00005H
+                                      07A01H    00005H
                   @@CODEL  r_cg_port
-                                      07115H    00053H
+                                      07A06H    00053H
                   @@CODEL  r_cg_port_user
-                                      07168H    00000H
-                  @@CODEL  r_cg_adc   07168H    0003DH
+                                      07A59H    00000H
+                  @@CODEL  r_cg_adc   07A59H    0003DH
                   @@CODEL  r_cg_adc_user
-                                      071A5H    00000H
+                                      07A96H    00000H
                   @@CODEL  r_cg_timer
-                                      071A5H    0015CH
+                                      07A96H    0015CH
                   @@CODEL  r_cg_timer_user
-                                      07301H    00000H
-                  @@CODEL  r_cg_wdt   07301H    00014H
+                                      07BF2H    00000H
+                  @@CODEL  r_cg_wdt   07BF2H    00014H
                   @@CODEL  r_cg_wdt_user
-                                      07315H    00000H
+                                      07C06H    00000H
                   @@CODEL  r_cg_serial
-                                      07315H    00103H
+                                      07C06H    00103H
                   @@CODEL  r_cg_serial_user
-                                      07418H    000C9H
-                  @@CODEL  flushing   074E1H    00406H
+                                      07D09H    000C9H
+                  @@CODEL  flushing   07DD2H    00406H
                   @@CODEL  water_out
-                                      078E7H    0047BH
-                  @@CODEL  hal_key    07D62H    00041H
-                  @@CODEL  key        07DA3H    00188H
+                                      081D8H    00601H
+                  @@CODEL  hal_key    087D9H    00041H
+                  @@CODEL  key        0881AH    00188H
                   @@CODEL  key_handler
-                                      07F2BH    0002DH
+                                      089A2H    000C8H
                   @@CODEL  process_key
-                                      07F58H    002D8H
-* gap *                               08230H    37DD0H
+                                      08A6AH    002D8H
+                  @@CODEL  lever      08D42H    00193H
+                  @@CODEL  lever_handler
+                                      08ED5H    00051H
+                  @@CODEL  process_lever
+                                      08F26H    001A4H
+                  @@CODEL  amount     090CAH    004D3H
+                  @@CODEL  hot_water
+                                      0959DH    00207H
+                  @@CODEL  hot_water_out
+                                      097A4H    0039DH
+                  @@CODEL  heater     09B41H    000FBH
+* gap *                               09C3CH    363C4H
 
   MEMORY=RAM
   BASE ADDRESS=FAF00H   SIZE=05100H
          OUTPUT   INPUT    INPUT      BASE      SIZE
          SEGMENT  SEGMENT  MODULE     ADDRESS
-         @@DATA                       FAF00H    004C4H  DSEG BASEP
+         @@DATA                       FAF00H    00570H  DSEG BASEP
                   @@DATA   @cstart    FAF00H    000BAH
                   @@DATA   Basic_Loop
                                       FAFBAH    00000H
@@ -1076,677 +1191,754 @@ Directive:
                   @@DATA   Drv_GeneralADC
                                       FAFC0H    00114H
                   @@DATA   Drv_Heater
-                                      FB0D4H    00000H
+                                      FB0D4H    00004H
                   @@DATA   Drv_ReedSW
-                                      FB0D4H    00006H
+                                      FB0D8H    00006H
                   @@DATA   Drv_RTC_EEPROM_ISL12026
-                                      FB0DAH    00062H
-                  @@DATA   Drv_UV     FB13CH    00000H
+                                      FB0DEH    00062H
+                  @@DATA   Drv_UV     FB140H    00000H
                   @@DATA   Drv_Valve
-                                      FB13CH    0000CH
+                                      FB140H    0000CH
                   @@DATA   Drv_WaterLevelSensor
-                                      FB148H    00006H
+                                      FB14CH    00006H
                   @@DATA   Lib_ADConvert
-                                      FB14EH    00000H
+                                      FB152H    00000H
                   @@DATA   Lib_Buzzer
-                                      FB14EH    00000H
+                                      FB152H    00000H
                   @@DATA   Lib_EEPROM
-                                      FB14EH    00000H
+                                      FB152H    00000H
                   @@DATA   Lib_OperationMode
-                                      FB14EH    00000H
+                                      FB152H    00000H
                   @@DATA   Lib_TimeScheduler
-                                      FB14EH    000E2H
+                                      FB152H    000E2H
                   @@DATA   Lib_Water_Effluent
-                                      FB230H    0001CH
+                                      FB234H    0001CH
                   @@DATA   Lib_Water_ErrorCheck
-                                      FB24CH    000D2H
+                                      FB250H    000D2H
                   @@DATA   Lib_Water_Fan
-                                      FB31EH    00000H
+                                      FB322H    00000H
                   @@DATA   Lib_Water_Heater
-                                      FB31EH    00000H
+                                      FB322H    0000EH
                   @@DATA   Lib_Water_LevelSensor
-                                      FB31EH    00000H
+                                      FB330H    00000H
                   @@DATA   Lib_Water_PowerSave
-                                      FB31EH    0000EH
+                                      FB330H    0000EH
                   @@DATA   Lib_Water_Setup
-                                      FB32CH    00000H
+                                      FB33EH    00000H
                   @@DATA   Lib_Water_TankWaterInput
-                                      FB32CH    00000H
+                                      FB33EH    00000H
                   @@DATA   Lib_Water_TestMode
-                                      FB32CH    00000H
+                                      FB33EH    00000H
                   @@DATA   User_EEPROM
-                                      FB32CH    00000H
+                                      FB33EH    00000H
                   @@DATA   User_Main
-                                      FB32CH    00000H
-                  @@DATA   User_RTC   FB32CH    00008H
-                  @@DATA   r_main     FB334H    00000H
+                                      FB33EH    00000H
+                  @@DATA   User_RTC   FB33EH    00008H
+                  @@DATA   r_main     FB346H    00000H
                   @@DATA   r_systeminit
-                                      FB334H    00000H
-                  @@DATA   r_cg_cgc   FB334H    00000H
+                                      FB346H    00000H
+                  @@DATA   r_cg_cgc   FB346H    00000H
                   @@DATA   r_cg_cgc_user
-                                      FB334H    00000H
+                                      FB346H    00000H
                   @@DATA   r_cg_port
-                                      FB334H    00000H
+                                      FB346H    00000H
                   @@DATA   r_cg_port_user
-                                      FB334H    00000H
-                  @@DATA   r_cg_adc   FB334H    00000H
+                                      FB346H    00000H
+                  @@DATA   r_cg_adc   FB346H    00000H
                   @@DATA   r_cg_adc_user
-                                      FB334H    00000H
+                                      FB346H    00000H
                   @@DATA   r_cg_timer
-                                      FB334H    00000H
+                                      FB346H    00000H
                   @@DATA   r_cg_timer_user
-                                      FB334H    00000H
-                  @@DATA   r_cg_wdt   FB334H    00000H
+                                      FB346H    00000H
+                  @@DATA   r_cg_wdt   FB346H    00000H
                   @@DATA   r_cg_wdt_user
-                                      FB334H    00000H
+                                      FB346H    00000H
                   @@DATA   r_cg_serial
-                                      FB334H    0000CH
+                                      FB346H    0000CH
                   @@DATA   r_cg_serial_user
-                                      FB340H    00000H
-                  @@DATA   flushing   FB340H    00026H
+                                      FB352H    00000H
+                  @@DATA   flushing   FB352H    00026H
                   @@DATA   water_out
-                                      FB366H    0004AH
-                  @@DATA   hal_key    FB3B0H    00008H
-                  @@DATA   key        FB3B8H    0000CH
+                                      FB378H    0004AH
+                  @@DATA   hal_key    FB3C2H    00008H
+                  @@DATA   key        FB3CAH    0000CH
                   @@DATA   key_handler
-                                      FB3C4H    00000H
+                                      FB3D6H    00000H
                   @@DATA   process_key
-                                      FB3C4H    00000H
-                  @@DATA   @rom       FB3C4H    00000H
-         @@INIT                       FB3C4H    0013EH  DSEG BASEP
-                  @@INIT   @cstart    FB3C4H    00000H
+                                      FB3D6H    00000H
+                  @@DATA   lever      FB3D6H    0000CH
+                  @@DATA   lever_handler
+                                      FB3E2H    00000H
+                  @@DATA   process_lever
+                                      FB3E2H    00000H
+                  @@DATA   amount     FB3E2H    00044H
+                  @@DATA   hot_water
+                                      FB426H    0001CH
+                  @@DATA   hot_water_out
+                                      FB442H    0001CH
+                  @@DATA   heater     FB45EH    00012H
+                  @@DATA   @rom       FB470H    00000H
+         @@INIT                       FB470H    00158H  DSEG BASEP
+                  @@INIT   @cstart    FB470H    00000H
                   @@INIT   Basic_Loop
-                                      FB3C4H    00004H
-                  @@INIT   Func_ADC   FB3C8H    00000H
+                                      FB470H    00004H
+                  @@INIT   Func_ADC   FB474H    00000H
                   @@INIT   Func_External_Interrput
-                                      FB3C8H    00000H
+                                      FB474H    00000H
                   @@INIT   Func_Uart
-                                      FB3C8H    00000H
+                                      FB474H    00000H
                   @@INIT   Type_Convert
-                                      FB3C8H    00000H
+                                      FB474H    00000H
                   @@INIT   Water_Temp_Table
-                                      FB3C8H    00000H
+                                      FB474H    00000H
                   @@INIT   Drv_Buzzer
-                                      FB3C8H    00000H
+                                      FB474H    00000H
                   @@INIT   Drv_DC_Pump
-                                      FB3C8H    00002H
+                                      FB474H    00002H
                   @@INIT   Drv_EEPROM
-                                      FB3CAH    00000H
+                                      FB476H    00000H
                   @@INIT   Drv_GeneralADC
-                                      FB3CAH    0001CH
+                                      FB476H    0001CH
                   @@INIT   Drv_Heater
-                                      FB3E6H    00000H
+                                      FB492H    00002H
                   @@INIT   Drv_ReedSW
-                                      FB3E6H    00010H
+                                      FB494H    00010H
                   @@INIT   Drv_RTC_EEPROM_ISL12026
-                                      FB3F6H    00014H
-                  @@INIT   Drv_UV     FB40AH    00000H
+                                      FB4A4H    00014H
+                  @@INIT   Drv_UV     FB4B8H    00000H
                   @@INIT   Drv_Valve
-                                      FB40AH    00002H
+                                      FB4B8H    00002H
                   @@INIT   Drv_WaterLevelSensor
-                                      FB40CH    00010H
+                                      FB4BAH    00010H
                   @@INIT   Lib_ADConvert
-                                      FB41CH    00004H
+                                      FB4CAH    00004H
                   @@INIT   Lib_Buzzer
-                                      FB420H    00006H
+                                      FB4CEH    00006H
                   @@INIT   Lib_EEPROM
-                                      FB426H    00000H
+                                      FB4D4H    00000H
                   @@INIT   Lib_OperationMode
-                                      FB426H    00004H
+                                      FB4D4H    00004H
                   @@INIT   Lib_TimeScheduler
-                                      FB42AH    00000H
+                                      FB4D8H    00000H
                   @@INIT   Lib_Water_Effluent
-                                      FB42AH    00012H
+                                      FB4D8H    00012H
                   @@INIT   Lib_Water_ErrorCheck
-                                      FB43CH    00002H
+                                      FB4EAH    00002H
                   @@INIT   Lib_Water_Fan
-                                      FB43EH    00002H
+                                      FB4ECH    00002H
                   @@INIT   Lib_Water_Heater
-                                      FB440H    00000H
+                                      FB4EEH    00002H
                   @@INIT   Lib_Water_LevelSensor
-                                      FB440H    00004H
+                                      FB4F0H    00004H
                   @@INIT   Lib_Water_PowerSave
-                                      FB444H    00002H
+                                      FB4F4H    00002H
                   @@INIT   Lib_Water_Setup
-                                      FB446H    00002H
+                                      FB4F6H    00002H
                   @@INIT   Lib_Water_TankWaterInput
-                                      FB448H    00000H
+                                      FB4F8H    00000H
                   @@INIT   Lib_Water_TestMode
-                                      FB448H    00000H
+                                      FB4F8H    00000H
                   @@INIT   User_EEPROM
-                                      FB448H    00000H
+                                      FB4F8H    00000H
                   @@INIT   User_Main
-                                      FB448H    00000H
-                  @@INIT   User_RTC   FB448H    00012H
-                  @@INIT   r_main     FB45AH    00000H
+                                      FB4F8H    00000H
+                  @@INIT   User_RTC   FB4F8H    00012H
+                  @@INIT   r_main     FB50AH    00000H
                   @@INIT   r_systeminit
-                                      FB45AH    00000H
-                  @@INIT   r_cg_cgc   FB45AH    00000H
+                                      FB50AH    00000H
+                  @@INIT   r_cg_cgc   FB50AH    00000H
                   @@INIT   r_cg_cgc_user
-                                      FB45AH    00000H
+                                      FB50AH    00000H
                   @@INIT   r_cg_port
-                                      FB45AH    00000H
+                                      FB50AH    00000H
                   @@INIT   r_cg_port_user
-                                      FB45AH    00000H
-                  @@INIT   r_cg_adc   FB45AH    00000H
+                                      FB50AH    00000H
+                  @@INIT   r_cg_adc   FB50AH    00000H
                   @@INIT   r_cg_adc_user
-                                      FB45AH    00000H
+                                      FB50AH    00000H
                   @@INIT   r_cg_timer
-                                      FB45AH    00000H
+                                      FB50AH    00000H
                   @@INIT   r_cg_timer_user
-                                      FB45AH    00000H
-                  @@INIT   r_cg_wdt   FB45AH    00000H
+                                      FB50AH    00000H
+                  @@INIT   r_cg_wdt   FB50AH    00000H
                   @@INIT   r_cg_wdt_user
-                                      FB45AH    00000H
+                                      FB50AH    00000H
                   @@INIT   r_cg_serial
-                                      FB45AH    00000H
+                                      FB50AH    00000H
                   @@INIT   r_cg_serial_user
-                                      FB45AH    00000H
-                  @@INIT   flushing   FB45AH    0001EH
+                                      FB50AH    00000H
+                  @@INIT   flushing   FB50AH    0001EH
                   @@INIT   water_out
-                                      FB478H    00002H
-                  @@INIT   hal_key    FB47AH    00000H
-                  @@INIT   key        FB47AH    00000H
+                                      FB528H    00002H
+                  @@INIT   hal_key    FB52AH    00000H
+                  @@INIT   key        FB52AH    00000H
                   @@INIT   key_handler
-                                      FB47AH    00082H
+                                      FB52AH    00068H
                   @@INIT   process_key
-                                      FB4FCH    00006H
-                  @@INIT   @rom       FB502H    00000H
-         @@INIS                       FB502H    00000H  DSEG UNITP
-                  @@INIS   @cstart    FB502H    00000H
+                                      FB592H    00006H
+                  @@INIT   lever      FB598H    00004H
+                  @@INIT   lever_handler
+                                      FB59CH    00002H
+                  @@INIT   process_lever
+                                      FB59EH    00002H
+                  @@INIT   amount     FB5A0H    00026H
+                  @@INIT   hot_water
+                                      FB5C6H    00002H
+                  @@INIT   hot_water_out
+                                      FB5C8H    00000H
+                  @@INIT   heater     FB5C8H    00000H
+                  @@INIT   @rom       FB5C8H    00000H
+         @@INIS                       FB5C8H    00000H  DSEG UNITP
+                  @@INIS   @cstart    FB5C8H    00000H
                   @@INIS   Basic_Loop
-                                      FB502H    00000H
-                  @@INIS   Func_ADC   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   Func_ADC   FB5C8H    00000H
                   @@INIS   Func_External_Interrput
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Func_Uart
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Type_Convert
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Water_Temp_Table
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Drv_Buzzer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Drv_DC_Pump
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Drv_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Drv_GeneralADC
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Drv_Heater
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Drv_ReedSW
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Drv_RTC_EEPROM_ISL12026
-                                      FB502H    00000H
-                  @@INIS   Drv_UV     FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   Drv_UV     FB5C8H    00000H
                   @@INIS   Drv_Valve
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Drv_WaterLevelSensor
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_ADConvert
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Buzzer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_OperationMode
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_TimeScheduler
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_Effluent
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_ErrorCheck
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_Fan
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_Heater
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_LevelSensor
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_PowerSave
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_Setup
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_TankWaterInput
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   Lib_Water_TestMode
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   User_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   User_Main
-                                      FB502H    00000H
-                  @@INIS   User_RTC   FB502H    00000H
-                  @@INIS   r_main     FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   User_RTC   FB5C8H    00000H
+                  @@INIS   r_main     FB5C8H    00000H
                   @@INIS   r_systeminit
-                                      FB502H    00000H
-                  @@INIS   r_cg_cgc   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   r_cg_cgc   FB5C8H    00000H
                   @@INIS   r_cg_cgc_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   r_cg_port
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   r_cg_port_user
-                                      FB502H    00000H
-                  @@INIS   r_cg_adc   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   r_cg_adc   FB5C8H    00000H
                   @@INIS   r_cg_adc_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   r_cg_timer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   r_cg_timer_user
-                                      FB502H    00000H
-                  @@INIS   r_cg_wdt   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   r_cg_wdt   FB5C8H    00000H
                   @@INIS   r_cg_wdt_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   r_cg_serial
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   r_cg_serial_user
-                                      FB502H    00000H
-                  @@INIS   flushing   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   flushing   FB5C8H    00000H
                   @@INIS   water_out
-                                      FB502H    00000H
-                  @@INIS   hal_key    FB502H    00000H
-                  @@INIS   key        FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   hal_key    FB5C8H    00000H
+                  @@INIS   key        FB5C8H    00000H
                   @@INIS   key_handler
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INIS   process_key
-                                      FB502H    00000H
-                  @@INIS   @rom       FB502H    00000H
-         @@DATS                       FB502H    00000H  DSEG UNITP
-                  @@DATS   @cstart    FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INIS   lever      FB5C8H    00000H
+                  @@INIS   lever_handler
+                                      FB5C8H    00000H
+                  @@INIS   process_lever
+                                      FB5C8H    00000H
+                  @@INIS   amount     FB5C8H    00000H
+                  @@INIS   hot_water
+                                      FB5C8H    00000H
+                  @@INIS   hot_water_out
+                                      FB5C8H    00000H
+                  @@INIS   heater     FB5C8H    00000H
+                  @@INIS   @rom       FB5C8H    00000H
+         @@DATS                       FB5C8H    00000H  DSEG UNITP
+                  @@DATS   @cstart    FB5C8H    00000H
                   @@DATS   Basic_Loop
-                                      FB502H    00000H
-                  @@DATS   Func_ADC   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   Func_ADC   FB5C8H    00000H
                   @@DATS   Func_External_Interrput
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Func_Uart
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Type_Convert
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Water_Temp_Table
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Drv_Buzzer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Drv_DC_Pump
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Drv_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Drv_GeneralADC
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Drv_Heater
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Drv_ReedSW
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Drv_RTC_EEPROM_ISL12026
-                                      FB502H    00000H
-                  @@DATS   Drv_UV     FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   Drv_UV     FB5C8H    00000H
                   @@DATS   Drv_Valve
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Drv_WaterLevelSensor
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_ADConvert
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Buzzer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_OperationMode
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_TimeScheduler
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_Effluent
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_ErrorCheck
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_Fan
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_Heater
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_LevelSensor
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_PowerSave
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_Setup
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_TankWaterInput
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   Lib_Water_TestMode
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   User_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   User_Main
-                                      FB502H    00000H
-                  @@DATS   User_RTC   FB502H    00000H
-                  @@DATS   r_main     FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   User_RTC   FB5C8H    00000H
+                  @@DATS   r_main     FB5C8H    00000H
                   @@DATS   r_systeminit
-                                      FB502H    00000H
-                  @@DATS   r_cg_cgc   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   r_cg_cgc   FB5C8H    00000H
                   @@DATS   r_cg_cgc_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   r_cg_port
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   r_cg_port_user
-                                      FB502H    00000H
-                  @@DATS   r_cg_adc   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   r_cg_adc   FB5C8H    00000H
                   @@DATS   r_cg_adc_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   r_cg_timer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   r_cg_timer_user
-                                      FB502H    00000H
-                  @@DATS   r_cg_wdt   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   r_cg_wdt   FB5C8H    00000H
                   @@DATS   r_cg_wdt_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   r_cg_serial
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   r_cg_serial_user
-                                      FB502H    00000H
-                  @@DATS   flushing   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   flushing   FB5C8H    00000H
                   @@DATS   water_out
-                                      FB502H    00000H
-                  @@DATS   hal_key    FB502H    00000H
-                  @@DATS   key        FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   hal_key    FB5C8H    00000H
+                  @@DATS   key        FB5C8H    00000H
                   @@DATS   key_handler
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATS   process_key
-                                      FB502H    00000H
-                  @@DATS   @rom       FB502H    00000H
-         @@INITL                      FB502H    00000H  DSEG UNIT64KP
-                  @@INITL  @cstart    FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATS   lever      FB5C8H    00000H
+                  @@DATS   lever_handler
+                                      FB5C8H    00000H
+                  @@DATS   process_lever
+                                      FB5C8H    00000H
+                  @@DATS   amount     FB5C8H    00000H
+                  @@DATS   hot_water
+                                      FB5C8H    00000H
+                  @@DATS   hot_water_out
+                                      FB5C8H    00000H
+                  @@DATS   heater     FB5C8H    00000H
+                  @@DATS   @rom       FB5C8H    00000H
+         @@INITL                      FB5C8H    00000H  DSEG UNIT64KP
+                  @@INITL  @cstart    FB5C8H    00000H
                   @@INITL  Basic_Loop
-                                      FB502H    00000H
-                  @@INITL  Func_ADC   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  Func_ADC   FB5C8H    00000H
                   @@INITL  Func_External_Interrput
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Func_Uart
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Type_Convert
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Water_Temp_Table
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Drv_Buzzer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Drv_DC_Pump
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Drv_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Drv_GeneralADC
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Drv_Heater
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Drv_ReedSW
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Drv_RTC_EEPROM_ISL12026
-                                      FB502H    00000H
-                  @@INITL  Drv_UV     FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  Drv_UV     FB5C8H    00000H
                   @@INITL  Drv_Valve
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Drv_WaterLevelSensor
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_ADConvert
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Buzzer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_OperationMode
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_TimeScheduler
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_Effluent
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_ErrorCheck
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_Fan
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_Heater
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_LevelSensor
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_PowerSave
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_Setup
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_TankWaterInput
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  Lib_Water_TestMode
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  User_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  User_Main
-                                      FB502H    00000H
-                  @@INITL  User_RTC   FB502H    00000H
-                  @@INITL  r_main     FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  User_RTC   FB5C8H    00000H
+                  @@INITL  r_main     FB5C8H    00000H
                   @@INITL  r_systeminit
-                                      FB502H    00000H
-                  @@INITL  r_cg_cgc   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  r_cg_cgc   FB5C8H    00000H
                   @@INITL  r_cg_cgc_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  r_cg_port
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  r_cg_port_user
-                                      FB502H    00000H
-                  @@INITL  r_cg_adc   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  r_cg_adc   FB5C8H    00000H
                   @@INITL  r_cg_adc_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  r_cg_timer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  r_cg_timer_user
-                                      FB502H    00000H
-                  @@INITL  r_cg_wdt   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  r_cg_wdt   FB5C8H    00000H
                   @@INITL  r_cg_wdt_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  r_cg_serial
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  r_cg_serial_user
-                                      FB502H    00000H
-                  @@INITL  flushing   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  flushing   FB5C8H    00000H
                   @@INITL  water_out
-                                      FB502H    00000H
-                  @@INITL  hal_key    FB502H    00000H
-                  @@INITL  key        FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  hal_key    FB5C8H    00000H
+                  @@INITL  key        FB5C8H    00000H
                   @@INITL  key_handler
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@INITL  process_key
-                                      FB502H    00000H
-                  @@INITL  @rom       FB502H    00000H
-         @@DATAL                      FB502H    00000H  DSEG UNIT64KP
-                  @@DATAL  @cstart    FB502H    00000H
+                                      FB5C8H    00000H
+                  @@INITL  lever      FB5C8H    00000H
+                  @@INITL  lever_handler
+                                      FB5C8H    00000H
+                  @@INITL  process_lever
+                                      FB5C8H    00000H
+                  @@INITL  amount     FB5C8H    00000H
+                  @@INITL  hot_water
+                                      FB5C8H    00000H
+                  @@INITL  hot_water_out
+                                      FB5C8H    00000H
+                  @@INITL  heater     FB5C8H    00000H
+                  @@INITL  @rom       FB5C8H    00000H
+         @@DATAL                      FB5C8H    00000H  DSEG UNIT64KP
+                  @@DATAL  @cstart    FB5C8H    00000H
                   @@DATAL  Basic_Loop
-                                      FB502H    00000H
-                  @@DATAL  Func_ADC   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATAL  Func_ADC   FB5C8H    00000H
                   @@DATAL  Func_External_Interrput
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Func_Uart
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Type_Convert
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Water_Temp_Table
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Drv_Buzzer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Drv_DC_Pump
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Drv_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Drv_GeneralADC
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Drv_Heater
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Drv_ReedSW
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Drv_RTC_EEPROM_ISL12026
-                                      FB502H    00000H
-                  @@DATAL  Drv_UV     FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATAL  Drv_UV     FB5C8H    00000H
                   @@DATAL  Drv_Valve
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Drv_WaterLevelSensor
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_ADConvert
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Buzzer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_OperationMode
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_TimeScheduler
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_Effluent
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_ErrorCheck
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_Fan
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_Heater
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_LevelSensor
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_PowerSave
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_Setup
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_TankWaterInput
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  Lib_Water_TestMode
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  User_EEPROM
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  User_Main
-                                      FB502H    00000H
-                  @@DATAL  User_RTC   FB502H    00000H
-                  @@DATAL  r_main     FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATAL  User_RTC   FB5C8H    00000H
+                  @@DATAL  r_main     FB5C8H    00000H
                   @@DATAL  r_systeminit
-                                      FB502H    00000H
-                  @@DATAL  r_cg_cgc   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATAL  r_cg_cgc   FB5C8H    00000H
                   @@DATAL  r_cg_cgc_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  r_cg_port
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  r_cg_port_user
-                                      FB502H    00000H
-                  @@DATAL  r_cg_adc   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATAL  r_cg_adc   FB5C8H    00000H
                   @@DATAL  r_cg_adc_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  r_cg_timer
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  r_cg_timer_user
-                                      FB502H    00000H
-                  @@DATAL  r_cg_wdt   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATAL  r_cg_wdt   FB5C8H    00000H
                   @@DATAL  r_cg_wdt_user
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  r_cg_serial
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  r_cg_serial_user
-                                      FB502H    00000H
-                  @@DATAL  flushing   FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATAL  flushing   FB5C8H    00000H
                   @@DATAL  water_out
-                                      FB502H    00000H
-                  @@DATAL  hal_key    FB502H    00000H
-                  @@DATAL  key        FB502H    00000H
+                                      FB5C8H    00000H
+                  @@DATAL  hal_key    FB5C8H    00000H
+                  @@DATAL  key        FB5C8H    00000H
                   @@DATAL  key_handler
-                                      FB502H    00000H
+                                      FB5C8H    00000H
                   @@DATAL  process_key
-                                      FB502H    00000H
-                  @@DATAL  @rom       FB502H    00000H
-         @@BITS                       FB502H    00000H  BSEG
-                  @@BITS   @cstart    FB502H.0  00000H.0
+                                      FB5C8H    00000H
+                  @@DATAL  lever      FB5C8H    00000H
+                  @@DATAL  lever_handler
+                                      FB5C8H    00000H
+                  @@DATAL  process_lever
+                                      FB5C8H    00000H
+                  @@DATAL  amount     FB5C8H    00000H
+                  @@DATAL  hot_water
+                                      FB5C8H    00000H
+                  @@DATAL  hot_water_out
+                                      FB5C8H    00000H
+                  @@DATAL  heater     FB5C8H    00000H
+                  @@DATAL  @rom       FB5C8H    00000H
+         @@BITS                       FB5C8H    00000H  BSEG
+                  @@BITS   @cstart    FB5C8H.0  00000H.0
                   @@BITS   Basic_Loop
-                                      FB502H.0  00000H.0
-                  @@BITS   Func_ADC   FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
+                  @@BITS   Func_ADC   FB5C8H.0  00000H.0
                   @@BITS   Func_External_Interrput
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Func_Uart
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Type_Convert
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Water_Temp_Table
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Drv_Buzzer
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Drv_DC_Pump
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Drv_EEPROM
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Drv_GeneralADC
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Drv_Heater
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Drv_ReedSW
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Drv_RTC_EEPROM_ISL12026
-                                      FB502H.0  00000H.0
-                  @@BITS   Drv_UV     FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
+                  @@BITS   Drv_UV     FB5C8H.0  00000H.0
                   @@BITS   Drv_Valve
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Drv_WaterLevelSensor
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_ADConvert
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Buzzer
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_EEPROM
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_OperationMode
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_TimeScheduler
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_Effluent
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_ErrorCheck
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_Fan
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_Heater
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_LevelSensor
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_PowerSave
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_Setup
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_TankWaterInput
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   Lib_Water_TestMode
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   User_EEPROM
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   User_Main
-                                      FB502H.0  00000H.0
-                  @@BITS   User_RTC   FB502H.0  00000H.0
-                  @@BITS   r_main     FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
+                  @@BITS   User_RTC   FB5C8H.0  00000H.0
+                  @@BITS   r_main     FB5C8H.0  00000H.0
                   @@BITS   r_systeminit
-                                      FB502H.0  00000H.0
-                  @@BITS   r_cg_cgc   FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
+                  @@BITS   r_cg_cgc   FB5C8H.0  00000H.0
                   @@BITS   r_cg_cgc_user
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   r_cg_port
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   r_cg_port_user
-                                      FB502H.0  00000H.0
-                  @@BITS   r_cg_adc   FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
+                  @@BITS   r_cg_adc   FB5C8H.0  00000H.0
                   @@BITS   r_cg_adc_user
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   r_cg_timer
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   r_cg_timer_user
-                                      FB502H.0  00000H.0
-                  @@BITS   r_cg_wdt   FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
+                  @@BITS   r_cg_wdt   FB5C8H.0  00000H.0
                   @@BITS   r_cg_wdt_user
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   r_cg_serial
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   r_cg_serial_user
-                                      FB502H.0  00000H.0
-                  @@BITS   flushing   FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
+                  @@BITS   flushing   FB5C8H.0  00000H.0
                   @@BITS   water_out
-                                      FB502H.0  00000H.0
-                  @@BITS   hal_key    FB502H.0  00000H.0
-                  @@BITS   key        FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
+                  @@BITS   hal_key    FB5C8H.0  00000H.0
+                  @@BITS   key        FB5C8H.0  00000H.0
                   @@BITS   key_handler
-                                      FB502H.0  00000H.0
+                                      FB5C8H.0  00000H.0
                   @@BITS   process_key
-                                      FB502H.0  00000H.0
-* gap *                               FB502H    049D2H
+                                      FB5C8H.0  00000H.0
+                  @@BITS   lever      FB5C8H.0  00000H.0
+                  @@BITS   lever_handler
+                                      FB5C8H.0  00000H.0
+                  @@BITS   process_lever
+                                      FB5C8H.0  00000H.0
+                  @@BITS   amount     FB5C8H.0  00000H.0
+                  @@BITS   hot_water
+                                      FB5C8H.0  00000H.0
+                  @@BITS   hot_water_out
+                                      FB5C8H.0  00000H.0
+                  @@BITS   heater     FB5C8H.0  00000H.0
+* gap *                               FB5C8H    0490CH
          @@SEGREG                     FFED4H    00004H  DSEG AT
                   @@SEGREG @SEGREG    FFED4H    00004H
          @@RTARG0                     FFED8H    00008H  DSEG AT

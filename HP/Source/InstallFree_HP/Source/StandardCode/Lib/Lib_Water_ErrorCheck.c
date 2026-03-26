@@ -1734,7 +1734,7 @@ void RoomLevelErrorCheck(void)
 #if (MIDDLE_SENSOR_USE == USE)
     mu8MiddleSensor = Get_WaterLevel_Status(LEVEL_ID_MODDLE);
 #endif
-    mu8HighSensor = Get_WaterLevel_Status(LEVEL_ID_HIGH);
+    mu8HighSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
     mu8OverFlowSensor = Get_WaterLevel_Status(LEVEL_ID_OVERFLOW);
 
     mu8Status = Get_OperatingStatus();              // 현재 제품의 동작 상태 확인

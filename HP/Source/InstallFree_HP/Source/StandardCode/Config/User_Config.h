@@ -29,6 +29,7 @@
 #define POW         pow
 #endif
 
+#define  MAIN_VERSION    1
 
 #endif
 

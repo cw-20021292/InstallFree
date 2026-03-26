@@ -3,7 +3,9 @@
 #include "key.h"
 #include "key_common_handler.h"
 #include "flushing.h"
+#include "water_out.h"
 #include "water_out_type.h"
+#include "hot_water_out.h"
 
 static U8 SelHot(void);
 static U8 SelRoom(void);
@@ -17,9 +19,9 @@ static KeyEventList_T KeyEventList[] =
     /* SINGLE KEY */
     { K_HOT,                  SelHot,            NULL,               NULL,                 NULL,            NULL,     NULL },
     { K_ROOM,                 SelRoom,           NULL,               NULL,                 NULL,            NULL,     NULL },
-    { K_COLD,                 SelCold,           NULL,               NULL,                 NULL,            NULL,     NULL },
-    { K_HOT_LOCK,             NULL,              NULL,               NULL,                 NULL,            NULL,     NULL },
+    // { K_COLD,                 SelCold,           NULL,               NULL,                 NULL,            NULL,     NULL },
     { K_AMOUNT,               SelAmount,         NULL,               NULL,                 NULL,            NULL,     NULL },  
+    { K_HOT_LOCK,             NULL,              NULL,               NULL,                 NULL,            NULL,     NULL },
 };
 
 
@@ -30,7 +32,7 @@ const static KeyEventList_T KeyEventTimeShortList[] =
     /* SINGLE KEY */
     { K_HOT,                SelHot,              NULL,            NULL,               NULL,         NULL,    NULL }, 
     { K_ROOM,               SelRoom,             NULL,            NULL,                    NULL,         NULL,    NULL },
-    { K_COLD,               SelCold,             NULL,            NULL,                    NULL,         NULL,    NULL },
+    // { K_COLD,               SelCold,             NULL,            NULL,                    NULL,         NULL,    NULL },
     { K_AMOUNT,             SelAmount,           NULL,            NULL,                    NULL,         NULL,    NULL },
 
     /* MULTI KEY */
@@ -228,7 +230,7 @@ U8 SetSelectWater( U8 mu8Id )
 
 U8 SetSelectHotWater( U8 mu8Id )
 {
-    // SetHotWaterOutSelect( mu8Id );
+    SetHotWaterOutSelect( mu8Id );
     return TRUE;
 }
 
@@ -242,7 +244,7 @@ static void SetFixedAmount(U8 eAmountId)
     // /* 우측(정수or냉수) 추출 중이지 않을 때 */
     // else
     // {
-    //     SetWaterOutFixedAmountType( eAmountId );
+        SetWaterOutFixedAmountType( eAmountId );
     // }    
      
     //  /* 좌측(온수) 추출 중 */
@@ -260,9 +262,9 @@ static void SetFixedAmount(U8 eAmountId)
 /* 여러개의 타이머 변수들 리셋 */
 static void ResetVariousTimer(void)
 {
-    // ResetReturnTime();
-    // ResetReturnTimeAmount();
-    // ResetReturnTimePressContinue();
+    ResetReturnTime();
+    ResetReturnTimeAmount();
+    ResetReturnTimePressContinue();
     // ResetHotReturnTimePressContinue();
 
     // if(GetHotWaterOutSelect() == SEL_WATER_HOT)
@@ -319,31 +321,29 @@ static U8 SoundEffectLever(void)
 
 static U8 SelAmount(void)
 {
-    // U8 mu8Sound = SOUND_ID_SELECT;
+    U8 mu8Sound = BUZZER_SELECT;
 
-    // U8           uCursor = 0U;
-    // EAmountId_T  eAmountId;
+    U8           uCursor = 0U;
+    EAmountId_T  eAmountId;
+
+    /* 추출중일 땐 물선택 바뀌면 안됨 */
+    if(GetWaterOut() == TRUE)
+    {
+        return BUZZER_OFF;
+    }
 
     // /* 용량 업데이트 */
-    // uCursor = UpdateAmountCursor();
-    // eAmountId = GetAmountId(uCursor);
-    // SetFixedAmount(eAmountId);
+    uCursor = UpdateAmountCursor();
+    eAmountId = GetAmountId(uCursor);
+    SetFixedAmount(eAmountId);
     
     // /* 관련된 여러개의 disp 타이머 변수들 세팅 */
     // UpdateDispTimer();
 
     // /* 관련된 여러개의 타이머 변수들 리셋 */
-    // ResetVariousTimer();
+    ResetVariousTimer();
 
-    // /* 용량 -> 레버 로 넘어갈때 효과음 */
-    // if( SoundEffectLever() == TRUE )
-    // {
-    //     mu8Sound = SOUND_ID_CANCEL;
-    // }
-   
-    // return mu8Sound;
-
-    return 0;
+    return mu8Sound;
 }
 
 static U8 SelRoom(void)
@@ -351,71 +351,79 @@ static U8 SelRoom(void)
     // ResetReturnTimePressContinue();
     // ResetHotReturnTimePressContinue();
 
-    // /* Flushing */
-    // if(GetFlushingConfig() == TRUE)
-    // {    
-    //     /* 플러싱 관련 에러 인 상태에서는 플러싱 시작 불가 */
-    //     if( IsErrorType(ERROR_TYPE_FLUSHING) == TRUE )
-    //     {
-    //         return SOUND_ID_ERROR;
-    //     }
-    
-    //     /* 강제 플러싱 일 때 */
-    //     if(GetFlushingForceMode() == TRUE)
-    //     {
-    //         SetFlushingSkipChangeType(TRUE);  // 강제 플러싱 모드에서는 필터 플러싱  주기 안바뀜 
-    //     }
-    //     /* 일반적인 플러싱 일 때 */
-    //     else
-    //     {
-    //         /* 필터 교체를 다 안했으면 플러싱 시작 못함 */
-    //         if(GetFilterReplaceStatus() == FILTER_REPLACE_NEED)
-    //         {
-    //             PlayFilterAlarm();
-    //             return SOUND_ID_NONE;
-    //         }
-    //     }
+    /* Flushing */
+    if(GetFlushingConfig() == TRUE)
+    {
+        #if 0
+        /* 플러싱 관련 에러 인 상태에서는 플러싱 시작 불가 */
+        if( IsErrorType(ERROR_TYPE_FLUSHING) == TRUE )
+        {
+            return BUZZER_ERROR;
+        }
+        #endif
 
-    //     if(GetFlushingRun() == TRUE)
-    //     {
-    //         TurnOffFlush();
-    //         SetFlushingPause(TRUE);  // 플러싱 일시 정지
-    //         SetFlushingStatus(FLUSHING_STATUS_WAIT);
-    //         return SOUND_ID_CANCEL;
-    //     }
-    //     else
-    //     {
-    //         /* 탱크 탐 커버 체결 유무 */
-    //         if( GetCurrentInputVal(INPUT_ID_COLD_TANK_COVER) == OPEN )
-    //         {
-    //             return SOUND_ID_COVER_OPEN_TOP;
-    //         }
+        #if 0
+        /* 강제 플러싱 일 때 */
+        if(GetFlushingForceMode() == TRUE)
+        {
+            SetFlushingSkipChangeType(TRUE);  // 강제 플러싱 모드에서는 필터 플러싱  주기 안바뀜 
+        }
+        /* 일반적인 플러싱 일 때 */
+        else
+        {
+            /* 필터 교체를 다 안했으면 플러싱 시작 못함 */
+            if(GetFilterReplaceStatus() == FILTER_REPLACE_NEED)
+            {
+                PlayFilterAlarm();
+                return BUZZER_OFF;
+            }
+        }
+        #endif
 
-    //         /* 프론트 필터커버 체결 유무 */
-    //         if(IsOpenFilter(FILTER_ID_COVER_FRONT) == FILTER_OPEN)
-    //         {
-    //             return SOUND_ID_ALARM_COVER_OPEN_FRONT;
-    //         }
+        #if 0
+        if(GetFlushingRun() == TRUE)
+        {
+            TurnOffFlush();
+            SetFlushingPause(TRUE);  // 플러싱 일시 정지
+            SetFlushingStatus(FLUSHING_STATUS_WAIT);
+            return BUZZER_CANCEL;
+        }
+        else
+        {
+            /* 탱크 탐 커버 체결 유무 */
+            if( GetCurrentInputVal(INPUT_ID_COLD_TANK_COVER) == OPEN )
+            {
+                return SOUND_ID_COVER_OPEN_TOP;
+            }
 
-    //         /* NEO, RO, INNO 필터 체크 */
-    //         if( GetFilterOpenStatus() == FILTER_OPEN )
-    //         {
-    //             return SOUND_ID_ERROR;
-    //         }
+            /* 프론트 필터커버 체결 유무 */
+            if(IsOpenFilter(FILTER_ID_COVER_FRONT) == FILTER_OPEN)
+            {
+                return SOUND_ID_ALARM_COVER_OPEN_FRONT;
+            }
 
-    //         if(IsOpenFilter(FILTER_ID_RO) == FILTER_OPEN) // 예외 상황 1,3필터주기에 2번필터 장착 안한상태로 플러싱 시도할 경우
-    //         {
-    //             /* 띠링띠링 -> 다음과 같은 음성 있으면 더 좋을거 같음 "2번 필터가 장착되어있지 않습니다" */
-    //             return SOUND_ID_ERROR;    
-    //         }
+            /* NEO, RO, INNO 필터 체크 */
+            if( GetFilterOpenStatus() == FILTER_OPEN )
+            {
+                return BUZZER_ERROR;
+            }
+
+            if(IsOpenFilter(FILTER_ID_RO) == FILTER_OPEN) // 예외 상황 1,3필터주기에 2번필터 장착 안한상태로 플러싱 시도할 경우
+            {
+                /* 띠링띠링 -> 다음과 같은 음성 있으면 더 좋을거 같음 "2번 필터가 장착되어있지 않습니다" */
+                return BUZZER_ERROR;    
+            }
             
-    //         TurnOnFlush(); 
-    //         SetFlushingStatus(FLUSHING_STATUS_ING);
-    //         SetFlushingCancelDisable(TRUE);  // 한 번 시작하면 취소 불가능(전원 재인가하더라도 불가능)
+            TurnOnFlush(); 
+            SetFlushingStatus(FLUSHING_STATUS_ING);
+            SetFlushingCancelDisable(TRUE);  // 한 번 시작하면 취소 불가능(전원 재인가하더라도 불가능)
 
-    //         return SOUND_ID_SETUP;
-    //     }
-    // }
+            return BUZZER_SETUP;
+        }
+        #endif
+
+        return BUZZER_OFF;
+    }
     
     // if(GetUvTestMode() == TRUE)
     // {
@@ -423,202 +431,138 @@ static U8 SelRoom(void)
     //     if( GetTestUvOnOff() == TRUE )
     //     {
     //         SetTestUvOnOff( FALSE );     
-    //         return SOUND_ID_SELECT;
+    //         return BUZZER_SELECT;
     //     }
     //     else
     //     {
     //         SetTestUvOnOff( TRUE );   
-    //         return SOUND_ID_SELECT;
+    //         return BUZZER_SELECT;
     //     }
     // }
 
     // if( GetMementoDisp() == TRUE )
     // {
-    //     return SOUND_ID_NONE;
-    // }
-
-    // if( SetSelectWater( SEL_WATER_ROOM ) == TRUE )
-    // {	
-    //   //  StopDispTimerId( DISP_TIMER_KEY_HOT_TEMP );
-    //     StopDisplaySegOff();
-    //     StopDisplaySegOn();
-    //     StopDispTimerId( DISP_TIMER_REPLACE_FILTER );
-
-    //     return SOUND_ID_SELECT;
+    //     return BUZZER_OFF;
     // }
     
-    // return SOUND_ID_ERROR;
-    return 0;
-}
-
-static U8 SelCold(void)
-{
-#if 0
-    ResetReturnTimePressContinue();
-    ResetHotReturnTimePressContinue();
-
-   // StopDispTimerId( DISP_TIMER_KEY_HOT_TEMP );
-
-    /* 플러싱 취소 불가능해지고나서부터는 선택하면 에러음 발생 */
-    if(GetFlushingConfig() == TRUE)
+    /* 추출중일 땐 물선택 바뀌면 안됨 */
+    if(GetWaterOut() == TRUE)
     {
-        if( GetFlushingCancelDisable() == TRUE   // 최초 1회만 취소 가능 // TRUE : 취소 불가능
-             || GetFlushingType() == FLUSHING_TYPE_FIRST )  
-        {
-            return SOUND_ID_ERROR;
-        }
-             
-        return SOUND_ID_SELECT;            
-    }
-    
-    /* TIME SHORT모드(기밀 검사모드로 사용 중) */
-    if (GetTimeShortStatus() == TRUE)
-    {
-        SetSelectWater( SEL_WATER_COLD );
-        return SOUND_ID_NONE;
+        return BUZZER_OFF;
     }
 
-    /* Flushing Change Type Mode */
-    if( GetFlushingFilterChangeTypeMode() == TRUE )
-    {
-        UpdateFilterChangeType();
-        return SOUND_ID_SETUP;
-    }
-
-    if( GetColdWaterConfigMake() == FALSE)
-    {
-        StartDisplayColdMake();
-        StartDisplaySegOff();
-        SetSelectWater( SEL_WATER_COLD );
-        return SOUND_ID_ERROR;
-    }
-
-    /* 냉수 약 */
-    if( GetColdWeakConfigMode() == TRUE )
-    {		
-        RefreshColdWeakConfigModeCancelTime();
-        if( GetColdWeakConfig() == TRUE )
-        {
-            SetColdWeakConfig( FALSE );      
-            SaveEepromId( EEPROM_ID_COLD_WEAK );
-
-            return SOUND_ID_CANCEL;
-        }
-        else
-        {
-            SetColdWeakConfig( TRUE );       
-            SaveEepromId( EEPROM_ID_COLD_WEAK );
-			
-            return SOUND_ID_SETUP;
-        }
-    }
-
-    if( SetSelectWater( SEL_WATER_COLD ) == TRUE )
-    {
+    if( SetSelectWater( SEL_WATER_ROOM ) == TRUE )
+    {	
       //  StopDispTimerId( DISP_TIMER_KEY_HOT_TEMP );
+#if 0
         StopDisplaySegOff();
         StopDisplaySegOn();
         StopDispTimerId( DISP_TIMER_REPLACE_FILTER );
-
-        /* Cooling led on? yes -> Start Blink Timer for 7sec */
-        if( GetColdTempLevel() == COOLING )
-        {
-            StartDispTimerId( DISP_TIMER_COOLING_DIMMING_BLINK );	
-        }        
-
-        return SOUND_ID_SELECT;
-    }
-
-    return SOUND_ID_ERROR;
 #endif
-    return 0;
+        return BUZZER_SELECT;
+    }
+    
+    return BUZZER_ERROR;
 }
 
 static U8 SelHot(void)
 {
-    // U8 mu8SelHot;
+    U8 mu8SelHot;
 
-    // ResetReturnTimePressContinue();
+    ResetReturnTimePressContinue();
     // ResetHotReturnTimePressContinue();
     // ReSetLockHotDelayTime();
 
-    // /* Unused save config */
-    // if(GetSmartUnusedSaveConfigMode() == TRUE )
-    // {
-    //     RefreshSmartUnusedSaveConfigModeCancelTime();
+#if 0
+    /* Unused save config */
+    if(GetSmartUnusedSaveConfigMode() == TRUE )
+    {
+        RefreshSmartUnusedSaveConfigModeCancelTime();
 		
-    //     if( GetSmartUnusedSavingConfig() == TRUE )
-    //     {
-    //         SetSmartUnusedSavingConfig( FALSE );      
-    //         SaveEepromId( EEPROM_ID_CONF_UNUSED_SAVE );
+        if( GetSmartUnusedSavingConfig() == TRUE )
+        {
+            SetSmartUnusedSavingConfig( FALSE );      
+            SaveEepromId( EEPROM_ID_CONF_UNUSED_SAVE );
 
-    //         return SOUND_ID_CANCEL;
-    //     }
-    //     else
-    //     {
-    //         SetSmartUnusedSavingConfig( TRUE );       
-    //         SaveEepromId( EEPROM_ID_CONF_UNUSED_SAVE );
+            return BUZZER_CANCEL;
+        }
+        else
+        {
+            SetSmartUnusedSavingConfig( TRUE );       
+            SaveEepromId( EEPROM_ID_CONF_UNUSED_SAVE );
 			
-    //         return SOUND_ID_SETUP;
-    //     }
-    // }
-   
-    // /* Altitude */
-    // if( GetAltidueConfigMode() == TRUE )
-    // {
-    //     U8 mu8Altitude;
+            return BUZZER_SETUP;
+        }
+    }
+#endif
 
-    //     mu8Altitude = GetHotWaterAltidue();
-    //     mu8Altitude++;
-    //     if( mu8Altitude >= ALTITUDE_LEVEL_NUM )
-    //     {
-    //         mu8Altitude = ALTITUDE_LEVEL_0;
-    //     }
+#if 0
+    /* Altitude */
+    if( GetAltidueConfigMode() == TRUE )
+    {
+        U8 mu8Altitude;
+
+        mu8Altitude = GetHotWaterAltidue();
+        mu8Altitude++;
+        if( mu8Altitude >= ALTITUDE_LEVEL_NUM )
+        {
+            mu8Altitude = ALTITUDE_LEVEL_0;
+        }
         
-    //     SetHotWaterAltidue( mu8Altitude );
-    //     SetAltitudeConfigMode( TRUE );  // Refreseh Altitude setup time
-    //     SaveEepromId( EEPROM_ID_HOT_ALTITUDE );
-    // }
+        SetHotWaterAltidue( mu8Altitude );
+        SetAltitudeConfigMode( TRUE );  // Refreseh Altitude setup time
+        SaveEepromId( EEPROM_ID_HOT_ALTITUDE );
+    }
+#endif
 
-	// /* hot lock */
-    // if( GetLockHot() == LOCK )
-    // {
-    //     StartDisplayHotLock();
-    //     return SOUND_ID_ALARM_LOCK_HOT;
-    // }
+#if 0
+	/* hot lock */
+    if( GetLockHot() == ON )
+    {
+        StartDisplayHotLock();
+        return SOUND_ID_ALARM_LOCK_HOT;
+    }
 
-    // /* Hot OFF -> Hot select? yes -> blink hot water */
-    // if( GetHotWaterConfigMake() == FALSE)
-    // {
-    //     StartDisplayHotMake();
-    //     StartDisplaySegOff();
-    //     return SOUND_ID_ALARM_HOT_OFF;
-    // }
+    /* Hot OFF -> Hot select? yes -> blink hot water */
+    if( GetHotWaterConfigMake() == FALSE)
+    {
+        StartDisplayHotMake();
+        StartDisplaySegOff();
+        return SOUND_ID_ALARM_HOT_OFF;
+    }
+#endif
 
-    // /* 온수 에러 발생 */
-    // if( IsError( ERR_ID_TEMP_HOT_WATER ) == TRUE )
-    // {
-    //     return SOUND_ID_ERROR_HOT;
-    // }
+    /* 온수 에러 발생 */
+    if( Get_ErrorStatus ( ERROR_ID_TANK_HOT_TEMP_E45 ) == TRUE )
+    {
+        return BUZZER_ERROR;
+    }
 
-    // if( SetSelectHotWater( SEL_WATER_HOT ) == TRUE )
-    // {
-    //  //   StartDispTimerId( DISP_TIMER_KEY_HOT_TEMP );
-    //     StopDispTimerId( DISP_TIMER_UVCARE );
-    //     StopDisplaySegOff();
-    //     StopDisplaySegOn();
-    //     StopDispTimerId( DISP_TIMER_REPLACE_FILTER );
+    /* 추출중일 땐 물선택 바뀌면 안됨 */
+    if(GetWaterOut() == TRUE)
+    {
+        return BUZZER_OFF;
+    }
 
-    //     /* Heating led on? yes -> Start Blink Timer for 7sec */
-    //     if( GetHotTempLevel() == HEATING )
-    //     {
-    //         StartDispTimerId( DISP_TIMER_HEATING_DIMMING_BLINK );	
-    //     }
-    //     return SOUND_ID_SELECT;
-    // }
+    if( SetSelectWater( SEL_WATER_HOT ) == TRUE )
+    {
+     //   StartDispTimerId( DISP_TIMER_KEY_HOT_TEMP );
+#if 0
+        StopDispTimerId( DISP_TIMER_UVCARE );
+        StopDisplaySegOff();
+        StopDisplaySegOn();
+        StopDispTimerId( DISP_TIMER_REPLACE_FILTER );
 
-    // return SOUND_ID_SELECT;
-    return 0;
+        /* Heating led on? yes -> Start Blink Timer for 7sec */
+        if( GetHotTempLevel() == HEATING )
+        {
+            StartDispTimerId( DISP_TIMER_HEATING_DIMMING_BLINK );	
+        }
+#endif
+        return BUZZER_SELECT;
+    }
+
+    return BUZZER_SELECT;
 }
 
 
