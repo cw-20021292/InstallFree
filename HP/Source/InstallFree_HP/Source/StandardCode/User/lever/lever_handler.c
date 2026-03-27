@@ -145,7 +145,7 @@ static U8 LeverHotOpenTapWater(void)
         }
     }   
 
-    if( GetLockHot() == LOCK )
+    if( Get_HotKeyLockStatus() == LOCK )
     {
         StartDisplayHotLock();
         return SOUND_ID_ALARM_LOCK_HOT;
@@ -203,7 +203,7 @@ static U8 LeverHotOpenTapWater(void)
 static U8 LeverHotCloseTapWater(void)
 {
 #if 0
-    if( GetLockHot() == ON )
+    if( Get_HotKeyLockStatus() == ON )
     {
         return BUZZER_OFF;  // Avoid sound duplication
     }

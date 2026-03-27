@@ -54,7 +54,7 @@ void Base_Initialize(void)
     InitWaterOut();
     InitHotWater();
     InitHotWaterOut();
-    
+    InitDisplay();
     InitLever();
 }
 

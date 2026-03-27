@@ -130,6 +130,7 @@
 #include "hot_water_out.h"
 #include "heater.h"
 #include "lever.h"
+#include "process_display.h"
 
 // library header files
 #include <stdio.h>

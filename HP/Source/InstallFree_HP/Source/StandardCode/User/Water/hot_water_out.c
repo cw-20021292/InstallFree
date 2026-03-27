@@ -447,7 +447,7 @@ static void  LeftLeverOutSelect(void)
         && GetTestHotRepeatStatus() == FALSE
          && GetTestAllRepeatStatus() == FALSE )
     {
-        if( GetLockHotDelayTime() == 0 ) 
+        if( Get_HotKeyLockStatusDelayTime() == 0 ) 
         {  
             HotOut.Select = SEL_WATER_NOTHING;
         }

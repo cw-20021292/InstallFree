@@ -517,7 +517,7 @@ static U8 SelHot(void)
 
 #if 0
 	/* hot lock */
-    if( GetLockHot() == ON )
+    if( Get_HotKeyLockStatus() == ON )
     {
         StartDisplayHotLock();
         return SOUND_ID_ALARM_LOCK_HOT;

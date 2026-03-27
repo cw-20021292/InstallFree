@@ -63,7 +63,8 @@ void OperationModeSetup(void)
                 SetupTimeScheduler(ControlAmountConfig, 10, ACT_COUNT_INFINITE);
 
                 SetupTimeScheduler(ProcessWaterFlushing, 100, ACT_COUNT_INFINITE);
-                
+                SetupTimeScheduler(ProcessDisplay, 100, ACT_COUNT_INFINITE);
+
                 SetupTimeScheduler(MakeHotWater, 1000, ACT_COUNT_INFINITE);
                 // SetupTimeScheduler(ProcessMakeHotWater, 1000, ACT_COUNT_INFINITE);
             }
