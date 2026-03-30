@@ -6,12 +6,15 @@
 #include "water_out.h"
 #include "water_out_type.h"
 #include "hot_water_out.h"
+#include "process_display.h"
 
 static U8 SelHot(void);
 static U8 SelRoom(void);
 static U8 SelCold(void);
 static U8 SelAmount(void);
-
+static U8 SelHotLockOn(void);
+static U8 SelHotLockOff(void);
+static U8 SelExtract(void);
 
 static KeyEventList_T KeyEventList[] =
 {
@@ -21,7 +24,8 @@ static KeyEventList_T KeyEventList[] =
     { K_ROOM,                 SelRoom,           NULL,               NULL,                 NULL,            NULL,     NULL },
     // { K_COLD,                 SelCold,           NULL,               NULL,                 NULL,            NULL,     NULL },
     { K_AMOUNT,               SelAmount,         NULL,               NULL,                 NULL,            NULL,     NULL },  
-    { K_HOT_LOCK,             NULL,              NULL,               NULL,                 NULL,            NULL,     NULL },
+    { K_HOT_LOCK,             NULL,              NULL,               SelHotLockOn,                 SelHotLockOff,            NULL,     NULL },
+    { K_EXTRACT,             SelExtract,              NULL,               NULL,                 NULL,            NULL,     NULL },
 };
 
 
@@ -380,48 +384,6 @@ static U8 SelRoom(void)
         }
         #endif
 
-        #if 0
-        if(GetFlushingRun() == TRUE)
-        {
-            TurnOffFlush();
-            SetFlushingPause(TRUE);  // 플러싱 일시 정지
-            SetFlushingStatus(FLUSHING_STATUS_WAIT);
-            return BUZZER_CANCEL;
-        }
-        else
-        {
-            /* 탱크 탐 커버 체결 유무 */
-            if( GetCurrentInputVal(INPUT_ID_COLD_TANK_COVER) == OPEN )
-            {
-                return SOUND_ID_COVER_OPEN_TOP;
-            }
-
-            /* 프론트 필터커버 체결 유무 */
-            if(IsOpenFilter(FILTER_ID_COVER_FRONT) == FILTER_OPEN)
-            {
-                return SOUND_ID_ALARM_COVER_OPEN_FRONT;
-            }
-
-            /* NEO, RO, INNO 필터 체크 */
-            if( GetFilterOpenStatus() == FILTER_OPEN )
-            {
-                return BUZZER_ERROR;
-            }
-
-            if(IsOpenFilter(FILTER_ID_RO) == FILTER_OPEN) // 예외 상황 1,3필터주기에 2번필터 장착 안한상태로 플러싱 시도할 경우
-            {
-                /* 띠링띠링 -> 다음과 같은 음성 있으면 더 좋을거 같음 "2번 필터가 장착되어있지 않습니다" */
-                return BUZZER_ERROR;    
-            }
-            
-            TurnOnFlush(); 
-            SetFlushingStatus(FLUSHING_STATUS_ING);
-            SetFlushingCancelDisable(TRUE);  // 한 번 시작하면 취소 불가능(전원 재인가하더라도 불가능)
-
-            return BUZZER_SETUP;
-        }
-        #endif
-
         return BUZZER_OFF;
     }
     
@@ -544,6 +506,13 @@ static U8 SelHot(void)
         return BUZZER_OFF;
     }
 
+    /* 온수잠금 중에는 선택 불가능 */
+    if(Get_HotKeyLockStatus() == HOT_KEY_LOCK_ON)
+    {
+        StartDisplayHotLockSet();
+        return BUZZER_ERROR;
+    }
+
     if( SetSelectWater( SEL_WATER_HOT ) == TRUE )
     {
      //   StartDispTimerId( DISP_TIMER_KEY_HOT_TEMP );
@@ -565,4 +534,72 @@ static U8 SelHot(void)
     return BUZZER_SELECT;
 }
 
+static U8 SelHotLockOn(void)
+{
+    if(Get_HotKeyLockStatus() == HOT_KEY_LOCK_OFF)
+    {
+        Set_HotKeyLock(HOT_KEY_LOCK_ON);
+        return BUZZER_SETUP;
+    }
 
+    return BUZZER_OFF;
+}
+
+static U8 SelHotLockOff(void)
+{
+    if(Get_HotKeyLockStatus() == HOT_KEY_LOCK_ON)
+    {
+        Set_HotKeyLock(HOT_KEY_LOCK_OFF);
+        return BUZZER_CANCEL;
+    }
+
+    return BUZZER_OFF;
+}
+
+static U8 SelExtract(void)
+{
+    // 플러싱이 필요할 때
+    if(GetFlushingConfig() == TRUE)
+    {
+        if(GetFlushingRun() == TRUE)
+        {
+            TurnOffFlush();
+            SetFlushingPause(TRUE);  // 플러싱 일시 정지
+            SetFlushingStatus(FLUSHING_STATUS_WAIT);
+            
+            return BUZZER_CANCEL;
+        }
+        else
+        {
+            // /* 온수온도센서 에러중이면 안됨 */
+            // if( Get_ErrorStatus ( ERROR_ID_TANK_HOT_TEMP_E45 ) == TRUE )
+            // {
+            //     return BUZZER_ERROR;
+            // }
+
+            /* 필터체크 */
+            if(Get_ReedSW_Status(REED_SW_ID_FILTER_REED) == FALSE)
+            {
+                return BUZZER_ERROR;
+            }
+            
+            TurnOnFlush(); 
+            SetFlushingStatus(FLUSHING_STATUS_ING);
+            
+            return BUZZER_SETUP;
+        }
+    }
+    
+    /* 추출중일 땐 물선택 바뀌면 안됨 */
+    if(GetWaterOut() == TRUE)
+    {
+        StopWaterOut();
+        return BUZZER_EFFLUENT_END;
+    }
+    else
+    {
+        StartWaterOut();
+    }
+
+    return BUZZER_EFFLUENT;
+}

@@ -84,10 +84,12 @@ void Base_Timer_1ms(void)
             Drv_Buzzer_Module_1ms_Control();
             Drv_LevelSensor_Module_1ms_Control();
             Drv_Heater_Module_1ms_Control();
-
+            Drv_Buzzer_Module_1ms_Control();
+            
             Lib_TimeScheduler_Module_1ms_Control();
             Lib_ADC_Module_1ms_Control();
             Lib_WaterError_Module_1ms_Control();
+            BuzzerTimeCounter();
             BootTimeCheck();
             break;
 

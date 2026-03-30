@@ -68,7 +68,7 @@ void InitFlushing(void)
     InitOutEventList();
 
     // 부팅 시 온수히터 만수위부터 확인
-    TurnOnFlush();
+    // TurnOnFlush();
     SetFlushOutMode(FLUSH_ALL_INSTALL_FREE);
 }
 
@@ -80,7 +80,7 @@ void CompleteFlushing(void)
     }
 
     /* 플러싱 관련 동작들 stop */
-    // StopAllFlushingOperation();  // 강제로 취소시켰을 때 동작하고있던 것들 Stop 해줘야함
+    StopAllFlushingOperation();  // 강제로 취소시켰을 때 동작하고있던 것들 Stop 해줘야함
 
     /* 플러싱 관련 변수들 초기화 */
     ResetFlushing();
@@ -177,11 +177,9 @@ static U8 DoFilterFlushingInit( U8 *xUptrStep )
     switch(*xUptrStep)
     {
         case FLUSH_INIT_SOUND:
-            // 부팅음 처리
-            Set_BuzzerSelect(BUZZER_POWER_ON);
+
             (*xUptrStep)++;
             break;
-
 
         case FLUSH_INIT_DONE:
             ValveFlushInit();
@@ -208,7 +206,8 @@ static U8 DoFillHot( U8 *xUptrStep )
     switch(*xUptrStep)
     {
         case FLUSH_HOT_FILL_EXE_CHECK:
-            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) > 500)
+        // if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) < 500)
+            if(WATER_LV_HIGH == LOW)
             {
                 // 온수탱크에 물이 가득 차있지 않으면
                 (*xUptrStep)++;
@@ -221,7 +220,8 @@ static U8 DoFillHot( U8 *xUptrStep )
             break;
 
         case FLUSH_HOT_FILL_EXE:
-            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) < 500)
+            // if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) < 500)
+            if(WATER_LV_HIGH == LOW)
             {
                 ValveHotTankFill();
             }
@@ -318,7 +318,7 @@ static void FlushingPause(void)
     U32 mu32CurrentMode = 0;
 
     // StopCheckNeoOutage();      // 단수 검사 중지 
-    // StopAllFlushingOperation(); // 모든 동작 중지
+    StopAllFlushingOperation(); // 모든 동작 중지
     InitOutEventList();  // 처음 step부터 다시 시작 (MODE는 이어서 시작 해야함)
 }
 
@@ -332,6 +332,11 @@ void TurnOffFlush(void)
 {
     gStFlushing.RunStatus = FALSE;
   //  SetFlushingPause(TRUE); 살리면 플러싱 완료돼도 pause 가 true 로 잡힘 - CompleteFlushing()
+}
+
+void SetFlushingStatus(EFlushingStatus_T Status)
+{
+    gStFlushing.mEstatus = Status;
 }
 
 EFlushingStatus_T GetFlushingStatus( void )
@@ -417,6 +422,7 @@ static void OutFlow(void)
         if( IsSetFlushOutMode( ptrFunList->gu32Umode ) == TRUE )
         {
             uRet = ptrFunList->mUptrFunAction( &ptrFunList->gu8mUstep );
+            
             // UpdateFlushingProgress(); // for display %
             if( uRet == TRUE )
             {
@@ -429,8 +435,8 @@ static void OutFlow(void)
 
 static void ControlWaterFlushOut(void)
 {
-    // if( GetFlushingConfig() == TRUE )
-    // {
+    if( GetFlushingConfig() == TRUE )
+    {
         // 일시정지 -> 다시 시작하면 이어서 시작
         if( GetFlushingPause() == TRUE )
         {
@@ -448,14 +454,7 @@ static void ControlWaterFlushOut(void)
         //         SetFlushingStatus(FLUSHING_STATUS_WAIT);
         //     }
         // }
-        // /*
-        // if(GetFlushingStatus() != FLUSHING_STATUS_ING)
-        // {
-        //     StopAllFlushingOperation(); // 모든 동작 중지
-        //     StopCheckNeoOutage();
-        // }   
-        // */
-    // }
+    }
     
     if( gStFlushing.RunStatus == TRUE )
     {
@@ -609,6 +608,22 @@ static void FlushingActTimeCounter(void)
     {
         gStFlushing.mUactTime--;
     }
+}
+
+void StopAllFlushingOperation(void)
+{
+    ValveFlushInit();
+    // TurnOffDrainPump();
+    // SetValveQueue(VALVE_CMD_BOOST_PUMP_OFF);  
+    // SetValveQueue(VALVE_CMD_FEED_CLOSE);
+    // SetValveQueue(VALVE_CMD_ROOM_IN_CLOSE); 
+    // SetValveQueue(VALVE_CMD_HOT_DRAIN_CLOSE); 
+    // SetValveQueue(VALVE_CMD_AIR_CLOSE); 
+    // SetValveQueue(VALVE_CMD_COLD_DRAIN_CLOSE); 
+    // SetValveQueue(VALVE_CMD_WATER_FLOW_CYCLE_CLOSE); 
+    // SetValveQueue(VALVE_CMD_FLUSHING_FEED_CLOSE); 
+    // SetValveQueue(VALVE_CMD_AUTO_FLUSHING_CLOSE); 
+    // SetValveQueue(VALVE_CMD_UTILITY_WATER_CLOSE); 
 }
 
 

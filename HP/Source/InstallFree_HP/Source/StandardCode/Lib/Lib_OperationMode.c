@@ -59,14 +59,15 @@ void OperationModeSetup(void)
 
                 SetupTimeScheduler(ControlWaterOut, 10, ACT_COUNT_INFINITE);
                 SetupTimeScheduler(ProcessScanKey, 10, ACT_COUNT_INFINITE);
-                SetupTimeScheduler(ControlHotWaterOut, 10, ACT_COUNT_INFINITE);
+                SetupTimeScheduler(ProcessKeyEventHandler, 10, ACT_COUNT_INFINITE);
+                // SetupTimeScheduler(ControlHotWaterOut, 10, ACT_COUNT_INFINITE);
                 SetupTimeScheduler(ControlAmountConfig, 10, ACT_COUNT_INFINITE);
+                
 
                 SetupTimeScheduler(ProcessWaterFlushing, 100, ACT_COUNT_INFINITE);
                 SetupTimeScheduler(ProcessDisplay, 100, ACT_COUNT_INFINITE);
 
-                SetupTimeScheduler(MakeHotWater, 1000, ACT_COUNT_INFINITE);
-                // SetupTimeScheduler(ProcessMakeHotWater, 1000, ACT_COUNT_INFINITE);
+                // SetupTimeScheduler(MakeHotWater, 1000, ACT_COUNT_INFINITE);
             }
             break;
 

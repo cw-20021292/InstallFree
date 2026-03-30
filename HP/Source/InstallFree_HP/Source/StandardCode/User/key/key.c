@@ -137,7 +137,7 @@ void ProcessScanKey(void)
     // 2. Get Key value
     mu16KeyVal = HAL_GetKeyVal();
     if( mu16PrevKeyVal != mu16KeyVal )
-    {  
+    {
         /* Prevent - while pushing one, push the other */
         if( mu16KeyVal != HAL_KEY_NONE && mu16PrevKeyVal != HAL_KEY_NONE)
         {			

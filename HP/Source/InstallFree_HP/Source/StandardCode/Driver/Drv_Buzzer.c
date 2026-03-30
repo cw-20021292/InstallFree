@@ -96,7 +96,6 @@ void Drv_Buzzer_Module_Initialize(void)
 void Drv_Buzzer_Module_1ms_Control(void)
 {
 #if (BUZZER_USE == USE)
-    BuzzerTimeCounter();                    // 부저 제어 관련 시간 Counter
     BuzzerControl();                        // 부저음 출력 제어 함수
 #endif
 }

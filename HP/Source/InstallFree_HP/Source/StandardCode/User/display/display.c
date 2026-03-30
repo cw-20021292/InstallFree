@@ -474,7 +474,7 @@ static void DispAmountSelDescending(U8 mu8AmountCusor)
     }
 
     /* 현재 용량 선택 단계에 따라서 현재 선택 단계 이후의 led bar 들을 off */
-    DispAmountBarByStep();
+    // DispAmountBarByStep();
 }
 
 void DispAmountSel(U8 mu8AmountCusor, U8 mu8Dimming )
@@ -538,7 +538,7 @@ void DispAmountInfinity(void)
 
 void DispLockHotSetBlink( U8 mu8OnOff )
 {
-    HAL_TurnOnOffLED( HOT_WATER, mu8OnOff );
+    HAL_TurnOnOffLED( HOT_LOCK, mu8OnOff );
 }
 
 void DispLockAllOnOff_CHP( U8 mu8OnOff )
@@ -785,15 +785,15 @@ void ApplyLedPortOutput(void)
     /* ROOM_WATER → LED_AMOUNT (P0.1) */
     mu8Cmd = HAL_GetProtocolCommand(ROOM_WATER);
     LED_AMBIENT = (mu8Cmd > 0) ? 1 : 0;
-
-    /* RIGHT_BAR2 → LED_AMOUNT_2 (P1.4) */
-    mu8Cmd = HAL_GetProtocolCommand(RIGHT_BAR2);
-    LED_AMOUNT_2 = (mu8Cmd > 0) ? 1 : 0;
-
+    
     /* RIGHT_BAR1 → LED_AMOUNT_1 (P1.3) */
     mu8Cmd = HAL_GetProtocolCommand(RIGHT_BAR1);
+    LED_AMOUNT_2 = (mu8Cmd > 0) ? 1 : 0;
+    
+    /* RIGHT_BAR2 → LED_AMOUNT_2 (P1.4) */
+    mu8Cmd = HAL_GetProtocolCommand(RIGHT_BAR2);
     LED_AMOUNT_1 = (mu8Cmd > 0) ? 1 : 0;
-
+    
     /* ICON_INFINITY → LED_AMOUNT_3 (P6.3) */
     mu8Cmd = HAL_GetProtocolCommand(ICON_INFINITY);
     LED_AMOUNT_3 = (mu8Cmd > 0) ? 1 : 0;

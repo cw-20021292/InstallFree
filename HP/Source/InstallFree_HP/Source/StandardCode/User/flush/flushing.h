@@ -96,6 +96,7 @@ typedef struct _flushing_
 void InitFlushing(void);
 void TurnOnFlush(void);
 void TurnOffFlush(void);
+void SetFlushingStatus(EFlushingStatus_T Status);
 EFlushingStatus_T GetFlushingStatus( void );
 void SetFlushingPause(U8 mu8Val);
 U8 GetFlushingPause(void);
@@ -107,4 +108,5 @@ void ResetFlushing(void);
 U8 GetFlushingConfig( void );
 void SetFlushingConfig( U8 xUflushing );
 void SetFlushingType( EFlushingType_T xUtype );
+void StopAllFlushingOperation(void);
 #endif

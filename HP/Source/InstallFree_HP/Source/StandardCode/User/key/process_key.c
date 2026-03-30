@@ -140,7 +140,7 @@ static U8 KeyEventHandler(KeyValidFun_T pValidFunc, KeyEventList_T *pList, U8 mu
                 if( (pList+i)->actionEvent[KEY_ACTION_SHORT] != NULL )
                 {					
                     mu8Sound = (pList+i)->actionEvent[KEY_ACTION_SHORT]();
-                    // Sound( mu8Sound );
+                    Sound( mu8Sound );
                     return TRUE;
                 }
                 break;
@@ -152,7 +152,7 @@ static U8 KeyEventHandler(KeyValidFun_T pValidFunc, KeyEventList_T *pList, U8 mu
                 if( (pList+i)->actionEvent[KEY_ACTION_7_SEC] != NULL )
                 {
                     mu8Sound = (pList+i)->actionEvent[KEY_ACTION_7_SEC]();
-                    // Sound( mu8Sound );
+                    Sound( mu8Sound );
                     return TRUE;
                 }
                 break;
@@ -178,7 +178,7 @@ static U8 KeyEventHandler(KeyValidFun_T pValidFunc, KeyEventList_T *pList, U8 mu
                 if( (pList+i)->actionEvent[ KEY_ACTION_3_SEC ] != NULL )
                 {
                     mu8Sound = (pList+i)->actionEvent[ KEY_ACTION_3_SEC ]();
-                    // Sound( mu8Sound );
+                    Sound( mu8Sound );
                     return TRUE;
                 }
                 break;
@@ -190,7 +190,7 @@ static U8 KeyEventHandler(KeyValidFun_T pValidFunc, KeyEventList_T *pList, U8 mu
                 if( (pList+i)->actionEvent[ KEY_ACTION_2_SEC ] != NULL )
                 {
                     mu8Sound = (pList+i)->actionEvent[ KEY_ACTION_2_SEC ]();
-                    // Sound( mu8Sound );
+                    Sound( mu8Sound );
                     return TRUE;
                 }
                 break;
@@ -202,7 +202,7 @@ static U8 KeyEventHandler(KeyValidFun_T pValidFunc, KeyEventList_T *pList, U8 mu
                 if( (pList+i)->actionEvent[ KEY_ACTION_1_SEC ] != NULL )
                 {
                     mu8Sound = (pList+i)->actionEvent[ KEY_ACTION_1_SEC ]();
-                    // Sound( mu8Sound );
+                    Sound( mu8Sound );
                     return TRUE;
                 }
                 break;

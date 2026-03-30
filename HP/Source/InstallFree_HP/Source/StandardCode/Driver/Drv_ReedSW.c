@@ -180,11 +180,11 @@ void ConfirmReedSWData(U8 mu8ReedSWID, U8 mu8Value)
         case 1:
             if (mu8Value)
             {
-                gu16ReedSWConfirmValue |= REED_SW_1_DETECT;
+                gu16ReedSWConfirmValue &= ~REED_SW_1_DETECT;
             }
             else
             {
-                gu16ReedSWConfirmValue &= ~REED_SW_1_DETECT;
+                gu16ReedSWConfirmValue |= REED_SW_1_DETECT;
             }
             break;
 
@@ -306,11 +306,11 @@ U8 Get_ReedSW_Status(U8 mu8ReedSWID)
         case 1:
             if (gu16ReedSWConfirmValue & REED_SW_1_DETECT)
             {
-                mu8Return = 0;
+                mu8Return = 1;
             }
             else
             {
-                mu8Return = 1;
+                mu8Return = 0;
             }
             break;
 

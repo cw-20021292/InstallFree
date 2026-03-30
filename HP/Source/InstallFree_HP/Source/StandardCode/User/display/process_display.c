@@ -41,6 +41,8 @@ static void DisplayHotBlink(void);
 static void DisplayColdRoomBlink(void);
 static void DispFlushingProgress(void);
 static void DispExtractDimmingBlink(void);
+static void DispRoomDimmingBlink(void);
+static void DispHotDimmingBlink(void);
 static void DisplayFilterFlushing(void);
 static void DisplayReplaceFilter(void);
 
@@ -809,14 +811,15 @@ static void ProcessDisplayFlushing(void)
     { 
         TurnOffAllSeg();
         TurnOffAllLED();
-        DispWaterOutPointRight( LED_OFF );
+        DispHotWater( LED_OFF );
     } 
     else if(GetFlushingStatus() == FLUSHING_STATUS_ING )
     {
         TurnOffAllSeg();
         TurnOffAllLED();
-        // DispWaterOutPointRight( LED_ON );
-        DispExtractDimmingBlink();
+        
+        // 플러싱 중에는 온수 버튼 점멸
+        DispHotDimmingBlink();
     }
 
     /* 플러싱 진행률 표시 */
@@ -842,6 +845,24 @@ static void DispExtractDimmingBlink(void)
     SetLedType(LED_WATER_OUT, LED_TYPE_DUTY_DIM);	// set dimming
     
     mu8BlinkOnOff = BlinkLED( mu8BlinkOnOff, DispWaterOutPointRight, DISP_TIMER_ID_500MS );
+}
+
+static void DispRoomDimmingBlink(void)
+{
+    static U8 mu8BlinkOnOff = LED_ON; // static local variable => Used like global variable
+
+    SetLedType(ROOM_WATER, LED_TYPE_DUTY_DIM);	// set dimming
+    
+    mu8BlinkOnOff = BlinkLED( mu8BlinkOnOff, DispRoomWater, DISP_TIMER_ID_500MS );
+}
+
+static void DispHotDimmingBlink(void)
+{
+    static U8 mu8BlinkOnOff = LED_ON; // static local variable => Used like global variable
+
+    SetLedType(HOT_WATER, LED_TYPE_DUTY_DIM);	// set dimming
+    
+    mu8BlinkOnOff = BlinkLED( mu8BlinkOnOff, DispHotWater, DISP_TIMER_ID_500MS );
 }
 
 static void DisplaySelWater(void)
@@ -1023,6 +1044,7 @@ static void ProcessDisplayVersionMode(void)
             TurnOffAllSeg();	
 
             SetDispTimer( DISP_TIMER_VERSION, TIMER_1SEC );
+            // Sound(BUZZER_POWER_ON);
             Disp.VersionStep++;
             break;
 
@@ -1039,6 +1061,8 @@ static void ProcessDisplayVersionMode(void)
             TurnOffAllSeg();	
             Disp.Version     = FALSE;
             Disp.VersionStep = 0;
+            
+            Sound(BUZZER_POWER_ON);
             break;
 
         default:

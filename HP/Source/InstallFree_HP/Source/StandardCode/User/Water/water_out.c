@@ -130,6 +130,7 @@ void StartWaterOut(void)
     {
         Out.LastedTime[ Out.Select ] = 0;
     }
+    
     Out.WaterOut = TRUE;
     
     // /* Auto Flushing */

@@ -27,13 +27,13 @@
 
 #define COMP_ON                     P7.0
 
-#define VALVE_NOS                   P7.1        // O
-#define VALVE_FEED_IN               P7.2        // O
-#define VALVE_AMBIENT_OUT           P7.3        // O
+#define VALVE_NOS                   P7.1        // O => 탱크뒷단 Overflow NOS
+#define VALVE_FEED_IN               P7.2        // O => 온수탱크 입수 피드
+#define VALVE_AMBIENT_OUT           P7.3        // O => 정수추출밸브
 #define VALVE_COLD_OUT              P7.4
 #define VALVE_COLD_N_HOT            P7.5
 #define VALVE_WARM_OUT              P7.6
-#define VALVE_HOT_OUT               P7.7        // O
+#define VALVE_HOT_OUT               P7.7        // O => 온수 추출밸브
 
 #define EEP_SDA                     P6.1
 #define EEP_SDA_DIR                 PM6.1
@@ -44,9 +44,9 @@
 
 /* LEDs */
 #define LED_LOCK                    P1.2
-#define LED_AMOUNT_1                P1.3
+#define LED_AMOUNT_3                P1.3
 #define LED_AMOUNT_2                P1.4
-#define LED_AMOUNT_3                P6.3
+#define LED_AMOUNT_1                P2.3 // P6.3
 #define LED_HOT_2                   P0.3
 #define LED_HOT_1                   P0.2
 #define LED_AMBIENT                 P0.1

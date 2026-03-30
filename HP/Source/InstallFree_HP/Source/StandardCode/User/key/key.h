@@ -9,16 +9,16 @@ void InitKey(void);
 #define  K_NONE                 HAL_KEY_NONE
 #define  K_COLD                 HAL_KEY_NONE
 
-#define  K_HOT                  HAL_KEY_1
-#define  K_ROOM                 HAL_KEY_2
-#define  K_AMOUNT               HAL_KEY_3
-#define  K_HOT_LOCK             HAL_KEY_4
+#define  K_HOT                  HAL_KEY_1 // | HAL_KEY_3
+#define  K_ROOM                 HAL_KEY_2 // | HAL_KEY_3
+#define  K_AMOUNT               HAL_KEY_3 
+#define  K_HOT_LOCK             HAL_KEY_4 // | HAL_KEY_3
 //#define  K_HOT_LOCK       HAL_KEY_6  -> Lever(Right)�� ����� #define HAL_KEY_WATER_OUT       HAL_KEY_6
 //#define  K_SAVE           HAL_KEY_7  -> Lever(Left)����� #define HAL_KEY_HOT_WATER_OUT   HAL_KEY_7
 
 //#define  K_ALL          HAL_KEY_ALL
 
-#define K_EXTRACT               HAL_KEY_5
+#define K_EXTRACT               HAL_KEY_5 // | HAL_KEY_3
 /************************************ MULTI KEY ************************************/
 //#define K_VERSION       ( K_COLD | K_HOT )
 #define K_SMART_UNUSED_SAVE  ( K_ROOM | K_AMOUNT | K_HOT_LOCK  )

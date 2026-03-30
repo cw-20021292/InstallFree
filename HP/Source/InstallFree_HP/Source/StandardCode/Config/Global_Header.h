@@ -131,6 +131,7 @@
 #include "heater.h"
 #include "lever.h"
 #include "process_display.h"
+#include "process_key.h"
 
 // library header files
 #include <stdio.h>
