@@ -63,7 +63,7 @@ void  InitWaterOut(void)
     Out.PrevWaterOut     = FALSE;
    // Out.ConfAmount       = AMOUNT_ID_LEVER;
 
-    Out.PressContinue    = TRUE;
+    Out.PressContinue    = FALSE;
     Out.PressContinueReturnTime  = 0;
     
     Out.InfinityAmount    = FALSE;
@@ -351,7 +351,7 @@ U8 GetWaterOutAmountType(void)
 {
     if( Out.InfinityAmount == TRUE )
     {
-        // return AMOUNT_ID_INFINITY;
+        return AMOUNT_ID_INFINITY;
     }
 
     return GetWaterOutFixedAmountType();
@@ -727,19 +727,22 @@ static void RightWaterOut(void)
     }
     	
     // 추출 중에는 레버로 돌아가는 시간 reload
-    if( Out.WaterOut == TRUE
-    && Out.PressContinue == FALSE )
+    if( (Out.WaterOut == TRUE)
+    && (Out.PressContinue == FALSE)
+    )
     {
         ResetReturnTimePressContinue();
         // ResetHotReturnTimePressContinue();
     }
 
     // 연속 추출 기능 해제 
-    if( Out.PressContinue == FALSE && Out.PressContinueReturnTime == 0 )
-    {
-        SetWaterOutPressContinue( TRUE );
-        ClearWaterOutInfinityAmount();
-    }
+    // if( (Out.PressContinue == FALSE) 
+    // && (Out.PressContinueReturnTime == 0)
+    // )
+    // {
+    //     SetWaterOutPressContinue( TRUE );
+    //     ClearWaterOutInfinityAmount();
+    // }
 
     if(GetWaterOutPressContinue() == TRUE)
     {     
@@ -748,13 +751,16 @@ static void RightWaterOut(void)
     }
 
     /* 설정기본 용량 세팅 */
-    if(Out.PressContinueReturnTime == 0 && Out.TriggerDefaultAmount == TRUE)
+    if((Out.PressContinueReturnTime == 0) 
+    && (Out.TriggerDefaultAmount == TRUE)
+    )
     {
         Out.TriggerDefaultAmount = FALSE; // 1번만 수행 하기 위해
 
         Out.FixedAmountType = GetAmountDefault();
         SetAmountCursor(GetAmountDefaultCursor());
-        SetSkipCursorIncrease(TRUE);
+        ClearWaterOutInfinityAmount();
+        // SetSkipCursorIncrease(TRUE);
     }
 
     // 연속 추출 목표 시간 및 현재 시간 계산...

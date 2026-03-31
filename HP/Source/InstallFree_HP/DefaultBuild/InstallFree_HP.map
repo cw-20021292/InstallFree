@@ -1,7 +1,7 @@
 
 
 
-78K0R Linker V1.80                            Date:30 Mar 2026 Page:   1
+78K0R Linker V1.80                            Date:31 Mar 2026 Page:   1
 
 Command:   -yC:\Program Files (x86)\Renesas Electronics\CS+\CACX\Device\
            RL78\Devicefile -_msgoff -oDefaultBuild\InstallFree_HP.lmf -g
@@ -53,8 +53,8 @@ Directive:
 *** Link information ***
 
     97 output segment(s)
- A84DH byte(s) real data
- 13446 symbol(s) defined
+ A868H byte(s) real data
+ 13442 symbol(s) defined
 
 
 *** Memory map ***
@@ -1154,7 +1154,7 @@ Directive:
                   @@CNST   error      035A6H    00000H
                   @@CNST   process_error
                                       035A6H    00000H
-         @@CODEL                      035A6H    07CDDH  CSEG
+         @@CODEL                      035A6H    07CF8H  CSEG
                   @@CODEL  Basic_Loop
                                       035A6H    00116H
                   @@CODEL  Func_ADC   036BCH    00009H
@@ -1244,36 +1244,36 @@ Directive:
                                       07D6CH    000C9H
                   @@CODEL  flushing   07E35H    00406H
                   @@CODEL  water_out
-                                      0823BH    00601H
-                  @@CODEL  hal_key    0883CH    00041H
-                  @@CODEL  key        0887DH    00188H
+                                      0823BH    005F2H
+                  @@CODEL  hal_key    0882DH    00041H
+                  @@CODEL  key        0886EH    00188H
                   @@CODEL  key_handler
-                                      08A05H    0014CH
+                                      089F6H    00154H
                   @@CODEL  process_key
-                                      08B51H    002F6H
-                  @@CODEL  lever      08E47H    00193H
+                                      08B4AH    002F6H
+                  @@CODEL  lever      08E40H    00193H
                   @@CODEL  lever_handler
-                                      08FDAH    00051H
+                                      08FD3H    00051H
                   @@CODEL  process_lever
-                                      0902BH    001A4H
-                  @@CODEL  amount     091CFH    004D3H
+                                      09024H    001A4H
+                  @@CODEL  amount     091C8H    004DFH
                   @@CODEL  hot_water
-                                      096A2H    00207H
+                                      096A7H    00207H
                   @@CODEL  hot_water_out
-                                      098A9H    0039DH
-                  @@CODEL  heater     09C46H    000FBH
-                  @@CODEL  display    09D41H    007DFH
+                                      098AEH    0039DH
+                  @@CODEL  heater     09C4BH    000FBH
+                  @@CODEL  display    09D46H    00803H
                   @@CODEL  display_error
-                                      0A520H    00096H
+                                      0A549H    00096H
                   @@CODEL  display_lib
-                                      0A5B6H    001AFH
+                                      0A5DFH    001AFH
                   @@CODEL  process_display
-                                      0A765H    009B9H
-                  @@CODEL  hal_led    0B11EH    000ABH
-                  @@CODEL  error      0B1C9H    000B6H
+                                      0A78EH    009ABH
+                  @@CODEL  hal_led    0B139H    000ABH
+                  @@CODEL  error      0B1E4H    000B6H
                   @@CODEL  process_error
-                                      0B27FH    00004H
-* gap *                               0B283H    34D7DH
+                                      0B29AH    00004H
+* gap *                               0B29EH    34D62H
 
   MEMORY=RAM
   BASE ADDRESS=FAF00H   SIZE=05100H

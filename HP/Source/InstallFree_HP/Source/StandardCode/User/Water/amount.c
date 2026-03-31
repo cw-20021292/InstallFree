@@ -141,10 +141,12 @@ void InitAmount(void)
     MEMSET( (void __FAR *)&gUarrSortingBuf, 0x00, sizeof(gUarrSortingBuf) );
     MEMSET( (void __FAR *)&gEarrAmountBuf, 0x00, sizeof(gEarrAmountBuf) );
 
-    SetAmountConfig(AMOUNT_ID_16OZ, TRUE);
-    SetAmountConfig(AMOUNT_ID_32OZ, TRUE);
-    SetAmountConfig(AMOUNT_ID_INFINITY, TRUE);
+    SetAmountConfig(AMOUNT_ID_8OZ,      TRUE);   // cursor 0 → 8oz  (235ml)
+    SetAmountConfig(AMOUNT_ID_16OZ,     TRUE);   // cursor 1 → 16oz (475ml)
+    SetAmountConfig(AMOUNT_ID_INFINITY, TRUE);   // cursor 2 → 무한
     
+    SetAmountDefault(AMOUNT_ID_8OZ);
+
     gStAmount.mUsorting = TRUE;
     // gStAmount.SkipCursorIncrease -> EEPROM에서 값 넣어주는 중이라서 Init에서 값 넣어줘도 소용없음
 }
@@ -693,7 +695,7 @@ SAmountConfig_T gStAmountConfigList[] =
 {
     { AMOUNT_ID_4OZ,                FALSE },
     { AMOUNT_ID_6OZ,                FALSE },
-    { AMOUNT_ID_8OZ,                FALSE },
+    { AMOUNT_ID_8OZ,                TRUE },
     { AMOUNT_ID_10OZ,              FALSE },
     { AMOUNT_ID_12OZ,              FALSE },
     { AMOUNT_ID_14OZ,              FALSE },
@@ -701,7 +703,7 @@ SAmountConfig_T gStAmountConfigList[] =
     { AMOUNT_ID_20OZ,              FALSE  },
     { AMOUNT_ID_24OZ,              FALSE  },
     { AMOUNT_ID_28OZ,              FALSE },  
-    { AMOUNT_ID_32OZ,              TRUE  },
+    { AMOUNT_ID_32OZ,              FALSE  },
     { AMOUNT_ID_36OZ,              FALSE },  
     { AMOUNT_ID_40OZ,              FALSE },
     { AMOUNT_ID_INFINITY,          TRUE  },
@@ -732,7 +734,7 @@ void SetAmountConfig( EAmountId_T xEid, U8 xUconfig )
 
     gStAmountConfigList[xEid].mUconfig = xUconfig;
 
-    //if( GetArrangeAmount() == FALSE )
+    if( GetArrangeAmount() == FALSE )
     {
         SetArrangeAmount(TRUE);
     }

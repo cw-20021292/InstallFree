@@ -786,6 +786,7 @@ static void ProcessDisplayBoot(void)
         mu8Count--;
         if( mu8Count == 0 )
         {
+            Sound(BUZZER_POWER_ON);
             mu8Count = 5;
             Disp.Init = TRUE;
             return;
@@ -920,11 +921,11 @@ static void DispSelAmount_Normal(void)
     U8 mu8AmountCusor;
     
     // 타이머가 만료되었으면 디스플레이를 끄고 함수 종료
-    if( IsExpiredDispTimer( DISP_TIMER_KEY_AMOUNT ) == TRUE )
-    {
-        DispAmountSelOff();
-        return;
-    }
+    // if( IsExpiredDispTimer( DISP_TIMER_KEY_AMOUNT ) == TRUE )
+    // {
+    //     DispAmountSelOff();
+    //     return;
+    // }
 
     // 디폴트 물량 설정 상황인 경우, 백업 커서 사용
     if(GetSkipCursorIncrease() == TRUE)
@@ -1061,8 +1062,6 @@ static void ProcessDisplayVersionMode(void)
             TurnOffAllSeg();	
             Disp.Version     = FALSE;
             Disp.VersionStep = 0;
-            
-            Sound(BUZZER_POWER_ON);
             break;
 
         default:

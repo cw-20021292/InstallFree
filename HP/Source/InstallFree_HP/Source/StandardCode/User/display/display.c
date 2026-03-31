@@ -15,8 +15,9 @@
 #define AmountDispStep4      3
 #define AmountDispInfinity   4
 
-#define PROGRESS_66PERCENT    66
-#define PROGRESS_33PERCENT    33
+#define PROGRESS_75PERCENT    75
+#define PROGRESS_50PERCENT    50
+#define PROGRESS_25PERCENT    25
 
 #define BAR4_DISPLAY_500MS    50   
 
@@ -258,27 +259,27 @@ void DispMainVersion(U8 mu8Val)
             break;
 		
         case 1:
-            DispRightBar1(LED_OFF2);
-            DispRightBar2(LED_OFF2);
+            DispRightBar1(LED_OFF);
+            DispRightBar2(LED_OFF);
             break;
 		
         case 2:
-            DispRightBar1(LED_OFF2);
-            DispRightBar2(LED_OFF2);
+            DispRightBar1(LED_OFF);
+            DispRightBar2(LED_OFF);
             break;
 			
         case 3:
-            DispRightBar1(LED_OFF2);
-            DispRightBar2(LED_OFF2);
+            DispRightBar1(LED_OFF);
+            DispRightBar2(LED_OFF);
             break;
 		
         case 4:
-            DispRightBar1(LED_OFF2);
+            DispRightBar1(LED_OFF);
             DispRightBar2(LED_ON);
             break;
 		
         case 5:
-            DispRightBar1(LED_OFF2);
+            DispRightBar1(LED_OFF);
             DispRightBar2(LED_ON);
             break; 
 
@@ -339,23 +340,33 @@ void DispBarProgress(U16 mu16WaterOutProgress, U32 mu32DiffrentTime)
     {
         HAL_TurnOnOffLED( RIGHT_BAR1,		LED_ON );
         HAL_TurnOnOffLED( RIGHT_BAR2,		LED_ON );
+        HAL_TurnOnOffLED( ICON_INFINITY,	LED_ON );
         return;
     }
 	
-    if( mu16WaterOutProgress >= PROGRESS_66PERCENT )
+    if( mu16WaterOutProgress >= PROGRESS_75PERCENT )
     {
-        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_OFF2 );
+        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_ON );
         HAL_TurnOnOffLED( RIGHT_BAR2,       LED_ON );
+        HAL_TurnOnOffLED( ICON_INFINITY,	LED_ON );
     }
-    else if( mu16WaterOutProgress >= PROGRESS_33PERCENT )
+    else if( mu16WaterOutProgress >= PROGRESS_50PERCENT )
     {
-        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_OFF2 );
-        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_OFF2 );
+        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_ON );
+        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_ON );
+        HAL_TurnOnOffLED( ICON_INFINITY,	LED_OFF );
+    }
+    else if( mu16WaterOutProgress >= PROGRESS_25PERCENT )
+    {
+        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_ON );
+        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_OFF );
+        HAL_TurnOnOffLED( ICON_INFINITY,	LED_OFF );
     }
     else
     {
-        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_OFF2 );
-        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_OFF2 );
+        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_OFF );
+        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_OFF );
+        HAL_TurnOnOffLED( ICON_INFINITY,	LED_OFF );
     }
 
 }
@@ -418,14 +429,14 @@ static void DispAmountSelAscending(U8 mu8AmountCusor)
     }
     else if( mu8AmountCusor == AmountDispStep2 )
     {
-        HAL_TurnOnOffLED( ICON_INFINITY,    LED_OFF2 );
+        HAL_TurnOnOffLED( ICON_INFINITY,    LED_OFF );
         HAL_TurnOnOffLED( RIGHT_BAR2,       LED_ON );
-        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_OFF2 );
+        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_OFF );
     }
     else if( mu8AmountCusor == AmountDispStep1 )
     {
-        HAL_TurnOnOffLED( ICON_INFINITY,    LED_OFF2 );
-        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_OFF2 );
+        HAL_TurnOnOffLED( ICON_INFINITY,    LED_OFF );
+        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_OFF );
         HAL_TurnOnOffLED( RIGHT_BAR1,       LED_ON );
     }
     else
@@ -436,7 +447,7 @@ static void DispAmountSelAscending(U8 mu8AmountCusor)
     }
 
     /* 현재 용량 선택 단계에 따라서 현재 선택 단계 이후의 led bar 들을 off */
-    DispAmountBarByStep();
+    // DispAmountBarByStep();
 }
 
 static void DispAmountSelDescending(U8 mu8AmountCusor)
@@ -456,15 +467,15 @@ static void DispAmountSelDescending(U8 mu8AmountCusor)
     }
     else if( mu8AmountCusor == AmountDispStep1 )
     {
-        HAL_TurnOnOffLED( ICON_INFINITY,    LED_OFF2 );
-        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_OFF2 );
+        HAL_TurnOnOffLED( ICON_INFINITY,    LED_OFF );
+        HAL_TurnOnOffLED( RIGHT_BAR2,       LED_OFF );
         HAL_TurnOnOffLED( RIGHT_BAR1,       LED_ON   );
     }
     else if( mu8AmountCusor == AmountDispStep2 )
     {
-        HAL_TurnOnOffLED( ICON_INFINITY,    LED_OFF2 );
+        HAL_TurnOnOffLED( ICON_INFINITY,    LED_OFF );
         HAL_TurnOnOffLED( RIGHT_BAR2,       LED_ON   );
-        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_OFF2 );
+        HAL_TurnOnOffLED( RIGHT_BAR1,       LED_OFF );
     }
     else
     {

@@ -7,6 +7,7 @@
 #include "water_out_type.h"
 #include "hot_water_out.h"
 #include "process_display.h"
+#include "display_lib.h"
 
 static U8 SelHot(void);
 static U8 SelRoom(void);
@@ -280,7 +281,7 @@ static void ResetVariousTimer(void)
 /* 여러개의 disp 타이머 변수들 리셋 */
 static void UpdateDispTimer(void)
 {
-//     StartDispTimerId( DISP_TIMER_KEY_AMOUNT );
+    StartDispTimerId( DISP_TIMER_KEY_AMOUNT );
 //    // StartDispTimerId( DISP_TIMER_KEY_HOT_TEMP );
 //     StopDispTimerId( DISP_TIMER_UVCARE );
 //     StopDisplaySegOff();
@@ -342,7 +343,7 @@ static U8 SelAmount(void)
     SetFixedAmount(eAmountId);
     
     // /* 관련된 여러개의 disp 타이머 변수들 세팅 */
-    // UpdateDispTimer();
+    UpdateDispTimer();
 
     // /* 관련된 여러개의 타이머 변수들 리셋 */
     ResetVariousTimer();
