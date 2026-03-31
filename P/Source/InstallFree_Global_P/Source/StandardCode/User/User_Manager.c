@@ -26,8 +26,8 @@
 static const U8 PumpDecisionTable[REED_SW_ID_MAX][LEVEL_ID_MAX] =
 {
     /* LOW   NORMAL */
-    { OFF,     ON },        // [0][0] [0][1]
-    { OFF,    OFF },        // [1][0] [1][1]
+    { OFF,    OFF },        // [0][0] [0][1]
+    { OFF,     ON },        // [1][0] [1][1]
 };
 
 static U8 gu8Mgr_PumpCurrentCmd = OFF;
@@ -42,6 +42,9 @@ U8 Get_PumpStatus(void)
     return gu8Mgr_PumpCurrentCmd;
 }
 
+U8 dbg_reed_1 = 0;
+U8 dbg_reed_2 = 0;
+U8 dbg_pump_out = 0;
 
 /// @brief      DC Pump Manager 의사결정 및 펌프 제어 (내부 전용)
 /// @details    두 Manager의 최신 상태를 의사결정 테이블로 참조하여 펌프 명령을 결정하고
@@ -52,10 +55,14 @@ static void Operation(void)
     U8    mu8WaterLevel;
     U8    mu8PumpOut;
 
-    mu8ReedSW    = (Get_ReedSW_Status(REED_SW_1_DETECT));   // 0 : 감지,   1 : 미감지
-    mu8WaterLevel = Get_WaterLevel();                       // 0 : 저수위, 1 : 중수위
+    mu8ReedSW    = (Get_ReedSW_Status(REED_SW_1_DETECT));   // 1 : 감지, 0 : 미감지
+    mu8WaterLevel = (Get_ReedSW_Status(REED_SW_2_DETECT));  // 1 : 감지, 0 : 미감지
 
     mu8PumpOut = PumpDecisionTable[mu8ReedSW][mu8WaterLevel];
+
+    dbg_reed_1 = mu8ReedSW;
+    dbg_reed_2 = mu8WaterLevel;
+    dbg_pump_out = mu8PumpOut;
 
     if (gu8Mgr_PumpCurrentCmd != mu8PumpOut)
     {
@@ -83,5 +90,9 @@ void Mgr_DC_Pump_Module_Initialize(void)
 /// @return     void
 void Manager(void)
 {
+    if(Get_BootComplete() == FALSE)
+    {
+        return;
+    }
     Operation();
 }

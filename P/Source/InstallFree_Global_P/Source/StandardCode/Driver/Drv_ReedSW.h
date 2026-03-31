@@ -19,19 +19,20 @@
 typedef enum
 {
     REED_SW_ID_NONE = 0,                                // 0 :
-    REED_SW_ID_USER_SW,                                 // 1 :
+    REED_SW_ID_USER_SW,                                 // 1 : 추출리드
+    REED_SW_ID_FILTER_SW,                               // 2 : 필터리드
     REED_SW_ID_MAX                                      // 11 Max, 11이 넘으면 안됨
 } EReedSWID_T;
 
-#define REED_SW_COUNT                                   1           // Reed SW 개수 - MAX 10
+#define REED_SW_COUNT                                   2           // Reed SW 개수 - MAX 10
 
 #if (REED_SW_COUNT > 0)
 
 // Reed SW port 할당
 // 순서상 skip없이 배치하여 사용하며, 미사용 port는 0으로 처리
 // 순서는 ID와 동일하게 배치
-#define PORT_DEFINE_REED_SW_1                           P_USER_SW      // Reed SW 1
-#define PORT_DEFINE_REED_SW_2                           0
+#define PORT_DEFINE_REED_SW_1                           P_USER_SW      // Reed SW 1 - 추출리드
+#define PORT_DEFINE_REED_SW_2                           P_FILTER_SW    // Reed SW 2 - 필터리드
 #define PORT_DEFINE_REED_SW_3                           0
 #define PORT_DEFINE_REED_SW_4                           0
 #define PORT_DEFINE_REED_SW_5                           0
@@ -41,8 +42,8 @@ typedef enum
 #define PORT_DEFINE_REED_SW_9                           0
 #define PORT_DEFINE_REED_SW_10                          0
 
-#define TIME_DEFINE_REED_SW_1_CHATTERING                20          // 2sec@100ms
-#define TIME_DEFINE_REED_SW_2_CHATTERING                20          // 2sec@100ms
+#define TIME_DEFINE_REED_SW_1_CHATTERING                10          // 2sec@100ms
+#define TIME_DEFINE_REED_SW_2_CHATTERING                5           // 2sec@100ms
 #define TIME_DEFINE_REED_SW_3_CHATTERING                20          // 2sec@100ms
 #define TIME_DEFINE_REED_SW_4_CHATTERING                20          // 2sec@100ms
 #define TIME_DEFINE_REED_SW_5_CHATTERING                20          // 2sec@100ms

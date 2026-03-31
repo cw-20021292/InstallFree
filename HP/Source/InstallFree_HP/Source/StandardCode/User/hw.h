@@ -27,8 +27,8 @@
 
 #define COMP_ON                     P7.0
 
-#define VALVE_NOS                   P7.1        // O => 탱크뒷단 Overflow NOS
-#define VALVE_FEED_IN               P7.2        // O => 온수탱크 입수 피드
+#define VALVE_NOS                   P7.2        // O => 탱크뒷단 Overflow NOS
+#define VALVE_FEED_IN               P7.1        // O => 온수탱크 입수 피드
 #define VALVE_AMBIENT_OUT           P7.3        // O => 정수추출밸브
 #define VALVE_COLD_OUT              P7.4
 #define VALVE_COLD_N_HOT            P7.5

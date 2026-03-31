@@ -56,6 +56,8 @@ void Base_Initialize(void)
     InitHotWaterOut();
     InitDisplay();
     InitLever();
+
+    V24_ON = 1;
 }
 
 
@@ -236,7 +238,7 @@ void Interrupt_Start(void)
     Timer_1ms_Start();
     Timer_100us_Start();
 
-    // ADC_CheckStart(0);
+    ADC_CheckStart(0);
 }
 
 

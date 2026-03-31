@@ -45,6 +45,7 @@ static void DispRoomDimmingBlink(void);
 static void DispHotDimmingBlink(void);
 static void DisplayFilterFlushing(void);
 static void DisplayReplaceFilter(void);
+static void DisplayBoostMode(void);
 
 static void UpdateTimer(void);
 
@@ -59,7 +60,6 @@ static void ProcessDisplayFlushing(void);
 static void ProcessDisplayCitricFlush(void);
 static U16 GetWaterOutPercent(void);
 static U16 GetHotWaterOutPercent(void);
-
 static void InitDispBleParingTimer(void);
 static U8 GetDispBlePairingTimer(void);
 
@@ -876,7 +876,7 @@ static void DisplaySelWater(void)
     DispWaterSel( mu8Sel ); 
 
     /* HOT */
-    mu8HotSel = GetHotWaterOutSelect();
+    mu8HotSel = GetWaterOutSelect();
     DispHotWaterSel( mu8HotSel );     
 }
 
@@ -1235,8 +1235,10 @@ static void ProcessDisplayNormalMode(void)
     DisplayReplaceFilter();
 
     /* Lock 점멸 */
-    DisplayLock();  
+    DisplayLock();
 
+    /* 온수온도 Boost 설정표시 */
+    DisplayBoostMode();
 }
 
 static void DisplayWaterTempLevel(void)
@@ -1324,6 +1326,25 @@ static void DisplayLock(void)
     if( IsExpiredDispTimer( DISP_TIMER_HOTLOCK ) == FALSE )
     {
         mu8BlinkOnOffHotLock = BlinkLED( mu8BlinkOnOffHotLock, DispHotLock, DISP_TIMER_ID_500MS );
+    }
+}
+
+static void DisplayBoostMode(void)
+{
+    if(GetWaterOutSelect() == SEL_WATER_HOT)
+    {
+        if(GetHotWaterBoostMode() == TRUE)
+        {
+            HAL_TurnOnOffLED( ICON_HEATING, LED_ON ); 
+        }
+        else
+        {
+            HAL_TurnOnOffLED( ICON_HEATING, LED_OFF ); 
+        }
+    }
+    else
+    {
+        HAL_TurnOnOffLED( ICON_HEATING, LED_OFF ); 
     }
 }
 

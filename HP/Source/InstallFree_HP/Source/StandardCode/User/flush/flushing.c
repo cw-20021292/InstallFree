@@ -155,7 +155,7 @@ static void ValveFlushInit(void)
 
     Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, CLOSE, 0);
     Set_ValveControl(VALVE_ID_HOT_OUT, FEED, CLOSE, 0);
-    Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, CLOSE, 0);   
+    Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, OPEN, 0);   
     Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, CLOSE, 0);
 }
 
@@ -166,7 +166,7 @@ static void ValveHotTankFill(void)
     Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, CLOSE, 0);
     Set_ValveControl(VALVE_ID_HOT_OUT, FEED, CLOSE, 0);
     Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, OPEN, 0);
-    Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, CLOSE, 0);   
+    Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, OPEN, 0);   
 }
 
 /**
@@ -206,8 +206,8 @@ static U8 DoFillHot( U8 *xUptrStep )
     switch(*xUptrStep)
     {
         case FLUSH_HOT_FILL_EXE_CHECK:
-        // if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) < 500)
-            if(WATER_LV_HIGH == LOW)
+            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) < 500)
+            // if(WATER_LV_HIGH == LOW)
             {
                 // 온수탱크에 물이 가득 차있지 않으면
                 (*xUptrStep)++;
@@ -220,8 +220,8 @@ static U8 DoFillHot( U8 *xUptrStep )
             break;
 
         case FLUSH_HOT_FILL_EXE:
-            // if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) < 500)
-            if(WATER_LV_HIGH == LOW)
+            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) > 500)
+            // if(WATER_LV_HIGH == LOW)
             {
                 ValveHotTankFill();
             }

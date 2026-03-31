@@ -26,7 +26,7 @@ typedef enum
     LEVEL_ID_MAX                                        // 11 Max, 11이 넘으면 안됨
 } ELevelSensorID_T;
 
-#define LEVEL_SENSOR_COUNT                              1       // 일반 수위 센서 개수 - MAX 10
+#define LEVEL_SENSOR_COUNT                              0       // 일반 수위 센서 개수 - MAX 10
 
 #if (LEVEL_SENSOR_COUNT > 0)
 // Level Sensor port 할당

@@ -35,7 +35,8 @@ typedef struct _hot_water_
     U8 ConfigMake;      
     U8 TempLevel;        // for display "heating"
 
-    U8  Make;      
+    U8  Make;            // 온수 Making 여부
+    U8  Boost;           // 온도 조금만 높게
     U16 MakeDelay;
 
     /* Target Temperetrue as mode */
@@ -84,6 +85,9 @@ U8   GetHotTempLevel(void);
 
 void UpdateHotMakeDelay(void);
 void UpdateHotAirFlowTime(void);
+
+void  SetHotWaterBoostMode(U8 mu8Val);
+U8  GetHotWaterBoostMode(void);
 
 void MakeHotWater(void);
 

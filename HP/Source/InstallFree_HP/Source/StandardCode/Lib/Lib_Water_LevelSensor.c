@@ -60,6 +60,7 @@ void Lib_WaterLevelCheck(void)
 #endif
     U8 mu8HightSensor = 0;
     U8 mu8OverFlowSensor = 0;
+    U16 mu16HighSensorAdc = 0;
 
 #if (HOT_HIGH_SENSOR_USE == USE)        // 온수 만수위 센서 사용시
     U8 mu8HotHighSensor = 0;
@@ -144,11 +145,13 @@ void Lib_WaterLevelCheck(void)
             gu8WaterLevel = WATER_LEVEL_LOW;
         }
 #else
+        mu16HighSensorAdc = Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL);
         mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
         // mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
         // mu8OverFlowSensor = Get_WaterLevel_Status(LEVEL_ID_OVERFLOW);
 
-        if (mu8HightSensor)
+        // if (mu8HightSensor)
+        if(mu16HighSensorAdc < 100)
         {   // 저수위 센서 감지시
 #if (BOOST_PUMP_USE == USE)
             if (gu8WaterLevel == WATER_LEVEL_LOW)

@@ -16,8 +16,12 @@
 #define DEFAULT_TEMP_TIME   5   // @1sec, 5sec
 
 /* TARGET TEMP - NORMAL */
-static const D64 OnTempList[ ALTITUDE_LEVEL_NUM ]  = { 88.0f, 86.0f, 84.0f, 82.0f };
-static const D64 OffTempList[ ALTITUDE_LEVEL_NUM ] = { 94.0f, 91.0f, 88.0f, 85.0f }; 
+static const D64 OnTempList[ ALTITUDE_LEVEL_NUM ]  = { 68.0f, 68.0f, 68.0f, 68.0f };
+static const D64 OffTempList[ ALTITUDE_LEVEL_NUM ] = { 74.0f, 74.0f, 74.0f, 74.0f }; 
+
+static const D64 BoostOnTempList[ ALTITUDE_LEVEL_NUM ]  = { 73.0f, 73.0f, 73.0f, 73.0f };
+static const D64 BoostOffTempList[ ALTITUDE_LEVEL_NUM ] = { 79.0f, 79.0f, 79.0f, 79.0f }; 
+
 
 /* TARGET TEMP - Power Saving */
 static const D64 OnTempPowerSavingList[ ALTITUDE_LEVEL_NUM ]  = { 75.0f, 75.0f, 75.0f, 75.0f };
@@ -90,6 +94,16 @@ void  SetHotWaterMake(U8 mu8Val )
 U8    GetHotWaterMake(void)
 {
     return Hot.Make;
+}
+
+void  SetHotWaterBoostMode(U8 mu8Val)
+{
+    Hot.Boost = mu8Val;
+}
+
+U8  GetHotWaterBoostMode(void)
+{
+    return Hot.Boost;
 }
 
 void  SetHotWaterAltidue(U8 mu8Val )
@@ -170,8 +184,15 @@ D64   GetHotTargetOnTemp(U8 mu8Altitude)
     // {		
     //     return OnTempUnsuedSavingList[ mu8Altitude ];
     // }
-
-    return OnTempList[ mu8Altitude ];
+    
+    if(GetHotWaterBoostMode() == TRUE)
+    {
+        return BoostOnTempList[ mu8Altitude ];
+    }
+    else
+    {
+        return OnTempList[ mu8Altitude ];
+    }
 }
 
 D64   GetHotTargetOffTemp(U8 mu8Altitude)
@@ -186,7 +207,14 @@ D64   GetHotTargetOffTemp(U8 mu8Altitude)
     //     return OffTempUnusedSavingList[ mu8Altitude ];
     // }
     
-    return OffTempList[ mu8Altitude ];
+    if(GetHotWaterBoostMode() == TRUE)
+    {
+        return BoostOffTempList[ mu8Altitude ];
+    }
+    else
+    {
+        return OffTempList[ mu8Altitude ];
+    }
 }
 
 
@@ -270,6 +298,8 @@ void  MakeHotWater(void)
     Hot.TempTargetOff = GetHotTargetOffTemp( Hot.Altitude );
     Hot.TempCurrent   = Get_Temp( ADC_ID_TH_HOT_TANK_TEMP );
     // SetHotTempLevel(Hot.TempCurrent);      // for display "Heating"
+
+    // return;
 	
     /* Heater on delay, in the case of low water level is released */
     if( CheckLevelOnHeating() == FALSE )

@@ -21,7 +21,10 @@ void AD_Convert_Initialize(void)
 {
     gu8AD_Convert_Timer = 0;
     gu8AD_ChannelCount = 0;
-    gu8AD_CheckEnd = 0;
+    // 미친 이거 1로 해놔야될거아니야 ㅡㅡ
+    // gu8AD_CheckEnd = 0;
+    gu8AD_CheckEnd = 1;
+    HOT_TANK_LV = 1;
 }
 
 
@@ -72,7 +75,8 @@ void ADC_CheckStart(U8 mu8AD_Channel)
 
     ADC_Start();
 
-    Set_ADC_EndStatus(CLEAR);
+    // 아씹 이거도 SET해놨어야지
+    Set_ADC_EndStatus(SET);
 }
 
 

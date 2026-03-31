@@ -306,22 +306,22 @@ U8 Get_ReedSW_Status(U8 mu8ReedSWID)
         case 1:
             if (gu16ReedSWConfirmValue & REED_SW_1_DETECT)
             {
-                mu8Return = 1;
+                mu8Return = 0;
             }
             else
             {
-                mu8Return = 0;
+                mu8Return = 1;
             }
             break;
 
         case 2:
             if (gu16ReedSWConfirmValue & REED_SW_2_DETECT)
             {
-                mu8Return = 1;
+                mu8Return = 0;
             }
             else
             {
-                mu8Return = 0;
+                mu8Return = 1;
             }
             break;
 

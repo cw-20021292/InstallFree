@@ -15,18 +15,19 @@ static U8 SelCold(void);
 static U8 SelAmount(void);
 static U8 SelHotLockOn(void);
 static U8 SelHotLockOff(void);
+static U8 SelHotBoostModeOnoff(void);
 static U8 SelExtract(void);
 
 static KeyEventList_T KeyEventList[] =
 {
     /* KEY,                   Short,             2sec,               3sec,                 7sec,            Pop,      1sec */
     /* SINGLE KEY */
-    { K_HOT,                  SelHot,            NULL,               NULL,                 NULL,            NULL,     NULL },
+    { K_HOT,                  SelHot,            NULL,               SelHotBoostModeOnoff, NULL,            NULL,     NULL },
     { K_ROOM,                 SelRoom,           NULL,               NULL,                 NULL,            NULL,     NULL },
     // { K_COLD,                 SelCold,           NULL,               NULL,                 NULL,            NULL,     NULL },
     { K_AMOUNT,               SelAmount,         NULL,               NULL,                 NULL,            NULL,     NULL },  
-    { K_HOT_LOCK,             NULL,              NULL,               SelHotLockOn,                 SelHotLockOff,            NULL,     NULL },
-    { K_EXTRACT,             SelExtract,              NULL,               NULL,                 NULL,            NULL,     NULL },
+    { K_HOT_LOCK,             NULL,              NULL,               SelHotLockOn,         SelHotLockOff,            NULL,     NULL },
+    { K_EXTRACT,             SelExtract,              NULL,          NULL,                 NULL,            NULL,     NULL },
 };
 
 
@@ -551,6 +552,22 @@ static U8 SelHotLockOff(void)
     if(Get_HotKeyLockStatus() == HOT_KEY_LOCK_ON)
     {
         Set_HotKeyLock(HOT_KEY_LOCK_OFF);
+        return BUZZER_CANCEL;
+    }
+
+    return BUZZER_OFF;
+}
+
+static U8 SelHotBoostModeOnoff(void)
+{
+    if(GetHotWaterBoostMode() == FALSE)
+    {
+        SetHotWaterBoostMode(TRUE);
+        return BUZZER_SETUP;
+    }
+    else if(GetHotWaterBoostMode() == TRUE)
+    {
+        SetHotWaterBoostMode(FALSE);
         return BUZZER_CANCEL;
     }
 

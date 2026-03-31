@@ -654,6 +654,7 @@ static void RightLeverOutValve(void)
         Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, CLOSE, 0);
         Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, CLOSE, 1);
         Set_ValveControl(VALVE_ID_HOT_OUT, FEED, CLOSE, 1);
+        Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, OPEN, 0);
         return;
     }
 
@@ -666,6 +667,7 @@ static void RightLeverOutValve(void)
         {
             Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, OPEN, 1);
             Set_ValveControl(VALVE_ID_HOT_OUT, FEED, OPEN, 0);
+            Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, CLOSE, 0);
         }
         /* TURN ON WATER OUT - ROOM */
         else
