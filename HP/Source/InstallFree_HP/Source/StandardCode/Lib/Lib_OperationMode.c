@@ -68,6 +68,7 @@ void OperationModeSetup(void)
                 SetupTimeScheduler(ProcessDisplay, 100, ACT_COUNT_INFINITE);
 
                 SetupTimeScheduler(MakeHotWater, 1000, ACT_COUNT_INFINITE);
+                SetupTimeScheduler(ProcessMakeHotWater, 1000, ACT_COUNT_INFINITE);
             }
             break;
 

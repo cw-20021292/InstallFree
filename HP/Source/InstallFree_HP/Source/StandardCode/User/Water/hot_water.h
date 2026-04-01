@@ -13,8 +13,10 @@
 #define  UNUSED_SAVING_ON_6HOUR     21600U // @1sec
 #define  UNUSED_SAVING_ON_9HOUR     32400U // @1sec
 
+#define  SAFETY_TIME                600 // @1sec
+
 /* TARGET OFF TEMP - PROTECTION OVER-HEATING */
-#define PROTECT_HOT_TEMP   100.0f
+#define PROTECT_HOT_TEMP   60.0f
   
 #define NONE_HEATING    0      
 #define HEATING         1   

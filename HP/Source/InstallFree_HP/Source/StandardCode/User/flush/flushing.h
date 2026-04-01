@@ -93,6 +93,8 @@ typedef struct _flushing_
     U8                  SettingBackup;   // 다음과 같은 상황 때문에 만듬 - 필터 남은시간,사용량 등 플러싱 시작하면 DoFilterFlushingInit 에서 필터시간,사용량 리셋 -> 이후에 전원 재인가or 에러 발생 하고나하면  플러싱 모드 다시 세팅안됨 (필터도래일 조건문 때문)
 } SFlushing_T;
 
+#define HOT_TANK_WATER_LV_VAL       30
+
 void InitFlushing(void);
 void TurnOnFlush(void);
 void TurnOffFlush(void);

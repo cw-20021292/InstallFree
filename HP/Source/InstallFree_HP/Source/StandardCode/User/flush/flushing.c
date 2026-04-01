@@ -206,7 +206,7 @@ static U8 DoFillHot( U8 *xUptrStep )
     switch(*xUptrStep)
     {
         case FLUSH_HOT_FILL_EXE_CHECK:
-            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) < 500)
+            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) > 0)
             // if(WATER_LV_HIGH == LOW)
             {
                 // 온수탱크에 물이 가득 차있지 않으면
@@ -220,7 +220,7 @@ static U8 DoFillHot( U8 *xUptrStep )
             break;
 
         case FLUSH_HOT_FILL_EXE:
-            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) > 500)
+            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) > 0)
             // if(WATER_LV_HIGH == LOW)
             {
                 ValveHotTankFill();

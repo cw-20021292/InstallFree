@@ -9,7 +9,6 @@
 
 U8 gu8FirstHighSensorDetect = 0;            /// @brief  전원 인가 후 최초 만수위 감지 여부 : 0(미감지), 1(감지)
 U8 gu8FirstLowSensorDetect = 0;             /// @brief  전원 인가 후 최초 저수위 감지 여부 : 0(미감지), 1(감지)
-
 #if (COLD_LOW_SENSOR_USE == USE)            // 냉수 저수위 센서 사용시
 U8 gu8ColdWaterLevel = 0;                   /// @brief   확정 냉수 수위 상태
 #endif
@@ -146,12 +145,12 @@ void Lib_WaterLevelCheck(void)
         }
 #else
         mu16HighSensorAdc = Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL);
-        mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
+        // mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
         // mu8HightSensor = Get_WaterLevel_Status(LEVEL_ID_HOT_TANK_HIGH);
         // mu8OverFlowSensor = Get_WaterLevel_Status(LEVEL_ID_OVERFLOW);
 
         // if (mu8HightSensor)
-        if(mu16HighSensorAdc < 100)
+        if(mu16HighSensorAdc == 0)
         {   // 저수위 센서 감지시
 #if (BOOST_PUMP_USE == USE)
             if (gu8WaterLevel == WATER_LEVEL_LOW)

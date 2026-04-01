@@ -81,7 +81,7 @@ typedef enum {
 #define ADC_AVERAGE_COUNT_2                             10              // ADC 2 ADC의 평균 산출 데이터 수
 #define ADC_AVERAGE_COUNT_3                             10              // ADC 3 ADC의 평균 산출 데이터 수
 #define ADC_AVERAGE_COUNT_4                             10              // ADC 4 ADC의 평균 산출 데이터 수
-#define ADC_AVERAGE_COUNT_5                             10              // ADC 5 ADC의 평균 산출 데이터 수
+#define ADC_AVERAGE_COUNT_5                             20              // ADC 5 ADC의 평균 산출 데이터 수
 #define ADC_AVERAGE_COUNT_6                             10              // ADC 6 ADC의 평균 산출 데이터 수
 #define ADC_AVERAGE_COUNT_7                             10              // ADC 7 ADC의 평균 산출 데이터 수
 #define ADC_AVERAGE_COUNT_8                             10              // ADC 8 ADC의 평균 산출 데이터 수

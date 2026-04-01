@@ -16,11 +16,14 @@
 #define DEFAULT_TEMP_TIME   5   // @1sec, 5sec
 
 /* TARGET TEMP - NORMAL */
-static const D64 OnTempList[ ALTITUDE_LEVEL_NUM ]  = { 68.0f, 68.0f, 68.0f, 68.0f };
-static const D64 OffTempList[ ALTITUDE_LEVEL_NUM ] = { 74.0f, 74.0f, 74.0f, 74.0f }; 
+// static const D64 OnTempList[ ALTITUDE_LEVEL_NUM ]  = { 68.0f, 68.0f, 68.0f, 68.0f };
+// static const D64 OffTempList[ ALTITUDE_LEVEL_NUM ] = { 74.0f, 74.0f, 74.0f, 74.0f }; 
 
-static const D64 BoostOnTempList[ ALTITUDE_LEVEL_NUM ]  = { 73.0f, 73.0f, 73.0f, 73.0f };
-static const D64 BoostOffTempList[ ALTITUDE_LEVEL_NUM ] = { 79.0f, 79.0f, 79.0f, 79.0f }; 
+static const D64 OnTempList[ ALTITUDE_LEVEL_NUM ]  = { 40.0f, 68.0f, 68.0f, 68.0f };
+static const D64 OffTempList[ ALTITUDE_LEVEL_NUM ] = { 50.0f, 74.0f, 74.0f, 74.0f }; 
+
+static const D64 BoostOnTempList[ ALTITUDE_LEVEL_NUM ]  = { 45.0f, 73.0f, 73.0f, 73.0f };
+static const D64 BoostOffTempList[ ALTITUDE_LEVEL_NUM ] = { 55.0f, 79.0f, 79.0f, 79.0f }; 
 
 
 /* TARGET TEMP - Power Saving */
@@ -252,6 +255,12 @@ static U8 CheckLevelOnHeating(void)
 
 static void UpdateTime(void)
 {
+    /* FLUSHING? YES -> Stop */
+    if( GetFlushingConfig() == TRUE )
+    {
+        return;
+    }
+
     if( Hot.InitWaitTime != 0 )
     {
         Hot.InitWaitTime--;
@@ -337,7 +346,6 @@ void  MakeHotWater(void)
     {
         Hot.Make = FALSE;
     }
-    
 }
 
 /* hot water generation control */

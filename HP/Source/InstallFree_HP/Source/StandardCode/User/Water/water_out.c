@@ -665,6 +665,7 @@ static void RightLeverOutValve(void)
         /* TURN ON WATER OUT - COLD */
         if( mu8Select == SEL_WATER_HOT )
         {
+            /* 온수추출 */
             Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, OPEN, 1);
             Set_ValveControl(VALVE_ID_HOT_OUT, FEED, OPEN, 0);
             Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, CLOSE, 0);
@@ -672,7 +673,10 @@ static void RightLeverOutValve(void)
         /* TURN ON WATER OUT - ROOM */
         else
         {
+            /* 정수추출 */
+            // Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, OPEN, 0);
             Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, OPEN, 0);
+            Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, CLOSE, 0);
         }
     }
 }

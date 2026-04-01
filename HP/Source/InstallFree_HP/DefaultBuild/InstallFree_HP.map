@@ -1,7 +1,7 @@
 
 
 
-78K0R Linker V1.80                            Date:31 Mar 2026 Page:   1
+78K0R Linker V1.80                            Date: 1 Apr 2026 Page:   1
 
 Command:   -yC:\Program Files (x86)\Renesas Electronics\CS+\CACX\Device\
            RL78\Devicefile -_msgoff -oDefaultBuild\InstallFree_HP.lmf -g
@@ -53,7 +53,7 @@ Directive:
 *** Link information ***
 
     97 output segment(s)
- A971H byte(s) real data
+ A985H byte(s) real data
  13513 symbol(s) defined
 
 
@@ -1154,7 +1154,7 @@ Directive:
                   @@CNST   error      035C6H    00000H
                   @@CNST   process_error
                                       035C6H    00000H
-         @@CODEL                      035C6H    07DE1H  CSEG
+         @@CODEL                      035C6H    07DF5H  CSEG
                   @@CODEL  Basic_Loop
                                       035C6H    0011FH
                   @@CODEL  Func_ADC   036E5H    00009H
@@ -1175,105 +1175,105 @@ Directive:
                   @@CODEL  Drv_GeneralADC
                                       03B22H    00163H
                   @@CODEL  Drv_Heater
-                                      03C85H    0014EH
+                                      03C85H    00149H
                   @@CODEL  Drv_ReedSW
-                                      03DD3H    00306H
+                                      03DCEH    00306H
                   @@CODEL  Drv_RTC_EEPROM_ISL12026
-                                      040D9H    00AB9H
-                  @@CODEL  Drv_UV     04B92H    00003H
+                                      040D4H    00AB9H
+                  @@CODEL  Drv_UV     04B8DH    00003H
                   @@CODEL  Drv_Valve
-                                      04B95H    003DEH
+                                      04B90H    003DEH
                   @@CODEL  Drv_WaterLevelSensor
-                                      04F73H    00308H
+                                      04F6EH    00308H
                   @@CODEL  Lib_ADConvert
-                                      0527BH    00253H
+                                      05276H    00253H
                   @@CODEL  Lib_Buzzer
-                                      054CEH    00FB8H
+                                      054C9H    00FB8H
                   @@CODEL  Lib_EEPROM
-                                      06486H    00000H
+                                      06481H    00000H
                   @@CODEL  Lib_OperationMode
-                                      06486H    000F5H
+                                      06481H    00107H
                   @@CODEL  Lib_TimeScheduler
-                                      0657BH    004A3H
+                                      06588H    004A3H
                   @@CODEL  Lib_Water_Effluent
-                                      06A1EH    005F4H
+                                      06A2BH    005F4H
                   @@CODEL  Lib_Water_ErrorCheck
-                                      07012H    00385H
+                                      0701FH    00385H
                   @@CODEL  Lib_Water_Fan
-                                      07397H    00018H
+                                      073A4H    00018H
                   @@CODEL  Lib_Water_Heater
-                                      073AFH    002A6H
+                                      073BCH    002A6H
                   @@CODEL  Lib_Water_LevelSensor
-                                      07655H    00093H
+                                      07662H    0008AH
                   @@CODEL  Lib_Water_PowerSave
-                                      076E8H    00203H
+                                      076ECH    00203H
                   @@CODEL  Lib_Water_Setup
-                                      078EBH    0009AH
+                                      078EFH    0009AH
                   @@CODEL  Lib_Water_TankWaterInput
-                                      07985H    00005H
+                                      07989H    00005H
                   @@CODEL  Lib_Water_TestMode
-                                      0798AH    00020H
+                                      0798EH    00020H
                   @@CODEL  User_EEPROM
-                                      079AAH    00000H
+                                      079AEH    00000H
                   @@CODEL  User_Main
-                                      079AAH    00078H
-                  @@CODEL  User_RTC   07A22H    00042H
-                  @@CODEL  r_main     07A64H    0000FH
+                                      079AEH    00078H
+                  @@CODEL  User_RTC   07A26H    00042H
+                  @@CODEL  r_main     07A68H    0000FH
                   @@CODEL  r_systeminit
-                                      07A73H    0002BH
-                  @@CODEL  r_cg_cgc   07A9EH    00017H
+                                      07A77H    0002BH
+                  @@CODEL  r_cg_cgc   07AA2H    00017H
                   @@CODEL  r_cg_cgc_user
-                                      07AB5H    00005H
+                                      07AB9H    00005H
                   @@CODEL  r_cg_port
-                                      07ABAH    00053H
+                                      07ABEH    00053H
                   @@CODEL  r_cg_port_user
-                                      07B0DH    00000H
-                  @@CODEL  r_cg_adc   07B0DH    0003DH
+                                      07B11H    00000H
+                  @@CODEL  r_cg_adc   07B11H    0003DH
                   @@CODEL  r_cg_adc_user
-                                      07B4AH    00000H
+                                      07B4EH    00000H
                   @@CODEL  r_cg_timer
-                                      07B4AH    0015CH
+                                      07B4EH    0015CH
                   @@CODEL  r_cg_timer_user
-                                      07CA6H    00000H
-                  @@CODEL  r_cg_wdt   07CA6H    00014H
+                                      07CAAH    00000H
+                  @@CODEL  r_cg_wdt   07CAAH    00014H
                   @@CODEL  r_cg_wdt_user
-                                      07CBAH    00000H
+                                      07CBEH    00000H
                   @@CODEL  r_cg_serial
-                                      07CBAH    00103H
+                                      07CBEH    00103H
                   @@CODEL  r_cg_serial_user
-                                      07DBDH    000C9H
-                  @@CODEL  flushing   07E86H    00418H
+                                      07DC1H    000C9H
+                  @@CODEL  flushing   07E8AH    00414H
                   @@CODEL  water_out
-                                      0829EH    0060DH
-                  @@CODEL  hal_key    088ABH    00041H
-                  @@CODEL  key        088ECH    00188H
+                                      0829EH    0061AH
+                  @@CODEL  hal_key    088B8H    00041H
+                  @@CODEL  key        088F9H    00188H
                   @@CODEL  key_handler
-                                      08A74H    00176H
+                                      08A81H    00176H
                   @@CODEL  process_key
-                                      08BEAH    002F6H
-                  @@CODEL  lever      08EE0H    00193H
+                                      08BF7H    002F6H
+                  @@CODEL  lever      08EEDH    00193H
                   @@CODEL  lever_handler
-                                      09073H    00051H
+                                      09080H    00051H
                   @@CODEL  process_lever
-                                      090C4H    001A4H
-                  @@CODEL  amount     09268H    004DFH
+                                      090D1H    001A4H
+                  @@CODEL  amount     09275H    004DFH
                   @@CODEL  hot_water
-                                      09747H    00241H
+                                      09754H    00248H
                   @@CODEL  hot_water_out
-                                      09988H    0039DH
-                  @@CODEL  heater     09D25H    000FBH
-                  @@CODEL  display    09E20H    00803H
+                                      0999CH    0039DH
+                  @@CODEL  heater     09D39H    000FBH
+                  @@CODEL  display    09E34H    00803H
                   @@CODEL  display_error
-                                      0A623H    00096H
+                                      0A637H    00096H
                   @@CODEL  display_lib
-                                      0A6B9H    001AFH
+                                      0A6CDH    001AFH
                   @@CODEL  process_display
-                                      0A868H    009DAH
-                  @@CODEL  hal_led    0B242H    000ABH
-                  @@CODEL  error      0B2EDH    000B6H
+                                      0A87CH    009DAH
+                  @@CODEL  hal_led    0B256H    000ABH
+                  @@CODEL  error      0B301H    000B6H
                   @@CODEL  process_error
-                                      0B3A3H    00004H
-* gap *                               0B3A7H    34C59H
+                                      0B3B7H    00004H
+* gap *                               0B3BBH    34C45H
 
   MEMORY=RAM
   BASE ADDRESS=FAF00H   SIZE=05100H
