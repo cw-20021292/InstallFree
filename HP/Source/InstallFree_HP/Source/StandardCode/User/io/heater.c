@@ -117,7 +117,8 @@ void ControlHeater(U8 mu8OnOff)
 
     if( mu8OnOff == TRUE )
     {
-        Set_HeaterPort( HEATER_ID_HOT_TANK, ON );
+        // Set_HeaterPort( HEATER_ID_HOT_TANK, ON );
+        Set_Heater_Control( HEATER_ID_HOT_TANK, ON, 0 );
 
         if( Heater.OnTime < MAX_TIME )
         {
@@ -132,7 +133,8 @@ void ControlHeater(U8 mu8OnOff)
         // StartSendHeaterWifiOnTime();  // For Wifi
 
         // Turn Off Heater
-        Set_HeaterPort( HEATER_ID_HOT_TANK, OFF );
+        // Set_HeaterPort( HEATER_ID_HOT_TANK, OFF );
+        Set_Heater_Control( HEATER_ID_HOT_TANK, OFF, 0 );
 
         // Count Off timer
         Heater.OnTime = 0;

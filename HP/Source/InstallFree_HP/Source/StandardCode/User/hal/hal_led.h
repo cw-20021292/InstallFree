@@ -42,8 +42,8 @@ typedef enum
     HOT_LOCK,               // 3  
     HOT_WATER,              // 4
     ROOM_WATER,             // 6	
-    RIGHT_BAR2,             // 9     Display UI : �� ������ �Ʒ� bar
     RIGHT_BAR1,             // 10    Display UI : �� ��  bar
+    RIGHT_BAR2,             // 9     Display UI : �� ������ �Ʒ� bar
     ICON_INFINITY,          // 11    AMOUNT_INFINITY
     ICON_LOW_WATER,         // 12 	
     ICON_REPLACE_FILTER,    // 19 

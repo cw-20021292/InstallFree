@@ -177,7 +177,6 @@ static U8 DoFilterFlushingInit( U8 *xUptrStep )
     switch(*xUptrStep)
     {
         case FLUSH_INIT_SOUND:
-
             (*xUptrStep)++;
             break;
 
@@ -367,10 +366,10 @@ EFlushingType_T GetFlushingType( void )
 static U8 IsValidFlushing(void)
 {
     /* 플러싱 유무 */
-    // if( GetFlushingConfig() == FALSE )
-    // {
-    //     return FALSE;
-    // }
+    if( GetFlushingConfig() == FALSE )
+    {
+        return FALSE;
+    }
 
     // /* 탱크 탐 커버 체결 유무 */
     // if( GetCurrentInputVal(INPUT_ID_COLD_TANK_COVER) == OPEN )
@@ -532,6 +531,15 @@ static void HandleSetFlushing(void)
         SetFlushOutMode(FLUSH_ALL_INSTALL_FREE);
         // SetFilterReplaceStatus(FILTER_REPLACE_DONE);
     }
+
+    /* 온수탱크 수위가 조금만 낮아져도 바로 [플러싱-온수탱크 채우기]로 진입 */
+    if( Get_HotWaterLevel() == HOT_WATER_LEVEL_LOW )
+    {
+        SetFlushingConfig(TRUE);
+        SetFlushingStatus(FLUSHING_STATUS_WAIT);
+        SetFlushOutMode(FLUSH_ALL_INSTALL_FREE);
+    }
+
     // /* 필터 교체 플러싱 */
     // else if( eFlushType == FLUSHING_TYPE_FILTER )  // 필터 교체 후, 필터 커버 닫으면 Flushing Config,mode,status 세팅 
     // {

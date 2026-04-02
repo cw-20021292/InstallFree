@@ -96,7 +96,7 @@ void HeaterControl(void)
 /// @return     void
 void Set_Heater_Control(U8 mu8HeaterID, U8 mu8OnOff, U8 mu8Delay)
 {
-    SHeaterControlData.au8Status[mu8HeaterID] = ON;
+    SHeaterControlData.au8Status[mu8HeaterID] = mu8OnOff;
     SHeaterControlData.au8DelayTime[mu8HeaterID] = mu8Delay;
 }
 

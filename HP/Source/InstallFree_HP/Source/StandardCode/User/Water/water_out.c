@@ -629,11 +629,18 @@ static void RightLeverOutValve(void)
     || (GetFlushingRun() == TRUE)
     )
     {
+        StopWaterOut();
         return;
     }
 
     // 필터리드 열려있으면 추출 취소
     if(Get_ReedSW_Status(REED_SW_ID_FILTER_REED) == FALSE)
+    {
+        StopWaterOut();
+    }
+
+    /* 온수탱크가 만수위 아닐 때 */
+    if( Get_HotWaterLevel() == HOT_WATER_LEVEL_LOW )
     {
         StopWaterOut();
     }
@@ -652,8 +659,8 @@ static void RightLeverOutValve(void)
         Set_DC_PumpControl(DC_PUMP_ID_WATER_IN, OFF, 0);
 
         Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, CLOSE, 0);
-        Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, CLOSE, 1);
-        Set_ValveControl(VALVE_ID_HOT_OUT, FEED, CLOSE, 1);
+        Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, CLOSE, 2);
+        Set_ValveControl(VALVE_ID_HOT_OUT, FEED, CLOSE, 2);
         Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, OPEN, 0);
         return;
     }
@@ -666,7 +673,7 @@ static void RightLeverOutValve(void)
         if( mu8Select == SEL_WATER_HOT )
         {
             /* 온수추출 */
-            Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, OPEN, 1);
+            Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, OPEN, 2);
             Set_ValveControl(VALVE_ID_HOT_OUT, FEED, OPEN, 0);
             Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, CLOSE, 0);
         }
@@ -676,7 +683,7 @@ static void RightLeverOutValve(void)
             /* 정수추출 */
             // Set_ValveControl(VALVE_ID_HOT_TANK_IN, FEED, OPEN, 0);
             Set_ValveControl(VALVE_ID_AMBIENT_OUT, FEED, OPEN, 0);
-            Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, CLOSE, 0);
+            Set_ValveControl(VALVE_NOS_ID_HOT_TANK_OVERFLOW, NOS, OPEN, 0);
         }
     }
 }

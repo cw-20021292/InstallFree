@@ -31,6 +31,7 @@ typedef enum _flushing_type_
     FLUSHING_TYPE_NONE = 0,
     FLUSHING_TYPE_FIRST,
     FLUSHING_TYPE_FILTER,
+    FLUSHING_TYPE_HOT_FILL,
     FLUSHING_TYPE_MAX,
 } EFlushingType_T;
 

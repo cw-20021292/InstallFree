@@ -799,11 +799,11 @@ void ApplyLedPortOutput(void)
     
     /* RIGHT_BAR1 → LED_AMOUNT_1 (P1.3) */
     mu8Cmd = HAL_GetProtocolCommand(RIGHT_BAR1);
-    LED_AMOUNT_2 = (mu8Cmd > 0) ? 1 : 0;
+    LED_AMOUNT_1 = (mu8Cmd > 0) ? 1 : 0;
     
     /* RIGHT_BAR2 → LED_AMOUNT_2 (P1.4) */
     mu8Cmd = HAL_GetProtocolCommand(RIGHT_BAR2);
-    LED_AMOUNT_1 = (mu8Cmd > 0) ? 1 : 0;
+    LED_AMOUNT_2 = (mu8Cmd > 0) ? 1 : 0;
     
     /* ICON_INFINITY → LED_AMOUNT_3 (P6.3) */
     mu8Cmd = HAL_GetProtocolCommand(ICON_INFINITY);
