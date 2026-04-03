@@ -19,11 +19,11 @@
 // static const D64 OnTempList[ ALTITUDE_LEVEL_NUM ]  = { 68.0f, 68.0f, 68.0f, 68.0f };
 // static const D64 OffTempList[ ALTITUDE_LEVEL_NUM ] = { 74.0f, 74.0f, 74.0f, 74.0f }; 
 
-static const D64 OnTempList[ ALTITUDE_LEVEL_NUM ]  = { 40.0f, 68.0f, 68.0f, 68.0f };
-static const D64 OffTempList[ ALTITUDE_LEVEL_NUM ] = { 50.0f, 74.0f, 74.0f, 74.0f }; 
+static const D64 OnTempList[ ALTITUDE_LEVEL_NUM ]  = { 75.0f, 68.0f, 68.0f, 68.0f };
+static const D64 OffTempList[ ALTITUDE_LEVEL_NUM ] = { 85.0f, 74.0f, 74.0f, 74.0f }; 
 
-static const D64 BoostOnTempList[ ALTITUDE_LEVEL_NUM ]  = { 45.0f, 73.0f, 73.0f, 73.0f };
-static const D64 BoostOffTempList[ ALTITUDE_LEVEL_NUM ] = { 55.0f, 79.0f, 79.0f, 79.0f }; 
+static const D64 BoostOnTempList[ ALTITUDE_LEVEL_NUM ]  = { 75.0f, 73.0f, 73.0f, 73.0f };
+static const D64 BoostOffTempList[ ALTITUDE_LEVEL_NUM ] = { 90.0f, 79.0f, 79.0f, 79.0f }; 
 
 
 /* TARGET TEMP - Power Saving */
@@ -41,7 +41,7 @@ void  InitHotWater(void)
     Hot.InitWaitTime    = WAIT_TIME;           
     Hot.InitFull        = FALSE;
     Hot.Level           = HOT_WATER_LEVEL_LOW;
-    Hot.ConfigMake      = TRUE;
+    Hot.ConfigMake      = FALSE;
     Hot.Make            = FALSE;
     Hot.MakeDelay       = WAIT_HEATING_TIME;
     Hot.Altitude        = ALTITUDE_LEVEL_0;
@@ -143,13 +143,21 @@ static U8 IsValidMake(void)
     }
 
     /* 온수탱크가 만수위 아닐 때 */
+#if 1
     if( Get_HotWaterLevel() == HOT_WATER_LEVEL_LOW )
     {
         return FALSE;
     }
+#endif
 
     /* Turn Off make, error */
     if( Get_ErrorStatus(ERROR_ID_TANK_HOT_TEMP_E45) == TRUE )
+    {
+        return FALSE;
+    }
+
+    /* 추출중이면 히터 OFF */
+    if(GetWaterOut() == TRUE)
     {
         return FALSE;
     }

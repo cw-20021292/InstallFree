@@ -16,6 +16,8 @@ static U8 SelAmount(void);
 static U8 SelHotLockOn(void);
 static U8 SelHotLockOff(void);
 static U8 SelHotBoostModeOnoff(void);
+static U8 SelHotConfigOn(void);
+static U8 SelHotConfigOff(void);
 static U8 SelExtract(void);
 
 static KeyEventList_T KeyEventList[] =
@@ -26,7 +28,7 @@ static KeyEventList_T KeyEventList[] =
     { K_ROOM,                 SelRoom,           NULL,               NULL,                 NULL,            NULL,     NULL },
     // { K_COLD,                 SelCold,           NULL,               NULL,                 NULL,            NULL,     NULL },
     { K_AMOUNT,               SelAmount,         NULL,               NULL,                 NULL,            NULL,     NULL },  
-    { K_HOT_LOCK,             NULL,              NULL,               SelHotLockOn,         SelHotLockOff,            NULL,     NULL },
+    { K_HOT_LOCK,             NULL,              NULL,               SelHotConfigOn,       NULL,            NULL,     NULL },
     { K_EXTRACT,             SelExtract,              NULL,          NULL,                 NULL,            NULL,     NULL },
 };
 
@@ -620,4 +622,32 @@ static U8 SelExtract(void)
     }
 
     return BUZZER_EFFLUENT;
+}
+
+static U8 SelHotConfigOn(void)
+{
+    if(GetHotWaterConfigMake() == FALSE)
+    {
+        SetHotWaterConfigMake(TRUE);
+        return BUZZER_SETUP;
+    }
+    else if(GetHotWaterConfigMake() == TRUE)
+    {
+        SetHotWaterConfigMake(FALSE);
+        return BUZZER_CANCEL;
+    }
+
+    return BUZZER_OFF;
+}
+
+static U8 SelHotConfigOff(void)
+{
+    if(GetHotWaterConfigMake() == TRUE)
+    {
+        SetHotWaterConfigMake(FALSE);
+        return BUZZER_CANCEL;
+
+    }
+
+    return BUZZER_OFF;
 }

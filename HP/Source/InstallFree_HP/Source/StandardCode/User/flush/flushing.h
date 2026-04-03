@@ -17,6 +17,8 @@
 #define FLUSH_OUT_CLOSE_VALVE         (0x00001000)      // 밸브 CLOSE
 #define FLUSH_OUT_DONE                (0x00002000)      // 완료
 
+#define WATER_LEVEL                   400
+
 // #define FLUSH_OUT_INIT                (0x00000001)      // 초기화
 // #define FLUSH_OUT_FILL_HOT            (0x00000002)      // 온수 탱크 채움
 // #define FLUSH_OUT_DONE                (0x00000004)      // 완료

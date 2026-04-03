@@ -47,8 +47,8 @@
 #define LED_AMOUNT_1                P2.3 // P6.3
 #define LED_AMOUNT_2                P1.4
 #define LED_AMOUNT_3                P1.3
-#define LED_HOT_2                   P0.3
-#define LED_HOT_1                   P0.2
+#define LED_HOT_2                   P0.2 // P0.3
+#define LED_HOT_1                   P0.3 // P0.2
 #define LED_AMBIENT                 P0.1
 
 /* KEYs */

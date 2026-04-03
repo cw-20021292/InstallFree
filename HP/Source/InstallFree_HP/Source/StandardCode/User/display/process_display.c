@@ -27,7 +27,9 @@ static void DisplayHotMakeBlink(void);
 static void DisplayWaterOutPoint(void);
 static void DisplayLock(void);
 static void DisplayLockAll(void);
-static void DisplayLockHot(void);
+
+static void DisplayHotConfig(void);
+
 static void DisplayLockHotSet(void);
 static void DisplayLockIcon(void);
 static void DisplaySelWater(void);
@@ -985,7 +987,7 @@ static void DisplayHotLockBlink(void)
 
     if( GetAgingTestRepeatStatus() == TRUE )
     {
-        mu8BlinkOnOff = BlinkLED( mu8BlinkOnOff, DispHotLock, DISP_TIMER_ID_500MS );
+        mu8BlinkOnOff = BlinkLED( mu8BlinkOnOff, DispHotConfig, DISP_TIMER_ID_500MS );
     }
 }
 
@@ -1226,7 +1228,7 @@ static void ProcessDisplayNormalMode(void)
     DisplayHotMakeBlink();
 
     /* Lock Hot Water */
-    DisplayLockHot();
+    DisplayHotConfig();
 	
     /* Filter Flushing */
     DisplayFilterFlushing();
@@ -1289,17 +1291,17 @@ static void DisplayHeating( D64 mTemp )
     }
 }
 
-static void DisplayLockHot(void)
+static void DisplayHotConfig(void)
 {
     U8 mu8OnOff = LED_OFF;
 
     /* 온수 잠금 LED ON/OFF */
-    if( Get_HotKeyLockStatus() == HOT_KEY_LOCK_ON  )
+    if( GetHotWaterConfigMake() == TRUE)
     {
         mu8OnOff = LED_ON;
     }
   
-    DispHotLock( mu8OnOff );
+    DispHotConfig( mu8OnOff );
 }
 
 static void DisplayFilterFlushing(void)
@@ -1325,7 +1327,7 @@ static void DisplayLock(void)
     /* hot lock 온수 잠금 상태에서 선택 시, 점멸 */
     if( IsExpiredDispTimer( DISP_TIMER_HOTLOCK ) == FALSE )
     {
-        mu8BlinkOnOffHotLock = BlinkLED( mu8BlinkOnOffHotLock, DispHotLock, DISP_TIMER_ID_500MS );
+        mu8BlinkOnOffHotLock = BlinkLED( mu8BlinkOnOffHotLock, DispHotConfig, DISP_TIMER_ID_500MS );
     }
 }
 

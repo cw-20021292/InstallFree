@@ -205,8 +205,7 @@ static U8 DoFillHot( U8 *xUptrStep )
     switch(*xUptrStep)
     {
         case FLUSH_HOT_FILL_EXE_CHECK:
-            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) > 0)
-            // if(WATER_LV_HIGH == LOW)
+            if(Get_HotWaterLevel() == HOT_WATER_LEVEL_LOW)
             {
                 // 온수탱크에 물이 가득 차있지 않으면
                 (*xUptrStep)++;
@@ -219,8 +218,7 @@ static U8 DoFillHot( U8 *xUptrStep )
             break;
 
         case FLUSH_HOT_FILL_EXE:
-            if(Get_ADC_Data(ADC_ID_TH_HOT_TANK_WATER_LEVEL) > 0)
-            // if(WATER_LV_HIGH == LOW)
+            if(Get_HotWaterLevel() == HOT_WATER_LEVEL_LOW)
             {
                 ValveHotTankFill();
             }
@@ -532,6 +530,7 @@ static void HandleSetFlushing(void)
         // SetFilterReplaceStatus(FILTER_REPLACE_DONE);
     }
 
+#if 1
     /* 온수탱크 수위가 조금만 낮아져도 바로 [플러싱-온수탱크 채우기]로 진입 */
     if( Get_HotWaterLevel() == HOT_WATER_LEVEL_LOW )
     {
@@ -539,7 +538,7 @@ static void HandleSetFlushing(void)
         SetFlushingStatus(FLUSHING_STATUS_WAIT);
         SetFlushOutMode(FLUSH_ALL_INSTALL_FREE);
     }
-
+#endif
     // /* 필터 교체 플러싱 */
     // else if( eFlushType == FLUSHING_TYPE_FILTER )  // 필터 교체 후, 필터 커버 닫으면 Flushing Config,mode,status 세팅 
     // {

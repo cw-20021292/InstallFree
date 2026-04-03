@@ -74,7 +74,8 @@ U8 gu8DC_Pump10OffDelay = 0;            /// @brief  DC Pump10 PWM 제어 후 밸
 
 /// @brief  DC Pump 제어 관리 자료형
 typedef struct {
-    U8  au8Status[DC_PUMP_ID_MAX_COUNT];             // DC Pump Status(1:ON, 0:OFF)
+    U8   au8Status[DC_PUMP_ID_MAX_COUNT];            // DC Pump Status(1:ON, 0:OFF)
+    U8   au8PreStatus[DC_PUMP_ID_MAX_COUNT];         // DC Pump Pre-Status(1:ON, 0:OFF)
     U16  au16DelayTime[DC_PUMP_ID_MAX_COUNT];        // DC Pump Control Delay Time
 }   SDC_PumpData_T;
 
@@ -241,16 +242,32 @@ void DC_PumpControl(void)
 /// @return     void
 void Set_DC_PumpControl(U8 mu8PumpID, U8 mu8Status, U16 mu16Delay)
 {
-    if (mu8Status == ON)
+    U8 mu8NewStatus;
+    
+    mu8NewStatus = (mu8Status == ON) ? ON : OFF;
+    if (SDC_PumpControlData.au8Status[mu8PumpID] != mu8NewStatus)
     {
-        SDC_PumpControlData.au8Status[mu8PumpID] = ON;
+        SDC_PumpControlData.au8Status[mu8PumpID] = mu8NewStatus;
         SDC_PumpControlData.au16DelayTime[mu8PumpID] = mu16Delay;
     }
-    else
-    {
-        SDC_PumpControlData.au8Status[mu8PumpID] = OFF;
-        SDC_PumpControlData.au16DelayTime[mu8PumpID] = mu16Delay;
-    }
+
+    // SDC_PumpControlData.au16DelayTime[mu8PumpID] = mu16Delay;
+
+    // if (mu8Status == ON)
+    // {
+    //     SDC_PumpControlData.au8Status[mu8PumpID] = ON;
+    // }
+    // else
+    // {
+    //     SDC_PumpControlData.au8Status[mu8PumpID] = OFF;
+    // }
+
+    // // 상태가 달라졌을 때에만 Delay Time 적용
+    // if(SDC_PumpControlData.au8PreStatus[mu8PumpID] != SDC_PumpControlData.au8Status[mu8PumpID])
+    // {
+    //     SDC_PumpControlData.au8PreStatus[mu8PumpID] = SDC_PumpControlData.au8Status[mu8PumpID];
+        
+    // }
 }
 
 

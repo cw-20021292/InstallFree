@@ -150,7 +150,7 @@ void Lib_WaterLevelCheck(void)
         // mu8OverFlowSensor = Get_WaterLevel_Status(LEVEL_ID_OVERFLOW);
 
         // if (mu8HightSensor)
-        if(mu16HighSensorAdc == 0)
+        if(mu16HighSensorAdc >= WATER_LEVEL)
         {   // 저수위 센서 감지시
 #if (BOOST_PUMP_USE == USE)
             if (gu8WaterLevel == WATER_LEVEL_LOW)

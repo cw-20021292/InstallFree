@@ -156,15 +156,15 @@ void DispRoomWater (U8 mu8OnOff)
     HAL_TurnOnOffLED( ROOM_WATER, mu8OnOff );
 }
 
-void DispHotLock( U8 mu8OnOff )
+void DispHotConfig( U8 mu8OnOff )
 {
-    HAL_TurnOnOffLED( HOT_LOCK, mu8OnOff );
+    HAL_TurnOnOffLED( HOT_CONFIG, mu8OnOff );
 }
 
 void DispOnlyHotLock( U8 mu8OnOff )
 {
     HAL_TurnOnOffLED( HOT_WATER, mu8OnOff );
-    HAL_TurnOnOffLED( HOT_LOCK, mu8OnOff );
+    HAL_TurnOnOffLED( HOT_CONFIG, mu8OnOff );
 }
 
 void DispWaterOutPointRight( U8 mu8OnOff )
@@ -234,7 +234,7 @@ void TurnOffLED_LockAllMode(void)
     HAL_TurnOnOffLED( ICON_INFINITY, LED_OFF );
     HAL_TurnOnOffLED( ROOM_WATER, LED_OFF );
     HAL_TurnOnOffLED( HOT_WATER,  LED_OFF );
-    HAL_TurnOnOffLED( HOT_LOCK,  LED_OFF );
+    HAL_TurnOnOffLED( HOT_CONFIG,  LED_OFF );
 
     HAL_TurnOnOffLED( ICON_REPLACE_FILTER, LED_OFF );
 
@@ -293,11 +293,13 @@ void DispWaterSel(U8 mu8Sel)
     if( mu8Sel == SEL_WATER_HOT )
     {
         HAL_TurnOnOffLED( HOT_WATER,      LED_OFF );
+        HAL_TurnOnOffLED( ICON_HEATING,   LED_OFF );
     }
     else
     {
         // SEL_WATER_ROOM
-        HAL_TurnOnOffLED( ROOM_WATER,      LED_ON  );
+        HAL_TurnOnOffLED( ROOM_WATER,      LED_ON );
+        HAL_TurnOnOffLED( ICON_HEATING,    LED_ON );
     }
 }
 
@@ -549,12 +551,12 @@ void DispAmountInfinity(void)
 
 void DispLockHotSetBlink( U8 mu8OnOff )
 {
-    HAL_TurnOnOffLED( HOT_LOCK, mu8OnOff );
+    HAL_TurnOnOffLED( HOT_CONFIG, mu8OnOff );
 }
 
 void DispLockAllOnOff_CHP( U8 mu8OnOff )
 {
-    HAL_TurnOnOffLED( HOT_LOCK,  mu8OnOff );
+    HAL_TurnOnOffLED( HOT_CONFIG,  mu8OnOff );
     HAL_TurnOnOffLED( ROOM_WATER,  mu8OnOff );	
 }
 
@@ -562,7 +564,7 @@ void CHP_DispVirtualLedAllOnOff( U8 mu8OnOff )
 {
     HAL_TurnOnOffLED( ICON_LOW_WATER,  mu8OnOff );
     HAL_TurnOnOffLED( HOT_WATER, mu8OnOff );
-    HAL_TurnOnOffLED( HOT_LOCK, mu8OnOff );
+    HAL_TurnOnOffLED( HOT_CONFIG, mu8OnOff );
 }
 
 void DispHeatingBlinkDimming( U8 mu8OnOff )
@@ -786,7 +788,7 @@ void ApplyLedPortOutput(void)
     LED_HOT_1 = (mu8Cmd > 0) ? 1 : 0;
 
     /* HOT_LOCK → LED_LOCK (P1.2) */
-    mu8Cmd = HAL_GetProtocolCommand(HOT_LOCK);
+    mu8Cmd = HAL_GetProtocolCommand(HOT_CONFIG);
     LED_LOCK = (mu8Cmd > 0) ? 1 : 0;
 
     /* HOT_WATER → LED_HOT_2 (P0.3) */

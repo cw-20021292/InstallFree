@@ -58,7 +58,7 @@ void DispWaterSel(U8 mu8Sel);
 void DispHotWaterSel(U8 mu8HotSel);
 void DispWaterHot(U8 mu8Sel);
 
-void DispHotLock(U8 mu8OnOff);
+void DispHotConfig(U8 mu8OnOff);
 void DispOnlyHotLock(U8 mu8OnOff);
 void DispLockHotSetBlink( U8 mu8OnOff );
 

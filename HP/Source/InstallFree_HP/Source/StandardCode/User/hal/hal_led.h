@@ -39,7 +39,7 @@ typedef enum
 {	 
     // Front LED
     ICON_HEATING,           // 0
-    HOT_LOCK,               // 3  
+    HOT_CONFIG,             // 3  
     HOT_WATER,              // 4
     ROOM_WATER,             // 6	
     RIGHT_BAR1,             // 10    Display UI : �� ��  bar

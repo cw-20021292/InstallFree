@@ -24,7 +24,7 @@ void AD_Convert_Initialize(void)
     // 미친 이거 1로 해놔야될거아니야 ㅡㅡ
     // gu8AD_CheckEnd = 0;
     gu8AD_CheckEnd = 1;
-    HOT_TANK_LV = 1;
+    HOT_TANK_LV = 0;
 }
 
 

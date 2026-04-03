@@ -14,7 +14,8 @@ U8 gu8ValveControTimer = 0;
 #if (VALVE_COUNT > 0)
 /// @brief  Feed Valve 제어 관리 자료형
 typedef struct {
-    U8  au8Status[VALVE_ID_MAX_COUNT];           // Valve Status(1:ON, 0:OFF)
+    U8  au8Status[VALVE_ID_MAX_COUNT];           // Valve Status (1:ON, 0:OFF)
+    U8  au8PreStatus[VALVE_ID_MAX_COUNT];        // Valve Pre-Status (1:ON, 0:OFF)
     U8  au8DelayTime[VALVE_ID_MAX_COUNT];        // Valve Control Delay Time
 }   SValveData_T;
 
@@ -24,7 +25,8 @@ SValveData_T        SValveControlData;           // Feed Valve Control Data
 #if (VALVE_NOS_COUNT > 0)
 /// @brief  Nos Valve 제어 관리 자료형
 typedef struct {
-    U8  au8Status[VALVE_NOS_ID_MAX_COUNT];       // Nos Valve Status(1:ON, 0:OFF)
+    U8  au8Status[VALVE_NOS_ID_MAX_COUNT];       // Nos Valve Status (1:ON, 0:OFF)
+    U8  au8PreStatus[VALVE_ID_MAX_COUNT];        // Nos Valve Pre-Status (1:ON, 0:OFF)
     U8  au8DelayTime[VALVE_NOS_ID_MAX_COUNT];    // Nos Valve Control Delay Time
 }   SNosValveData_T;
 
@@ -114,36 +116,61 @@ void ValveControl(void)
 /// @return     void
 void Set_ValveControl(U8 mu8ValveID, U8 mu8ValveType, U8 mu8Status, U8 mu8Delay)
 {
+    U8 mu8NewStatus;
+
     switch (mu8ValveType)
     {
 #if (VALVE_COUNT > 0)
         case FEED:      // Feed Valve인 경우
+            mu8NewStatus = (mu8Status == OPEN) ? ON : OFF;
+            if (SValveControlData.au8Status[mu8ValveID] != mu8NewStatus)
+            {
+                SValveControlData.au8Status[mu8ValveID] = mu8NewStatus;
+                SValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
+            }
 
-            if (mu8Status == OPEN)
-            {
-                SValveControlData.au8Status[mu8ValveID] = ON;
-                SValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
-            }
-            else
-            {
-                SValveControlData.au8Status[mu8ValveID] = OFF;
-                SValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
-            }
+            // // 상태가 바뀌었을 때 Delay Setting Time 1회 적용
+            // if(SValveControlData.au8PreStatus[mu8ValveID] != SValveControlData.au8Status[mu8ValveID])
+            // {
+            //     SValveControlData.au8PreStatus[mu8ValveID] = SValveControlData.au8Status[mu8ValveID];
+            //     SValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
+            // }
+
+            // if (mu8Status == OPEN)
+            // {
+            //     SValveControlData.au8Status[mu8ValveID] = ON;
+            // }
+            // else
+            // {
+            //     SValveControlData.au8Status[mu8ValveID] = OFF;
+            // }
             break;
 #endif
 
 #if (VALVE_NOS_COUNT > 0)
         case NOS:       // Nos Valve인 경우
-            if (mu8Status == OPEN)
+            mu8NewStatus = (mu8Status == OPEN) ? N_ON : N_OFF;
+            if (SNosValveControlData.au8Status[mu8ValveID] != mu8NewStatus)
             {
-                SNosValveControlData.au8Status[mu8ValveID] = N_ON;
+                SNosValveControlData.au8Status[mu8ValveID] = mu8NewStatus;
                 SNosValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
             }
-            else
-            {
-                SNosValveControlData.au8Status[mu8ValveID] = N_OFF;
-                SNosValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
-            }
+
+            // // 상태가 바뀌었을 때 Delay Setting Time 1회 적용
+            // if(SNosValveControlData.au8PreStatus[mu8ValveID] != SNosValveControlData.au8Status[mu8ValveID])
+            // {
+            //     SNosValveControlData.au8PreStatus[mu8ValveID] = SNosValveControlData.au8Status[mu8ValveID];
+            //     SNosValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
+            // }
+
+            // if (mu8Status == OPEN)
+            // {
+            //     SNosValveControlData.au8Status[mu8ValveID] = N_ON;
+            // }
+            // else
+            // {
+            //     SNosValveControlData.au8Status[mu8ValveID] = N_OFF;
+            // }
             break;
 #endif
 

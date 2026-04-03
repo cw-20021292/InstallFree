@@ -16,7 +16,7 @@
 #define  SAFETY_TIME                600 // @1sec
 
 /* TARGET OFF TEMP - PROTECTION OVER-HEATING */
-#define PROTECT_HOT_TEMP   60.0f
+#define PROTECT_HOT_TEMP   97.0f
   
 #define NONE_HEATING    0      
 #define HEATING         1   
