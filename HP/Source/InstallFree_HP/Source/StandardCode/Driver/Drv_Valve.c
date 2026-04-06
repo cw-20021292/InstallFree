@@ -128,22 +128,6 @@ void Set_ValveControl(U8 mu8ValveID, U8 mu8ValveType, U8 mu8Status, U8 mu8Delay)
                 SValveControlData.au8Status[mu8ValveID] = mu8NewStatus;
                 SValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
             }
-
-            // // 상태가 바뀌었을 때 Delay Setting Time 1회 적용
-            // if(SValveControlData.au8PreStatus[mu8ValveID] != SValveControlData.au8Status[mu8ValveID])
-            // {
-            //     SValveControlData.au8PreStatus[mu8ValveID] = SValveControlData.au8Status[mu8ValveID];
-            //     SValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
-            // }
-
-            // if (mu8Status == OPEN)
-            // {
-            //     SValveControlData.au8Status[mu8ValveID] = ON;
-            // }
-            // else
-            // {
-            //     SValveControlData.au8Status[mu8ValveID] = OFF;
-            // }
             break;
 #endif
 
@@ -155,22 +139,6 @@ void Set_ValveControl(U8 mu8ValveID, U8 mu8ValveType, U8 mu8Status, U8 mu8Delay)
                 SNosValveControlData.au8Status[mu8ValveID] = mu8NewStatus;
                 SNosValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
             }
-
-            // // 상태가 바뀌었을 때 Delay Setting Time 1회 적용
-            // if(SNosValveControlData.au8PreStatus[mu8ValveID] != SNosValveControlData.au8Status[mu8ValveID])
-            // {
-            //     SNosValveControlData.au8PreStatus[mu8ValveID] = SNosValveControlData.au8Status[mu8ValveID];
-            //     SNosValveControlData.au8DelayTime[mu8ValveID] = mu8Delay;
-            // }
-
-            // if (mu8Status == OPEN)
-            // {
-            //     SNosValveControlData.au8Status[mu8ValveID] = N_ON;
-            // }
-            // else
-            // {
-            //     SNosValveControlData.au8Status[mu8ValveID] = N_OFF;
-            // }
             break;
 #endif
 

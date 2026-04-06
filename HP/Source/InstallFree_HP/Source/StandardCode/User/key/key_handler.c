@@ -27,8 +27,8 @@ static KeyEventList_T KeyEventList[] =
     { K_HOT,                  SelHot,            NULL,               SelHotBoostModeOnoff, NULL,            NULL,     NULL },
     { K_ROOM,                 SelRoom,           NULL,               NULL,                 NULL,            NULL,     NULL },
     // { K_COLD,                 SelCold,           NULL,               NULL,                 NULL,            NULL,     NULL },
-    { K_AMOUNT,               SelAmount,         NULL,               NULL,                 NULL,            NULL,     NULL },  
-    { K_HOT_LOCK,             NULL,              NULL,               SelHotConfigOn,       NULL,            NULL,     NULL },
+    { K_AMOUNT,               SelAmount,         NULL,               SelHotConfigOn,       NULL,            NULL,     NULL },  
+    { K_HOT_LOCK,             NULL,              NULL,               NULL,                 NULL,            NULL,     NULL },
     { K_EXTRACT,             SelExtract,              NULL,          NULL,                 NULL,            NULL,     NULL },
 };
 

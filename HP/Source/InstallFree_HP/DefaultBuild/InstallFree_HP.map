@@ -1,7 +1,7 @@
 
 
 
-78K0R Linker V1.80                            Date: 3 Apr 2026 Page:   1
+78K0R Linker V1.80                            Date: 6 Apr 2026 Page:   1
 
 Command:   -yC:\Program Files (x86)\Renesas Electronics\CS+\CACX\Device\
            RL78\Devicefile -_msgoff -oDefaultBuild\InstallFree_HP.lmf -g
